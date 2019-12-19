@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1065077918794-1fnm8iaacccvubtg6gg3o078s08ko1is.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1065077918794-1fnm8iaacccvubtg6gg3o078s08ko1is</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1065077918794-e5s7inmcvt0ugfbbd6dsvnoaai851rj8.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC90dJGoVC3v_nfkSsD7_ncmeucTpU2OVg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1065077918794</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ESGI.WeMoov</string>
+	<key>PROJECT_ID</key>
+	<string>wemouv-c638a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>wemouv-c638a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1065077918794:ios:50eb13b3d97d7ab374aab3</string>
+	<key>DATABASE_URL</key>
+	<string>https://wemouv-c638a.firebaseio.com</string>
+</dict>
+</plist>

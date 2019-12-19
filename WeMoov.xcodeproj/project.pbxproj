@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32D1324370523A9F1EAA04A5 /* Pods_WeMoov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */; };
 		3746E4B023AAFC4F006BFF31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746E4AE23AAFC4F006BFF31 /* LoginViewController.swift */; };
 		4C79E65D23A513750041BA81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C79E65C23A513750041BA81 /* AppDelegate.swift */; };
 		4C79E66423A513780041BA81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C79E66323A513780041BA81 /* Assets.xcassets */; };
@@ -20,6 +21,9 @@
 		4C79E66323A513780041BA81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C79E66623A513780041BA81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C79E66823A513780041BA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7774C1A38FF5CF2830201018 /* Pods-WeMoov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMoov.release.xcconfig"; path = "Target Support Files/Pods-WeMoov/Pods-WeMoov.release.xcconfig"; sourceTree = "<group>"; };
+		B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMoov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F63D59529C4B409822056E28 /* Pods-WeMoov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMoov.debug.xcconfig"; path = "Target Support Files/Pods-WeMoov/Pods-WeMoov.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D1324370523A9F1EAA04A5 /* Pods_WeMoov.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,8 @@
 			children = (
 				4C79E65B23A513750041BA81 /* WeMoov */,
 				4C79E65A23A513750041BA81 /* Products */,
+				50814DA312EF79B5FCEA42CC /* Pods */,
+				FF43AB016B41290554FA58A7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +76,24 @@
 			path = WeMoov;
 			sourceTree = "<group>";
 		};
+		50814DA312EF79B5FCEA42CC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F63D59529C4B409822056E28 /* Pods-WeMoov.debug.xcconfig */,
+				7774C1A38FF5CF2830201018 /* Pods-WeMoov.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF43AB016B41290554FA58A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -76,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C79E66B23A513780041BA81 /* Build configuration list for PBXNativeTarget "WeMoov" */;
 			buildPhases = (
+				ADD2A22F375E800E1207CE81 /* [CP] Check Pods Manifest.lock */,
 				4C79E65523A513750041BA81 /* Sources */,
 				4C79E65623A513750041BA81 /* Frameworks */,
 				4C79E65723A513750041BA81 /* Resources */,
+				D4E33BC54D3EA2C9798CF326 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,6 +160,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ADD2A22F375E800E1207CE81 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WeMoov-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4E33BC54D3EA2C9798CF326 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WeMoov/Pods-WeMoov-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WeMoov/Pods-WeMoov-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeMoov/Pods-WeMoov-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C79E65523A513750041BA81 /* Sources */ = {
@@ -276,6 +345,7 @@
 		};
 		4C79E66C23A513780041BA81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F63D59529C4B409822056E28 /* Pods-WeMoov.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -293,6 +363,7 @@
 		};
 		4C79E66D23A513780041BA81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7774C1A38FF5CF2830201018 /* Pods-WeMoov.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
