@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
 
@@ -116,7 +117,6 @@ class SignUpViewController: UIViewController {
             guard let uid = result?.user.uid else { return }
             
             let valDict = ["email" : email, "firstname": pseudo]
-            
             Database.database().reference().child("user").child(uid).updateChildValues(valDict, withCompletionBlock: { (error, ref) in
                 if let err = error {
                     print("Impossible de mettre à jour la bdd", err.localizedDescription)
@@ -124,7 +124,7 @@ class SignUpViewController: UIViewController {
                 }
                 
             
-            //self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
 
         })
     }
@@ -132,6 +132,7 @@ class SignUpViewController: UIViewController {
 
      //Func affichant les éléments suivant les contraintes ( définient en utilisant l'extension)
      func viewComponentConfigure(){
+        self.hideKeyboardWhenTappedAround()
          view.backgroundColor = UIColor.mainOrange() // Set la valeur de l'arrière plan avec .mainOrange défini dans Extensions.swift
          navigationController?.navigationBar.isHidden = true
          

@@ -8,12 +8,13 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class HomeViewController: UIViewController {
            
     @IBOutlet var pseudoLabel: UILabel!
     
-    /*
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //AuthCheck()
@@ -72,14 +73,20 @@ class HomeViewController: UIViewController {
     
     func configureViewComponents() {
         view.backgroundColor = UIColor.mainOrange()
-           
+        navigationController?.navigationBar.isHidden = false
            navigationItem.title = "Firebase Login"
            
            navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "envelope"), style: .plain, target: self, action: #selector(handleSignOut))
            navigationItem.leftBarButtonItem?.tintColor = .white
            navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
-       }
-       
-*/
+        
+        self.pseudoLabel.text = "Welcome, \(GlobalVariable.username)"
+        
+        UIView.animate(withDuration: 0.5, animations: {
+         self.pseudoLabel.alpha = 1
+        })
+ 
+ }
+    
 }
 

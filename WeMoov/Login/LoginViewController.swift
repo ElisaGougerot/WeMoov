@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
 
@@ -94,9 +95,26 @@ class LoginViewController: UIViewController {
             }*/
             
         }
+        print("login")
+        loadUserData()
+       // let homeViewController = HomeViewController()
+       // self.navigationController?.pushViewController(homeViewController, animated: true)
+        //self.dismiss(animated: true, completion: nil)
+    }
+    
+    func loadUserData() {
+        guard let uid = Auth.auth().currentUser?.uid else { print("merde"); return }
+        Database.database().reference().child("user").child(uid).child("firstname").observeSingleEvent(of: .value) { (snapshot) in
+            guard let username = snapshot.value as? String else { return }
+            GlobalVariable.username = username
+            let homeViewController = HomeViewController()
+            //homeViewController.pseudoLabel.text = username
+            self.navigationController?.pushViewController(homeViewController, animated: true)
+        }
     }
        
        func viewComponentConfigure(){
+        self.hideKeyboardWhenTappedAround()
            view.backgroundColor = UIColor.mainOrange() // Set la valeur de l'arrière plan avec .mainOrange défini dans Extensions.swift
            navigationController?.navigationBar.isHidden = true
            
@@ -117,4 +135,16 @@ class LoginViewController: UIViewController {
            
        }
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
