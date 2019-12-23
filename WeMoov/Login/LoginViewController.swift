@@ -7,25 +7,114 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+     let logoImageView: UIImageView = {
+           let iv = UIImageView()
+           iv.contentMode = .scaleToFill
+           iv.clipsToBounds = true
+           iv.image = #imageLiteral(resourceName: "WeMoov")
+           return iv
+       }()
+       
+       
+       lazy var emailContainerView: UIView = {
+              let view = UIView()
+              return view.textContainerView(view: view, #imageLiteral(resourceName: "envelope"), emailTextField)
+          }()
+          
+          lazy var passwordContainerView: UIView = {
+              let view = UIView()
+              return view.textContainerView(view: view, #imageLiteral(resourceName: "lock"), passwordTextField)
+          }()
+          
+          lazy var emailTextField: UITextField = {
+              let tf = UITextField()
+              tf.keyboardType = .emailAddress
+              return tf.textField(withPlaceolder: "Email", isSecureTextEntry: false)
+          }()
+          
+          lazy var passwordTextField: UITextField = {
+              let tf = UITextField()
+              return tf.textField(withPlaceolder: "Mot de passe", isSecureTextEntry: true)
+          }()
+       
+       let loginButton: UIButton = {
+              let button = UIButton(type: .system)
+              button.setTitle("SE CONNECTER", for: .normal)
+              button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+              button.setTitleColor(UIColor.mainOrange(), for: .normal)
+              button.backgroundColor = .black
+              button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+              button.layer.cornerRadius = 10
+              return button
+          }()
+       
+       let dontHaveAccountButton: UIButton = {
+              let button = UIButton(type: .system)
+              let attributedTitle = NSMutableAttributedString(string: "Pas encore de compte?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white])
+              attributedTitle.append(NSAttributedString(string: "S'enregistrer", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.red]))
+              button.setAttributedTitle(attributedTitle, for: .normal)
+              button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
+              return button
+          }()
+       
+       override func viewDidLoad() {
+           super.viewDidLoad()
+           viewComponentConfigure()
+       }
+       
+       @objc func handleLogin(){
+        
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        logUserIn(withEmail: email, password: password)
+        
+        //navigationController?.pushViewController(SignUpViewController(), animated: false)
 
-        view.backgroundColor = .orange
-        // Do any additional setup after loading the view.
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+       
+       @objc func handleShowSignUp(){
+           print("signup")
+           navigationController?.pushViewController(SignUpViewController(), animated: true)
+       }
+    
+    
+    func logUserIn(withEmail email: String, password: String){
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if let err = error {
+                 print("Erreur, impossible de se connecter :", err.localizedDescription)
+                return
+            } /*else {
+                self.navigationController?.pushViewController(HomeViewController(), animated: true)
+            self.dismiss(animated: true, completion: nil)
+            }*/
+            
+        }
     }
-    */
+       
+       func viewComponentConfigure(){
+           view.backgroundColor = UIColor.mainOrange() // Set la valeur de l'arrière plan avec .mainOrange défini dans Extensions.swift
+           navigationController?.navigationBar.isHidden = true
+           
+           view.addSubview(logoImageView)
+           logoImageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
+           logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+           
+           view.addSubview(emailContainerView)
+           emailContainerView.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
+           
+           view.addSubview(passwordContainerView)
+                  passwordContainerView.anchor(top: emailContainerView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
+                  
+           view.addSubview(loginButton)
+                  loginButton.anchor(top: passwordContainerView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
+           view.addSubview(dontHaveAccountButton)
+                  dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 32, paddingBottom: 12, paddingRight: 32, width: 0, height: 50)
+           
+       }
 
 }
