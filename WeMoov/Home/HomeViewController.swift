@@ -76,8 +76,8 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
            navigationItem.title = "Firebase Login"
            
-           navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "envelope"), style: .plain, target: self, action: #selector(handleSignOut))
-           navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "envelope"), style: .plain, target: self, action: #selector(handleSignOut))
+        navigationItem.leftBarButtonItem?.tintColor = .white
            navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
         
         self.pseudoLabel.text = "Welcome, \(GlobalVariable.username)"

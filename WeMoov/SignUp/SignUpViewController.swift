@@ -90,9 +90,12 @@ class SignUpViewController: UIViewController {
     //Func gerant le clic sur bouton Connexion
     
     @objc func handleLogin(){
-       guard let email = emailTextField.text else { return }
-       guard let password = passwordTextField.text else { return }
-       guard let pseudo = pseudoTextField.text else { return }
+       guard let email = emailTextField.text,
+        let password = passwordTextField.text,
+        let pseudo = pseudoTextField.text,
+        email.count > 0,
+        pseudo.count > 0,
+        pseudo.count > 0 else { return }
        
        createUser(email: email, password: password, pseudo: pseudo)
 
@@ -112,6 +115,7 @@ class SignUpViewController: UIViewController {
             
             if let err = error {
                 print("Impossible de vous authentifier", err.localizedDescription)
+                self.displayError(message: "Unable to authenticate. \(err.localizedDescription)")
                 return
             }
             guard let uid = result?.user.uid else { return }
@@ -120,6 +124,7 @@ class SignUpViewController: UIViewController {
             Database.database().reference().child("user").child(uid).updateChildValues(valDict, withCompletionBlock: { (error, ref) in
                 if let err = error {
                     print("Impossible de mettre à jour la bdd", err.localizedDescription)
+                    self.displayError(message: "System Error... Try Again !")
                     return
                 }
                 
@@ -129,6 +134,18 @@ class SignUpViewController: UIViewController {
         })
     }
   }
+    
+    func displayError(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        if presentedViewController == nil {
+            self.present(alert, animated: true, completion: nil)
+        } /*else{
+            self.dismiss(animated: false) { () -> Void in
+                self.present(alert, animated: true, completion: nil)
+              }
+        }*/
+    }
 
      //Func affichant les éléments suivant les contraintes ( définient en utilisant l'extension)
      func viewComponentConfigure(){
