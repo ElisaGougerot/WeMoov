@@ -71,16 +71,8 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user?.displayName == nil {
-                GlobalVariable.username = (user?.email)!
-            }
-            else {
-                GlobalVariable.username = (user?.displayName)!
-            }
-            
-            let homeViewController = HomeViewController()
-            //homeViewController.pseudoLabel.text = username
-            self.navigationController?.pushViewController(homeViewController, animated: true)
+            guard user != nil else { return }
+            self.loadUserData()
         }
     }
     
@@ -127,12 +119,18 @@ class LoginViewController: UIViewController {
     
     func loadUserData() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("user").child(uid).child("firstname").observeSingleEvent(of: .value) { (snapshot) in
-            guard let username = snapshot.value as? String else { return }
+        Database.database().reference().child("user").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            guard let user = snapshot.value as? NSDictionary else { return }
+            let username = user["username"] as? String ?? ""
+            let isOrganizer = user["isOrganizer"] as? Bool ?? false
             GlobalVariable.username = username
-            let homeViewController = HomeViewController()
-            //homeViewController.pseudoLabel.text = username
-            self.navigationController?.pushViewController(homeViewController, animated: true)
+            if isOrganizer {
+                self.navigationController?.pushViewController(HomeOrganizerViewController(), animated: true)
+            } else {
+                let homeViewController = HomeViewController()
+                //homeViewController.pseudoLabel.text = username
+                self.navigationController?.pushViewController(homeViewController, animated: true)
+            }
         }
     }
     
