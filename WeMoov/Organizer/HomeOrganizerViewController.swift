@@ -41,9 +41,16 @@ class HomeOrganizerViewController: UIViewController {
            navigationController?.navigationBar.isHidden = false
               navigationItem.title = "Home Organizer"
               
-           navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "envelope"), style: .plain, target: self, action: #selector(handleSignOut))
-           navigationItem.leftBarButtonItem?.tintColor = .white
-              navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
+           let iv = UIImageView()
+           iv.contentMode = .scaleAspectFit
+           iv.clipsToBounds = true
+           iv.image = #imageLiteral(resourceName: "logout")
+           let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
+           iv.isUserInteractionEnabled = true
+           iv.addGestureRecognizer(singleTap)
+
+           navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
+           navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
            
           /* self.pseudoLabel.text = "Welcome, \(GlobalVariable.username)"
            
