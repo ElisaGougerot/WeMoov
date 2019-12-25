@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		32D1324370523A9F1EAA04A5 /* Pods_WeMoov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */; };
 		3746E4B023AAFC4F006BFF31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746E4AE23AAFC4F006BFF31 /* LoginViewController.swift */; };
-		37561B9B23AC40920070D586 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37561B9A23AC40920070D586 /* SignUpViewController.swift */; };
+		37561B9B23AC40920070D586 /* InscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37561B9A23AC40920070D586 /* InscriptionViewController.swift */; };
 		37561B9D23AC41060070D586 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37561B9C23AC41060070D586 /* Extensions.swift */; };
 		3786DBEA23AC6C8000B1EC0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3786DBE823AC6C8000B1EC0D /* HomeViewController.swift */; };
 		3786DBEB23AC6C8000B1EC0D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3786DBE923AC6C8000B1EC0D /* HomeViewController.xib */; };
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		3746E4AE23AAFC4F006BFF31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		37561B9A23AC40920070D586 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		37561B9A23AC40920070D586 /* InscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InscriptionViewController.swift; sourceTree = "<group>"; };
 		37561B9C23AC41060070D586 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3786DBE823AC6C8000B1EC0D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3786DBE923AC6C8000B1EC0D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		37561B9423AC40080070D586 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				37561B9A23AC40920070D586 /* SignUpViewController.swift */,
+				37561B9A23AC40920070D586 /* InscriptionViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -263,7 +263,7 @@
 				5783CF9023B18A1700786D2C /* GlobalVariable.swift in Sources */,
 				3746E4B023AAFC4F006BFF31 /* LoginViewController.swift in Sources */,
 				4C79E65D23A513750041BA81 /* AppDelegate.swift in Sources */,
-				37561B9B23AC40920070D586 /* SignUpViewController.swift in Sources */,
+				37561B9B23AC40920070D586 /* InscriptionViewController.swift in Sources */,
 				576A7C1C23B37C32009A5F1F /* HomeOrganizerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

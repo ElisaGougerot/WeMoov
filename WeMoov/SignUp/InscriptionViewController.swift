@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class SignUpViewController: UIViewController {
+class InscriptionViewController: UIViewController {
 
        //Définition du logo
     let logoImageView: UIImageView = {
