@@ -129,6 +129,13 @@ class InscriptionViewController: UIViewController {
     
     func createUser(email:String, password: String, pseudo:String){
         
+        var isOrganizer = false
+        if self.checkImageView.image == #imageLiteral(resourceName: "cancel") {
+            isOrganizer = false
+        } else if self.checkImageView.image == #imageLiteral(resourceName: "verified") {
+            isOrganizer = true
+        }
+        
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             
             if let err = error {
@@ -137,13 +144,6 @@ class InscriptionViewController: UIViewController {
                 return
             }
             guard let uid = result?.user.uid else { return }
-            
-            var isOrganizer = false
-            if self.checkImageView.image == #imageLiteral(resourceName: "cancel") {
-                isOrganizer = false
-            } else if self.checkImageView.image == #imageLiteral(resourceName: "verified") {
-                isOrganizer = true
-            }
             
             
             let valDict = ["email" : email, "firstname": pseudo, "isOrganizer": isOrganizer] as [String : Any]
@@ -156,7 +156,7 @@ class InscriptionViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         })
         
-        GlobalVariable.username = pseudo
+        GlobalVariable.user = User(email: email, username: pseudo, isOrganizer: isOrganizer)
         let homeViewController = HomeViewController()
         //homeViewController.pseudoLabel.text = username
         if isOrganizer {
@@ -236,13 +236,6 @@ extension UIImageView {
         }
     }
 
-    func toggleClickablePrint() {
-        if _imageTap == nil {
-            enableClickablePrint()
-        } else {
-            disableClickablePrint()
-        }
-    }
 
     @objc fileprivate func imageTapped(_ sender: UITapGestureRecognizer) {
         if self.image == #imageLiteral(resourceName: "cancel") {

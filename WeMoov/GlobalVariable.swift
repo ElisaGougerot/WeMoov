@@ -8,5 +8,5 @@
 
 import Foundation
 struct GlobalVariable {
-    static var username = ""
+    static var user = User(email: "", username: "", isOrganizer: false)
 }
