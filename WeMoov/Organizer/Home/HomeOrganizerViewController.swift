@@ -11,7 +11,10 @@ import Firebase
 import FirebaseDatabase
 
 class HomeOrganizerViewController: UIViewController {
-
+    
+    
+    @IBOutlet var welcomeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
@@ -39,8 +42,10 @@ class HomeOrganizerViewController: UIViewController {
     func configureViewComponents() {
            view.backgroundColor = UIColor.mainOrange()
            navigationController?.navigationBar.isHidden = false
-              navigationItem.title = "Home Organizer"
+              navigationItem.title = "Accueil Organisateur"
               
+        
+            //Logout Button
            let iv = UIImageView()
            iv.contentMode = .scaleAspectFit
            iv.clipsToBounds = true
@@ -52,13 +57,24 @@ class HomeOrganizerViewController: UIViewController {
            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
            navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
            
-          /* self.pseudoLabel.text = "Welcome, \(GlobalVariable.username)"
-           
+       
+        self.welcomeLabel.text = "Bonjour \(GlobalVariable.user.username) !"
+        
+        
            UIView.animate(withDuration: 0.5, animations: {
-            self.pseudoLabel.alpha = 1
+            self.welcomeLabel.alpha = 1
            })
-    */
+    
     
     }
+    
+    
+    @IBAction func touchCreateEvent(_ sender: UIButton) {
+        self.navigationController?.pushViewController(CreateEventViewController(), animated: true)
+    }
+    
 
+    @IBAction func touchMyEvent(_ sender: UIButton) {
+    }
+    
 }

@@ -20,6 +20,8 @@
 		576A7C1D23B37C32009A5F1F /* HomeOrganizerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 576A7C1B23B37C32009A5F1F /* HomeOrganizerViewController.xib */; };
 		576A7C2123B41C52009A5F1F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A7C2023B41C52009A5F1F /* User.swift */; };
 		5783CF9023B18A1700786D2C /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783CF8F23B18A1700786D2C /* GlobalVariable.swift */; };
+		57A8C9CC23B4C4C600EE46BC /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */; };
+		57A8C9CD23B4C4C600EE46BC /* CreateEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */; };
 		57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FCC2EC23ABC34800DDAF59 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -34,10 +36,12 @@
 		4C79E66323A513780041BA81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C79E66623A513780041BA81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C79E66823A513780041BA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		576A7C1A23B37C32009A5F1F /* HomeOrganizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOrganizerViewController.swift; sourceTree = "<group>"; };
+		576A7C1A23B37C32009A5F1F /* HomeOrganizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOrganizerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		576A7C1B23B37C32009A5F1F /* HomeOrganizerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeOrganizerViewController.xib; sourceTree = "<group>"; };
 		576A7C2023B41C52009A5F1F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5783CF8F23B18A1700786D2C /* GlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
+		57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateEventViewController.xib; sourceTree = "<group>"; };
 		57FCC2EC23ABC34800DDAF59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7774C1A38FF5CF2830201018 /* Pods-WeMoov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMoov.release.xcconfig"; path = "Target Support Files/Pods-WeMoov/Pods-WeMoov.release.xcconfig"; sourceTree = "<group>"; };
 		B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMoov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,8 +134,8 @@
 		576A7C1923B37BDC009A5F1F /* Organizer */ = {
 			isa = PBXGroup;
 			children = (
-				576A7C1A23B37C32009A5F1F /* HomeOrganizerViewController.swift */,
-				576A7C1B23B37C32009A5F1F /* HomeOrganizerViewController.xib */,
+				57A8C9C923B4C4A600EE46BC /* Events */,
+				57A8C9C823B4C46E00EE46BC /* Home */,
 			);
 			path = Organizer;
 			sourceTree = "<group>";
@@ -142,6 +146,24 @@
 				576A7C2023B41C52009A5F1F /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		57A8C9C823B4C46E00EE46BC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				576A7C1A23B37C32009A5F1F /* HomeOrganizerViewController.swift */,
+				576A7C1B23B37C32009A5F1F /* HomeOrganizerViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		57A8C9C923B4C4A600EE46BC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */,
+				57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		FF43AB016B41290554FA58A7 /* Frameworks */ = {
@@ -213,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C79E66723A513780041BA81 /* LaunchScreen.storyboard in Resources */,
+				57A8C9CD23B4C4C600EE46BC /* CreateEventViewController.xib in Resources */,
 				4C79E66423A513780041BA81 /* Assets.xcassets in Resources */,
 				57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */,
 				3786DBEB23AC6C8000B1EC0D /* HomeViewController.xib in Resources */,
@@ -277,6 +300,7 @@
 				4C79E65D23A513750041BA81 /* AppDelegate.swift in Sources */,
 				37561B9B23AC40920070D586 /* InscriptionViewController.swift in Sources */,
 				576A7C1C23B37C32009A5F1F /* HomeOrganizerViewController.swift in Sources */,
+				57A8C9CC23B4C4C600EE46BC /* CreateEventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

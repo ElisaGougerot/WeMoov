@@ -93,12 +93,12 @@ class LoginViewController: UIViewController {
     
     @objc func handleShowSignUp(){
         print("signup")
+            //self.show(InscriptionViewController(), sender: self)
         navigationController?.pushViewController(InscriptionViewController(), animated: true)
     }
     
     
     func logUserIn(withEmail email: String, password: String){
-        
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let err = error {
                 print("Erreur, impossible de se connecter :", err.localizedDescription)
@@ -121,7 +121,7 @@ class LoginViewController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("user").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let user = snapshot.value as? NSDictionary else { return }
-            let username = user["username"] as? String ?? ""
+            let username = user["firstname"] as? String ?? ""
             let email = user["email"] as? String  ?? ""
             let isOrganizer = user["isOrganizer"] as? Bool ?? false
             GlobalVariable.user = User(email: email, username: username, isOrganizer: isOrganizer)

@@ -138,33 +138,32 @@ class InscriptionViewController: UIViewController {
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             
-            if let err = error {
-                print("Impossible de vous authentifier", err.localizedDescription)
-                self.displayError(message: "Unable to authenticate. \(err.localizedDescription)")
+            if let user = result?.user {
+                let valDict = ["email" : email, "firstname": pseudo, "isOrganizer": isOrganizer] as [String : Any]
+            Database.database().reference().child("user").child(user.uid).updateChildValues(valDict, withCompletionBlock: { (error, ref) in
+                    if let err = error {
+                        print("Impossible de mettre à jour la bdd", err.localizedDescription)
+                        self.displayError(message: "System Error... Try Again !")
+                        return
+                    }
+                    //self.dismiss(animated: true, completion: nil)
+                })
+                self.dismiss(animated: true, completion: nil)
+                GlobalVariable.user = User(email: email, username: pseudo, isOrganizer: isOrganizer)
+                let homeViewController = HomeViewController()
+                //homeViewController.pseudoLabel.text = username
+                if isOrganizer {
+                self.navigationController?.pushViewController(HomeOrganizerViewController(), animated: true)
+                } else {
+                    self.navigationController?.pushViewController(homeViewController, animated: true)
+                }
+            } else if error?.localizedDescription != "The email address is already in use by another account."{
+                print("Impossible de vous authentifier", error?.localizedDescription ?? "")
+                self.displayError(message: "Unable to authenticate. \(error?.localizedDescription ?? "")")
                 return
             }
-            guard let uid = result?.user.uid else { return }
-            
-            
-            let valDict = ["email" : email, "firstname": pseudo, "isOrganizer": isOrganizer] as [String : Any]
-        Database.database().reference().child("user").child(uid).updateChildValues(valDict, withCompletionBlock: { (error, ref) in
-                if let err = error {
-                    print("Impossible de mettre à jour la bdd", err.localizedDescription)
-                    self.displayError(message: "System Error... Try Again !")
-                    return
-                }
-            self.dismiss(animated: true, completion: nil)
-        })
-        
-        GlobalVariable.user = User(email: email, username: pseudo, isOrganizer: isOrganizer)
-        let homeViewController = HomeViewController()
-        //homeViewController.pseudoLabel.text = username
-        if isOrganizer {
-            self.navigationController?.pushViewController(HomeOrganizerViewController(), animated: true)
-        } else {
-           self.navigationController?.pushViewController(homeViewController, animated: true)
+           
         }
-    }
   }
     
     func displayError(message: String) {
@@ -172,11 +171,11 @@ class InscriptionViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         if presentedViewController == nil {
             self.present(alert, animated: true, completion: nil)
-        } /*else{
+        } else{
             self.dismiss(animated: false) { () -> Void in
                 self.present(alert, animated: true, completion: nil)
               }
-        }*/
+        }
     }
 
      //Func affichant les éléments suivant les contraintes ( définient en utilisant l'extension)
