@@ -121,10 +121,11 @@ class LoginViewController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("user").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let user = snapshot.value as? NSDictionary else { return }
+            let uid = user["uid"] as? String ?? uid
             let username = user["firstname"] as? String ?? ""
             let email = user["email"] as? String  ?? ""
             let isOrganizer = user["isOrganizer"] as? Bool ?? false
-            GlobalVariable.user = User(email: email, username: username, isOrganizer: isOrganizer)
+            GlobalVariable.user = User(id: uid, email: email, username: username, isOrganizer: isOrganizer)
             if isOrganizer {
                 self.navigationController?.pushViewController(HomeOrganizerViewController(), animated: true)
             } else {

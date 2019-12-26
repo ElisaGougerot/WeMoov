@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeOrganizerViewController" customModule="WeMoov" customModuleProvider="target">
             <connections>
+                <outlet property="createEventButton" destination="tec-RQ-DvQ" id="myY-sJ-Xgr"/>
+                <outlet property="myEventButton" destination="v9r-NU-8xI" id="HmJ-8M-4lf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="welcomeLabel" destination="pK6-6a-LX8" id="KUy-pB-HLr"/>
             </connections>

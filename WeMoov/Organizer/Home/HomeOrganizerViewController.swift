@@ -12,7 +12,8 @@ import FirebaseDatabase
 
 class HomeOrganizerViewController: UIViewController {
     
-    
+    @IBOutlet var createEventButton: UIButton!
+    @IBOutlet var myEventButton: UIButton!
     @IBOutlet var welcomeLabel: UILabel!
     
     override func viewDidLoad() {
@@ -40,31 +41,31 @@ class HomeOrganizerViewController: UIViewController {
     }
     
     func configureViewComponents() {
-           view.backgroundColor = UIColor.mainOrange()
-           navigationController?.navigationBar.isHidden = false
-              navigationItem.title = "Accueil Organisateur"
+        view.backgroundColor = UIColor.mainOrange()
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "Accueil Organisateur"
               
-        
-            //Logout Button
-           let iv = UIImageView()
-           iv.contentMode = .scaleAspectFit
-           iv.clipsToBounds = true
-           iv.image = #imageLiteral(resourceName: "logout")
-           let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
-           iv.isUserInteractionEnabled = true
-           iv.addGestureRecognizer(singleTap)
+        //Logout Button
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        iv.image = #imageLiteral(resourceName: "logout")
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(singleTap)
 
-           navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
-           navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
+        navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
            
-       
+        // Welcome Label
         self.welcomeLabel.text = "Bonjour \(GlobalVariable.user.username) !"
-        
-        
-           UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.welcomeLabel.alpha = 1
-           })
+        })
     
+        // Button
+        self.createEventButton.layer.cornerRadius = 25.0
+        self.myEventButton.layer.cornerRadius = 25.0
     
     }
     
@@ -75,6 +76,7 @@ class HomeOrganizerViewController: UIViewController {
     
 
     @IBAction func touchMyEvent(_ sender: UIButton) {
+        self.navigationController?.pushViewController(MyEventsViewController(), animated: true)
     }
     
 }

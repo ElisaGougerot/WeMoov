@@ -22,6 +22,11 @@
 		5783CF9023B18A1700786D2C /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783CF8F23B18A1700786D2C /* GlobalVariable.swift */; };
 		57A8C9CC23B4C4C600EE46BC /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */; };
 		57A8C9CD23B4C4C600EE46BC /* CreateEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */; };
+		57A8C9D023B4FEF300EE46BC /* MyEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9CE23B4FEF300EE46BC /* MyEventsViewController.swift */; };
+		57A8C9D123B4FEF300EE46BC /* MyEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A8C9CF23B4FEF300EE46BC /* MyEventsViewController.xib */; };
+		57A8C9D523B506A700EE46BC /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9D323B506A700EE46BC /* EventTableViewCell.swift */; };
+		57A8C9D623B506A700EE46BC /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A8C9D423B506A700EE46BC /* EventTableViewCell.xib */; };
+		57A8C9D823B5090C00EE46BC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9D723B5090C00EE46BC /* Event.swift */; };
 		57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FCC2EC23ABC34800DDAF59 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +47,11 @@
 		5783CF8F23B18A1700786D2C /* GlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
 		57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateEventViewController.xib; sourceTree = "<group>"; };
+		57A8C9CE23B4FEF300EE46BC /* MyEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsViewController.swift; sourceTree = "<group>"; };
+		57A8C9CF23B4FEF300EE46BC /* MyEventsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyEventsViewController.xib; sourceTree = "<group>"; };
+		57A8C9D323B506A700EE46BC /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		57A8C9D423B506A700EE46BC /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
+		57A8C9D723B5090C00EE46BC /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		57FCC2EC23ABC34800DDAF59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7774C1A38FF5CF2830201018 /* Pods-WeMoov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMoov.release.xcconfig"; path = "Target Support Files/Pods-WeMoov/Pods-WeMoov.release.xcconfig"; sourceTree = "<group>"; };
 		B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMoov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +116,7 @@
 		4C79E65B23A513750041BA81 /* WeMoov */ = {
 			isa = PBXGroup;
 			children = (
+				57A8C9D223B5068D00EE46BC /* Events */,
 				576A7C1F23B41C3C009A5F1F /* Models */,
 				576A7C1923B37BDC009A5F1F /* Organizer */,
 				57FCC2EC23ABC34800DDAF59 /* GoogleService-Info.plist */,
@@ -144,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				576A7C2023B41C52009A5F1F /* User.swift */,
+				57A8C9D723B5090C00EE46BC /* Event.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +174,17 @@
 			children = (
 				57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */,
 				57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */,
+				57A8C9CE23B4FEF300EE46BC /* MyEventsViewController.swift */,
+				57A8C9CF23B4FEF300EE46BC /* MyEventsViewController.xib */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		57A8C9D223B5068D00EE46BC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				57A8C9D323B506A700EE46BC /* EventTableViewCell.swift */,
+				57A8C9D423B506A700EE46BC /* EventTableViewCell.xib */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -235,8 +258,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C79E66723A513780041BA81 /* LaunchScreen.storyboard in Resources */,
+				57A8C9D123B4FEF300EE46BC /* MyEventsViewController.xib in Resources */,
 				57A8C9CD23B4C4C600EE46BC /* CreateEventViewController.xib in Resources */,
 				4C79E66423A513780041BA81 /* Assets.xcassets in Resources */,
+				57A8C9D623B506A700EE46BC /* EventTableViewCell.xib in Resources */,
 				57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */,
 				3786DBEB23AC6C8000B1EC0D /* HomeViewController.xib in Resources */,
 				576A7C1D23B37C32009A5F1F /* HomeOrganizerViewController.xib in Resources */,
@@ -293,7 +318,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3786DBEA23AC6C8000B1EC0D /* HomeViewController.swift in Sources */,
+				57A8C9D523B506A700EE46BC /* EventTableViewCell.swift in Sources */,
+				57A8C9D023B4FEF300EE46BC /* MyEventsViewController.swift in Sources */,
 				37561B9D23AC41060070D586 /* Extensions.swift in Sources */,
+				57A8C9D823B5090C00EE46BC /* Event.swift in Sources */,
 				5783CF9023B18A1700786D2C /* GlobalVariable.swift in Sources */,
 				3746E4B023AAFC4F006BFF31 /* LoginViewController.swift in Sources */,
 				576A7C2123B41C52009A5F1F /* User.swift in Sources */,

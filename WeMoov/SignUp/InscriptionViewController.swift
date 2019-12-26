@@ -139,7 +139,7 @@ class InscriptionViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             
             if let user = result?.user {
-                let valDict = ["email" : email, "firstname": pseudo, "isOrganizer": isOrganizer] as [String : Any]
+                let valDict = ["id": user.uid, "email" : email, "firstname": pseudo, "isOrganizer": isOrganizer] as [String : Any]
             Database.database().reference().child("user").child(user.uid).updateChildValues(valDict, withCompletionBlock: { (error, ref) in
                     if let err = error {
                         print("Impossible de mettre à jour la bdd", err.localizedDescription)
@@ -149,7 +149,7 @@ class InscriptionViewController: UIViewController {
                     //self.dismiss(animated: true, completion: nil)
                 })
                 self.dismiss(animated: true, completion: nil)
-                GlobalVariable.user = User(email: email, username: pseudo, isOrganizer: isOrganizer)
+                GlobalVariable.user = User(id: user.uid, email: email, username: pseudo, isOrganizer: isOrganizer)
                 let homeViewController = HomeViewController()
                 //homeViewController.pseudoLabel.text = username
                 if isOrganizer {

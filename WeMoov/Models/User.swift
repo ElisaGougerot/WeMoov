@@ -8,6 +8,7 @@
 
 import Foundation
 struct User {
+    let id: String
     let email: String
     let username: String
     var isOrganizer: Bool
