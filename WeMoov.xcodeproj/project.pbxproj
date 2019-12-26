@@ -27,6 +27,8 @@
 		57A8C9D523B506A700EE46BC /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9D323B506A700EE46BC /* EventTableViewCell.swift */; };
 		57A8C9D623B506A700EE46BC /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A8C9D423B506A700EE46BC /* EventTableViewCell.xib */; };
 		57A8C9D823B5090C00EE46BC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9D723B5090C00EE46BC /* Event.swift */; };
+		57A8C9DB23B56AE300EE46BC /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9D923B56AE300EE46BC /* EventDetailViewController.swift */; };
+		57A8C9DC23B56AE300EE46BC /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A8C9DA23B56AE300EE46BC /* EventDetailViewController.xib */; };
 		57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FCC2EC23ABC34800DDAF59 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		57A8C9D323B506A700EE46BC /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		57A8C9D423B506A700EE46BC /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		57A8C9D723B5090C00EE46BC /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		57A8C9D923B56AE300EE46BC /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		57A8C9DA23B56AE300EE46BC /* EventDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
 		57FCC2EC23ABC34800DDAF59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7774C1A38FF5CF2830201018 /* Pods-WeMoov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMoov.release.xcconfig"; path = "Target Support Files/Pods-WeMoov/Pods-WeMoov.release.xcconfig"; sourceTree = "<group>"; };
 		B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMoov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +189,8 @@
 			children = (
 				57A8C9D323B506A700EE46BC /* EventTableViewCell.swift */,
 				57A8C9D423B506A700EE46BC /* EventTableViewCell.xib */,
+				57A8C9D923B56AE300EE46BC /* EventDetailViewController.swift */,
+				57A8C9DA23B56AE300EE46BC /* EventDetailViewController.xib */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				57A8C9CD23B4C4C600EE46BC /* CreateEventViewController.xib in Resources */,
 				4C79E66423A513780041BA81 /* Assets.xcassets in Resources */,
 				57A8C9D623B506A700EE46BC /* EventTableViewCell.xib in Resources */,
+				57A8C9DC23B56AE300EE46BC /* EventDetailViewController.xib in Resources */,
 				57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */,
 				3786DBEB23AC6C8000B1EC0D /* HomeViewController.xib in Resources */,
 				576A7C1D23B37C32009A5F1F /* HomeOrganizerViewController.xib in Resources */,
@@ -320,6 +327,7 @@
 				3786DBEA23AC6C8000B1EC0D /* HomeViewController.swift in Sources */,
 				57A8C9D523B506A700EE46BC /* EventTableViewCell.swift in Sources */,
 				57A8C9D023B4FEF300EE46BC /* MyEventsViewController.swift in Sources */,
+				57A8C9DB23B56AE300EE46BC /* EventDetailViewController.swift in Sources */,
 				37561B9D23AC41060070D586 /* Extensions.swift in Sources */,
 				57A8C9D823B5090C00EE46BC /* Event.swift in Sources */,
 				5783CF9023B18A1700786D2C /* GlobalVariable.swift in Sources */,

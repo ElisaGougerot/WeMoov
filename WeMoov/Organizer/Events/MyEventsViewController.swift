@@ -62,6 +62,9 @@ class MyEventsViewController: UIViewController {
     }
     
     func getAllEvents() {
+        if self.myEvents.count > 0 {
+            return
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
@@ -76,7 +79,6 @@ class MyEventsViewController: UIViewController {
                 let event = data.value as! [String: AnyObject]
                 let id = event["id"] as? String ?? ""
                 let idOrganizer = event["idOrganizer"] as? String ?? ""
-                print("data id organizer: \(idOrganizer) / user id: \(GlobalVariable.user.id)")
                 let name = event["name"] as? String  ?? ""
                 let content = event["content"] as? String  ?? ""
                 let image = URL(string: event["image"] as? String ?? "")
@@ -92,6 +94,7 @@ class MyEventsViewController: UIViewController {
                 self.myEvents.append(Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price))
                 
             }
+                self.myEvents.sort(by: { $0.startDate < $1.startDate })
     
         }
             
@@ -120,6 +123,12 @@ extension MyEventsViewController: UITableViewDataSource {
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(self.myEvents[indexPath.row].name)")
+        GlobalVariable.eventClicked = self.myEvents[indexPath.row]
+        self.navigationController?.pushViewController(EventDetailViewController(), animated: true)
     }
 }
 
