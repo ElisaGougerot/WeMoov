@@ -81,7 +81,7 @@ class MyEventsViewController: UIViewController {
                 let idOrganizer = event["idOrganizer"] as? String ?? ""
                 let name = event["name"] as? String  ?? ""
                 let content = event["content"] as? String  ?? ""
-                let image = URL(string: event["image"] as? String ?? "")
+                let image = event["image"] as? String ?? "" //URL(string: event["image"] as? String ?? "")
                 let typeEvent = event["typeEvent"] as? String  ?? ""
                 let typePlace = event["typePlace"] as? String  ?? ""
                 let coordinates = event["coordinates"] as? [String: CLLocationDegrees]
@@ -112,8 +112,8 @@ extension MyEventsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyEventsViewController.MyEventsTableViewCellId, for: indexPath) as! EventTableViewCell
         let event = self.myEvents[indexPath.row]
         cell.eventName.text = event.name
-        cell.eventImageView.image = nil // restore default image
-        if let pictureURL = event.image {
+        cell.eventImageView.loadImage(urlString: event.image) // restore default image
+        /*if let pictureURL = event.image {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: pictureURL) {
                     DispatchQueue.main.sync {
@@ -121,7 +121,7 @@ extension MyEventsViewController: UITableViewDataSource {
                     }
                 }
             }
-        }
+        }*/
         return cell
     }
     
@@ -134,4 +134,25 @@ extension MyEventsViewController: UITableViewDataSource {
 
 extension MyEventsViewController: UITableViewDelegate {
         
+}
+
+extension UIImageView {
+
+    func loadImage(urlString: String) {
+        
+        if let cacheImage = GlobalVariable.imageCache.object(forKey: urlString as AnyObject) as? UIImage {
+            self.image = cacheImage
+            return
+        }
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: url) {
+                DispatchQueue.main.sync {
+                    self.image = UIImage(data: data)
+                }
+            }
+        }
+    }
 }

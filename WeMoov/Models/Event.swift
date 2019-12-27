@@ -15,7 +15,7 @@ struct Event {
     var name: String
     var content: String
     var coordinates: CLLocation
-    var image: URL?
+    var image: String
     var typeEvent: String
     var typePlace: String
     var startDate: Date

@@ -48,7 +48,8 @@ class EventDetailViewController: UIViewController {
            
         let event = GlobalVariable.eventClicked
         // Event ImageView
-        if let pictureURL = event.image {
+        self.eventImageView.loadImage(urlString: event.image)
+        /*if let pictureURL = event.image {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: pictureURL) {
                     DispatchQueue.main.sync {
@@ -56,7 +57,7 @@ class EventDetailViewController: UIViewController {
                     }
                 }
             }
-        }
+        }*/
         UIView.animate(withDuration: 0.5, animations: {
             self.eventImageView.alpha = 1
         })
