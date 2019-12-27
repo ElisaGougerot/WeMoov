@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="WeMoov" customModuleProvider="target">
             <connections>
+                <outlet property="homeBarItem" destination="D6F-da-mAj" id="VKy-Ig-zl3"/>
+                <outlet property="homeTabBar" destination="QBS-xQ-s7X" id="Ym8-hc-3Ni"/>
                 <outlet property="pseudoLabel" destination="vOr-fa-dVW" id="IbS-61-hOw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,14 +27,37 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tabBar contentMode="scaleToFill" backgroundImage="WeMoov" translatesAutoresizingMaskIntoConstraints="NO" id="QBS-xQ-s7X">
+                    <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Q9C-34-bXD"/>
+                    </constraints>
+                    <items>
+                        <tabBarItem tag="1" title="" image="magnifyingglass" catalog="system" id="7Pn-qd-qAZ"/>
+                        <tabBarItem tag="2" title="" image="house.fill" catalog="system" id="D6F-da-mAj"/>
+                        <tabBarItem tag="3" title="" image="heart.fill" catalog="system" id="cA9-rA-FNL"/>
+                    </items>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tabBar>
             </subviews>
             <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="QBS-xQ-s7X" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CCz-Wo-akJ"/>
                 <constraint firstItem="vOr-fa-dVW" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="bJz-eL-WLQ"/>
+                <constraint firstItem="QBS-xQ-s7X" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="jea-Bg-aOw"/>
                 <constraint firstItem="vOr-fa-dVW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tr8-sP-5cc"/>
+                <constraint firstItem="QBS-xQ-s7X" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="wwj-D9-VA6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="86"/>
         </view>
     </objects>
+    <resources>
+        <image name="WeMoov" width="1024" height="1024"/>
+        <image name="heart.fill" catalog="system" width="64" height="54"/>
+        <image name="house.fill" catalog="system" width="64" height="52"/>
+        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+    </resources>
 </document>

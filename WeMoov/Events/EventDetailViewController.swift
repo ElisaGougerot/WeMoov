@@ -61,13 +61,17 @@ class EventDetailViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.eventImageView.alpha = 1
         })
-    
+        
+        let dateFormatter       = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy - HH'h'mm"
+        dateFormatter.locale    = Locale(identifier: "FR-fr")
+        
         // Event Labels
         self.eventName.text = event.name
         self.eventTypePlace.text = event.typePlace
         self.eventTypeEvent.text = event.typeEvent
         self.eventContent.text = event.content
-        self.eventStartDate.text = event.startDate.description
+        self.eventStartDate.text = "\(dateFormatter.string(from: event.startDate))"
         if event.price == 0 {
             self.eventPrice.text = "Gratuit"
         } else {

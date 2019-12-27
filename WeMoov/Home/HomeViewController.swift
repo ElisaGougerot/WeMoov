@@ -13,6 +13,8 @@ import FirebaseDatabase
 class HomeViewController: UIViewController {
            
     @IBOutlet var pseudoLabel: UILabel!
+    @IBOutlet var homeBarItem: UITabBarItem!
+    @IBOutlet var homeTabBar: UITabBar!
     
     
     override func viewDidLoad() {
@@ -92,8 +94,26 @@ class HomeViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
          self.pseudoLabel.alpha = 1
         })
- 
- }
-    
+        
+        self.homeTabBar.delegate = self
+        self.homeTabBar.selectedItem = self.homeBarItem
+    }
+}
+
+extension HomeViewController: UITabBarDelegate {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if(item.tag == 1) {
+            // Search Button
+            print("search")
+            navigationController?.pushViewController(SearchViewController(), animated: false)
+        } else if(item.tag == 2) {
+            // Home Button
+            print("home")
+        } else if(item.tag == 3) {
+            // Favorite Button
+            print("favorite")
+            navigationController?.pushViewController(FavoritesViewController(), animated: false)
+        }
+    }
 }
 
