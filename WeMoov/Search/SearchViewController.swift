@@ -36,7 +36,7 @@ extension SearchViewController: UITabBarDelegate {
             // Search Button
             print("search")
         } else if(item.tag == 2) {
-            // Home Button
+            // Home Button test
             print("home")
             navigationController?.pushViewController(HomeViewController(), animated: false)
         } else if(item.tag == 3) {

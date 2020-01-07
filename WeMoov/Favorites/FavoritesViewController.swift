@@ -30,7 +30,7 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if(item.tag == 1) {
-            // Search Button
+            // Search Button test
             print("search")
             navigationController?.pushViewController(SearchViewController(), animated: false)
         } else if(item.tag == 2) {
