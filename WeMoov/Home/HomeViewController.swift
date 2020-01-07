@@ -76,6 +76,7 @@ class HomeViewController: UIViewController {
     func configureViewComponents() {
         view.backgroundColor = UIColor.mainWhite()
         navigationController?.navigationBar.isHidden = false
+        self.navigationItem.setHidesBackButton(true, animated:true);
         
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -94,7 +95,7 @@ class HomeViewController: UIViewController {
          self.pseudoLabel.alpha = 1
         })
         
-        self.navigationItem.setHidesBackButton(true, animated:true);
+        
         self.homeTabBar.delegate = self
         self.homeTabBar.selectedItem = self.homeBarItem
         self.homeTabBar.tintColor = UIColor.mainBlack()

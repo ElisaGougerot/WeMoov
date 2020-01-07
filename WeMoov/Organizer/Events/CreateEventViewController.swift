@@ -32,9 +32,8 @@ class CreateEventViewController: UIViewController {
     }
 
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainOrange()
+        view.backgroundColor = UIColor.mainWhite()
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = "Créer un évenement"
         
         //Back Button
         let iv = UIImageView()
@@ -46,7 +45,7 @@ class CreateEventViewController: UIViewController {
         iv.addGestureRecognizer(singleTap)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
-        navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
+        navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
         
         

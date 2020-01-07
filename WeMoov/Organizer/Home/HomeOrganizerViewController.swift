@@ -41,21 +41,21 @@ class HomeOrganizerViewController: UIViewController {
     }
     
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainOrange()
+        view.backgroundColor = UIColor.mainWhite()
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = "Accueil Organisateur"
+        self.navigationItem.setHidesBackButton(true, animated:true);
               
         //Logout Button
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "logout")
+        iv.image = #imageLiteral(resourceName: "cancel")
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
         iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(singleTap)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
-        navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
+        navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
            
         // Welcome Label
         self.welcomeLabel.text = "Bonjour \(GlobalVariable.user.username) !"

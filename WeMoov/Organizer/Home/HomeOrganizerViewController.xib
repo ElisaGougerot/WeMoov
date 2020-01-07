@@ -22,8 +22,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tec-RQ-DvQ">
-                    <rect key="frame" x="50" y="374" width="314" height="60"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="50" y="354" width="314" height="60"/>
+                    <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="8p6-zk-cTO"/>
                     </constraints>
@@ -42,8 +42,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9r-NU-8xI">
-                    <rect key="frame" x="50" y="584" width="314" height="60"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="50" y="514" width="314" height="60"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="l7n-w8-gZ9"/>
                     </constraints>
@@ -61,10 +61,10 @@
                 <constraint firstItem="pK6-6a-LX8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8pT-65-8Hu"/>
                 <constraint firstItem="v9r-NU-8xI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HMU-SU-2TT"/>
                 <constraint firstItem="v9r-NU-8xI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="Hka-qF-QRj"/>
-                <constraint firstItem="tec-RQ-DvQ" firstAttribute="top" secondItem="pK6-6a-LX8" secondAttribute="bottom" constant="200" id="Ib8-Ih-Oys"/>
+                <constraint firstItem="tec-RQ-DvQ" firstAttribute="top" secondItem="pK6-6a-LX8" secondAttribute="bottom" constant="180" id="Ib8-Ih-Oys"/>
                 <constraint firstItem="tec-RQ-DvQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q56-T7-dGi"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tec-RQ-DvQ" secondAttribute="trailing" constant="50" id="Yoh-AD-bmD"/>
-                <constraint firstItem="v9r-NU-8xI" firstAttribute="top" secondItem="tec-RQ-DvQ" secondAttribute="bottom" constant="150" id="avg-xz-UfM"/>
+                <constraint firstItem="v9r-NU-8xI" firstAttribute="top" secondItem="tec-RQ-DvQ" secondAttribute="bottom" constant="100" id="avg-xz-UfM"/>
                 <constraint firstItem="tec-RQ-DvQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="pPf-kC-HRj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="v9r-NU-8xI" secondAttribute="trailing" constant="50" id="rZG-AT-h4t"/>
                 <constraint firstItem="pK6-6a-LX8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="uKV-37-Far"/>

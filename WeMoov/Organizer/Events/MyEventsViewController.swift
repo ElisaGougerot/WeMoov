@@ -32,9 +32,8 @@ class MyEventsViewController: UIViewController {
     }
 
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainOrange()
+        view.backgroundColor = UIColor.mainWhite()
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = "Mes évenements"
         
         //Back Button
         let iv = UIImageView()
@@ -46,7 +45,7 @@ class MyEventsViewController: UIViewController {
         iv.addGestureRecognizer(singleTap)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
-        navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
+        navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
         // Init TableView
         self.myEventTableView.rowHeight = 120

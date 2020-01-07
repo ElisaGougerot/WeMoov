@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mp-gk-8mm">
-                        <rect key="frame" x="135" y="5" width="40" height="18"/>
+                        <rect key="frame" x="135" y="41" width="50" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -32,10 +32,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="S5Q-7X-a45" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="7AW-pT-yzs"/>
-                    <constraint firstItem="2mp-gk-8mm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="8tL-RV-jMr"/>
+                    <constraint firstItem="2mp-gk-8mm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GtM-hI-hzH"/>
                     <constraint firstItem="S5Q-7X-a45" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="HEd-dg-Lf3"/>
                     <constraint firstItem="S5Q-7X-a45" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kko-LU-Wgy"/>
                     <constraint firstItem="2mp-gk-8mm" firstAttribute="leading" secondItem="S5Q-7X-a45" secondAttribute="trailing" constant="10" id="mlc-jW-5Hz"/>
+                    <constraint firstItem="2mp-gk-8mm" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="uVy-Bc-nyT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

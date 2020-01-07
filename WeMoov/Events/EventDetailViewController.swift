@@ -30,7 +30,7 @@ class EventDetailViewController: UIViewController {
     }
     
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainOrange()
+        view.backgroundColor = UIColor.mainWhite()
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "\(GlobalVariable.eventClicked.name)"
               
@@ -44,7 +44,7 @@ class EventDetailViewController: UIViewController {
         iv.addGestureRecognizer(singleTap)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
-        navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
+        navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
            
         let event = GlobalVariable.eventClicked
         // Event ImageView
