@@ -17,26 +17,26 @@ class InscriptionViewController: UIViewController {
          let iv = UIImageView()
          iv.contentMode = .scaleToFill
          iv.clipsToBounds = true
-         iv.image = #imageLiteral(resourceName: "WeMoov")
+         iv.image = #imageLiteral(resourceName: "logo2")
          return iv
      }()
      
      //Définition du container du champ email
      lazy var emailContainerView: UIView = {
             let view = UIView()
-        return view.textContainerView(view: view, #imageLiteral(resourceName: "envelope"), emailTextField)
+        return view.textContainerView(view: view, #imageLiteral(resourceName: "mail"), emailTextField)
         }()
      
      //Définition du container du champ pseudo
      lazy var pseudoContainerView: UIView = {
          let view = UIView()
-         return view.textContainerView(view: view, #imageLiteral(resourceName: "anonymous") , pseudoTextField)
+         return view.textContainerView(view: view, #imageLiteral(resourceName: "anonymous-1") , pseudoTextField)
      }()
      
      //Définition du container du champ password
      lazy var passwordContainerView: UIView = {
          let view = UIView()
-         return view.textContainerView(view: view, #imageLiteral(resourceName: "lock"), passwordTextField)
+         return view.textContainerView(view: view, #imageLiteral(resourceName: "mdp"), passwordTextField)
      }()
      
      //Définition du textfield email
@@ -64,8 +64,8 @@ class InscriptionViewController: UIViewController {
             let button = UIButton(type: .system)
             button.setTitle("S'INSCRIRE", for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-            button.setTitleColor(UIColor.mainOrange(), for: .normal)
-            button.backgroundColor = .black
+            button.setTitleColor(UIColor.mainBlack(), for: .normal)
+            button.backgroundColor = .white
         button.addTarget(self, action: #selector(handleLogin), for: .allEvents)
             button.layer.cornerRadius = 10
             return button
@@ -86,7 +86,7 @@ class InscriptionViewController: UIViewController {
         let iv = UIImageView()
         iv.contentMode = .scaleToFill
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "cancel")
+        iv.image = #imageLiteral(resourceName: "cancel-1")
         iv.enableClickablePrint()
         return iv
     } ()
@@ -96,7 +96,8 @@ class InscriptionViewController: UIViewController {
         let text = UILabel()
         text.text = "Es-tu un organisateur ?"
         text.font = UIFont.systemFont(ofSize: 16)
-        text.tintColor = .black
+        text.textColor = .white
+        text.tintColor = .white
         return text
     }()
      
@@ -130,9 +131,9 @@ class InscriptionViewController: UIViewController {
     func createUser(email:String, password: String, pseudo:String){
         
         var isOrganizer = false
-        if self.checkImageView.image == #imageLiteral(resourceName: "cancel") {
+        if self.checkImageView.image == #imageLiteral(resourceName: "cancel-1") {
             isOrganizer = false
-        } else if self.checkImageView.image == #imageLiteral(resourceName: "verified") {
+        } else if self.checkImageView.image == #imageLiteral(resourceName: "check") {
             isOrganizer = true
         }
         
@@ -181,11 +182,11 @@ class InscriptionViewController: UIViewController {
      //Func affichant les éléments suivant les contraintes ( définient en utilisant l'extension)
      func viewComponentConfigure(){
         self.hideKeyboardWhenTappedAround()
-         view.backgroundColor = UIColor.mainOrange() // Set la valeur de l'arrière plan avec .mainOrange défini dans Extensions.swift
+         view.backgroundColor = UIColor.mainBlack() // Set la valeur de l'arrière plan avec .mainOrange défini dans Extensions.swift
          navigationController?.navigationBar.isHidden = true
          
          view.addSubview(logoImageView)
-         logoImageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
+         logoImageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 70, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 330, height: 150)
          logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
          
          view.addSubview(emailContainerView)
@@ -204,7 +205,7 @@ class InscriptionViewController: UIViewController {
         organizerTextLabel.anchor(top: passwordContainerView.bottomAnchor, left: checkImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 32, paddingLeft: 40, paddingBottom: 0, paddingRight: 32, width: 0, height: 30)
         
          view.addSubview(loginButton)
-                loginButton.anchor(top: checkImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
+                loginButton.anchor(top: checkImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 40, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
         
          view.addSubview(dontHaveAccountButton)
                 dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 32, paddingBottom: 12, paddingRight: 32, width: 0, height: 50)
@@ -237,12 +238,12 @@ extension UIImageView {
 
 
     @objc fileprivate func imageTapped(_ sender: UITapGestureRecognizer) {
-        if self.image == #imageLiteral(resourceName: "cancel") {
+        if self.image == #imageLiteral(resourceName: "cancel-1") {
             print("click ok")
-            handleOrganizer(image: #imageLiteral(resourceName: "verified"))
-        } else if self.image == #imageLiteral(resourceName: "verified") {
+            handleOrganizer(image: #imageLiteral(resourceName: "check"))
+        } else if self.image == #imageLiteral(resourceName: "check") {
             print("click off")
-            handleOrganizer(image: #imageLiteral(resourceName: "cancel"))
+            handleOrganizer(image: #imageLiteral(resourceName: "cancel-1"))
         }
     }
     

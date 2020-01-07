@@ -27,9 +27,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tabBar contentMode="scaleToFill" backgroundImage="WeMoov" translatesAutoresizingMaskIntoConstraints="NO" id="QBS-xQ-s7X">
+                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBS-xQ-s7X">
                     <rect key="frame" x="0.0" y="812" width="414" height="50"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Q9C-34-bXD"/>
                     </constraints>
@@ -55,7 +54,6 @@
         </view>
     </objects>
     <resources>
-        <image name="WeMoov" width="1024" height="1024"/>
         <image name="heart.fill" catalog="system" width="64" height="54"/>
         <image name="house.fill" catalog="system" width="64" height="52"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>

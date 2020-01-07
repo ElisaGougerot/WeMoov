@@ -74,29 +74,30 @@ class HomeViewController: UIViewController {
     
     
     func configureViewComponents() {
-        view.backgroundColor = UIColor.mainOrange()
+        view.backgroundColor = UIColor.mainWhite()
         navigationController?.navigationBar.isHidden = false
-           navigationItem.title = "Home User"
         
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "logout")
+        iv.image = #imageLiteral(resourceName: "cancel")
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
         iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(singleTap)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
-        navigationController?.navigationBar.barTintColor = UIColor.mainOrange()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
+        navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
-        self.pseudoLabel.text = "Welcome, \(GlobalVariable.user.email)"
+        self.pseudoLabel.text = "Welcome, \(GlobalVariable.user.username)"
         
         UIView.animate(withDuration: 0.5, animations: {
          self.pseudoLabel.alpha = 1
         })
         
+        self.navigationItem.setHidesBackButton(true, animated:true);
         self.homeTabBar.delegate = self
         self.homeTabBar.selectedItem = self.homeBarItem
+        self.homeTabBar.tintColor = UIColor.mainBlack()
     }
 }
 

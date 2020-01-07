@@ -72,6 +72,14 @@ extension UIColor {
         return UIColor.rgb(red: 255, green: 189, blue: 89)
     }
     
+    static func mainWhite() -> UIColor {
+        return UIColor.rgb(red: 255, green: 255, blue: 255)
+    }
+    
+    static func mainBlack() -> UIColor {
+          return UIColor.rgb(red: 0, green: 0, blue: 0)
+    }
+    
 }
 
 extension UITextField {
