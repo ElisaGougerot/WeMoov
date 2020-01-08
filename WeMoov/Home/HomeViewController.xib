@@ -10,9 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="WeMoov" customModuleProvider="target">
             <connections>
+                <outlet property="AllEventTableView" destination="qWn-qo-usp" id="roU-5w-Iqn"/>
                 <outlet property="homeBarItem" destination="D6F-da-mAj" id="VKy-Ig-zl3"/>
                 <outlet property="homeTabBar" destination="QBS-xQ-s7X" id="Ym8-hc-3Ni"/>
-                <outlet property="pseudoLabel" destination="vOr-fa-dVW" id="IbS-61-hOw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,12 +21,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOr-fa-dVW">
-                    <rect key="frame" x="180.5" y="430" width="53.5" height="36"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qWn-qo-usp">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
                 <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBS-xQ-s7X">
                     <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                     <constraints>
@@ -44,9 +43,7 @@
             <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="QBS-xQ-s7X" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CCz-Wo-akJ"/>
-                <constraint firstItem="vOr-fa-dVW" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="bJz-eL-WLQ"/>
                 <constraint firstItem="QBS-xQ-s7X" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="jea-Bg-aOw"/>
-                <constraint firstItem="vOr-fa-dVW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tr8-sP-5cc"/>
                 <constraint firstItem="QBS-xQ-s7X" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="wwj-D9-VA6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

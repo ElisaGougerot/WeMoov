@@ -9,13 +9,21 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import CoreLocation
 
 class HomeViewController: UIViewController {
+    
+    public static let MyEventsTableViewCellId = "metvc"
            
-    @IBOutlet var pseudoLabel: UILabel!
     @IBOutlet var homeBarItem: UITabBarItem!
     @IBOutlet var homeTabBar: UITabBar!
     
+    @IBOutlet var AllEventTableView: UITableView!
+    var AllEvents: [Event] = [] {
+        didSet {
+            self.AllEventTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +58,13 @@ class HomeViewController: UIViewController {
     func loadUserData() {
            guard let uid = Auth.auth().currentUser?.uid else { return }
            Database.database().reference().child("user").child(uid).child("firstname").observeSingleEvent(of: .value) { (snapshot) in
-               guard let username = snapshot.value as? String else { return }
-               self.pseudoLabel.text = "Welcome, \(username)"
+               /*guard let username = snapshot.value as? String else { return }
+               
+                self.pseudoLabel.text = "Welcome, \(username)"
                
                UIView.animate(withDuration: 0.5, animations: {
                 self.pseudoLabel.alpha = 1
-               })
+               })*/
            }
        }
     
@@ -78,6 +87,7 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         self.navigationItem.setHidesBackButton(true, animated:true);
         
+        //Disconect Button
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
@@ -89,16 +99,65 @@ class HomeViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
-        self.pseudoLabel.text = "Welcome, \(GlobalVariable.user.username)"
+        /*self.pseudoLabel.text = "Welcome, \(GlobalVariable.user.username)"
         
         UIView.animate(withDuration: 0.5, animations: {
          self.pseudoLabel.alpha = 1
-        })
-        
+        })*/
         
         self.homeTabBar.delegate = self
         self.homeTabBar.selectedItem = self.homeBarItem
         self.homeTabBar.tintColor = UIColor.mainBlack()
+        
+        //Init TableView
+        self.AllEventTableView.rowHeight = 120
+        self.AllEventTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: HomeViewController.MyEventsTableViewCellId)
+        self.AllEventTableView.dataSource = self
+        self.AllEventTableView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+           getAllEvents()
+    }
+    
+    func getAllEvents() {
+        
+        if self.AllEvents.count > 0 {
+            return
+        }
+
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "FR-fr")
+       
+        Database.database().reference().child("events").observeSingleEvent(of: .value) { (snapshot) in
+
+             if (snapshot.value is NSNull) {
+                 print("not found")
+             } else {
+                for child in snapshot.children {
+                    let data = child as! DataSnapshot
+                    let event = data.value as! [String: AnyObject]
+                    let id = event["id"] as? String ?? ""
+                    let idOrganizer = event["idOrganizer"] as? String ?? ""
+                    let name = event["name"] as? String  ?? ""
+                    let content = event["content"] as? String  ?? ""
+                    let image = event["image"] as? String ?? "" //URL(string: event["image"] as? String ?? "")
+                    let typeEvent = event["typeEvent"] as? String  ?? ""
+                    let typePlace = event["typePlace"] as? String  ?? ""
+                    let coordinates = event["coordinates"] as? [String: CLLocationDegrees]
+                    let lat = coordinates?["lat"] ?? 0.0
+                    let lon = coordinates?["lon"] ?? 0.0
+                    let startDate = dateFormatter.date(from: event["startDate"] as? String  ?? "")!
+                    let endDate = dateFormatter.date(from: event["endDate"] as? String  ?? "")!
+                    let price = event["price"] as? Int ?? 0
+                    
+                    self.AllEvents.append(Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price))
+                }
+                self.AllEvents.sort(by: { $0.startDate < $1.startDate })
+            }
+        }
     }
 }
 
@@ -118,4 +177,29 @@ extension HomeViewController: UITabBarDelegate {
         }
     }
 }
+
+extension HomeViewController: UITableViewDelegate {
+        
+}
+
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.AllEvents.count
+    }
+        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MyEventsViewController.MyEventsTableViewCellId, for: indexPath) as! EventTableViewCell
+        let event = self.AllEvents[indexPath.row]
+        cell.eventName.text = event.name
+        cell.eventImageView.loadImage(urlString: event.image) // restore default image
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(self.AllEvents[indexPath.row].name)")
+        GlobalVariable.eventClicked = self.AllEvents[indexPath.row]
+        self.navigationController?.pushViewController(EventDetailViewController(), animated: true)
+    }
+}
+
 

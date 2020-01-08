@@ -10,14 +10,27 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+
+
 class SearchViewController: UIViewController {
 
     @IBOutlet var searchTabBar: UITabBar!
     @IBOutlet var searchBarItem: UITabBarItem!
     
+    @IBOutlet var searchTextFieldDate: UITextField!
+    @IBOutlet var searchEventButton: UIButton!
+    
+    @IBOutlet var searchTypeEventTextField: UITextField!
+    
+    @IBOutlet var searchDistanceSlider: UISlider!
+    @IBOutlet var searchPlaceEventTextField: UITextField!
+    
+    let searchDatePicker =  UIDatePicker()
+    
     override func viewDidLoad() {
           super.viewDidLoad()
           configureViewComponents()
+          showDatePicker()
       }
     
     @objc func handleSignOut(){
@@ -62,9 +75,45 @@ class SearchViewController: UIViewController {
         self.searchTabBar.delegate = self
         self.searchTabBar.selectedItem = self.searchBarItem
         self.searchTabBar.tintColor = UIColor.mainBlack()
+        
+        // Button
+        self.searchEventButton.layer.cornerRadius = 15.0
+        self.searchEventButton.layer.cornerRadius = 15.0
+        
+        
+ 
+    }
+    
+    func showDatePicker(){
+        //Formate Date
+        searchDatePicker.datePickerMode = .date
+        
+          //ToolBar
+          let toolbar = UIToolbar();
+          toolbar.sizeToFit()
+          let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+          let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+
+        toolbar.setItems([doneButton,cancelButton], animated: false)
+
+        searchTextFieldDate.inputView = searchDatePicker
     }
 
+    @objc func donedatePicker(){
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "FR-fr")
+        searchTextFieldDate.text = dateFormatter.string(from: searchDatePicker.date)
+        self.view.endEditing(true)
+        
+    }
+    
+    @objc func cancelDatePicker(){
+        self.view.endEditing(true)
+    }
 }
+    
 
 
 extension SearchViewController: UITabBarDelegate {
