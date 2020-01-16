@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191DC52823CDC050007EDB7E /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191DC52723CDC050007EDB7E /* iOSDropDown.framework */; };
 		32D1324370523A9F1EAA04A5 /* Pods_WeMoov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */; };
 		3746E4B023AAFC4F006BFF31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746E4AE23AAFC4F006BFF31 /* LoginViewController.swift */; };
 		37561B9B23AC40920070D586 /* InscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37561B9A23AC40920070D586 /* InscriptionViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		191DC52723CDC050007EDB7E /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3746E4AE23AAFC4F006BFF31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37561B9A23AC40920070D586 /* InscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InscriptionViewController.swift; sourceTree = "<group>"; };
 		37561B9C23AC41060070D586 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				191DC52823CDC050007EDB7E /* iOSDropDown.framework in Frameworks */,
 				32D1324370523A9F1EAA04A5 /* Pods_WeMoov.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +229,7 @@
 		FF43AB016B41290554FA58A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				191DC52723CDC050007EDB7E /* iOSDropDown.framework */,
 				B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */,
 			);
 			name = Frameworks;

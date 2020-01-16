@@ -15,14 +15,15 @@ class EventDetailViewController: UIViewController {
     @IBOutlet var eventName: UILabel!
     @IBOutlet var eventTypePlace: UILabel!
     @IBOutlet var eventTypeEvent: UILabel!
-    @IBOutlet var eventContent: UILabel!
+    //@IBOutlet var eventContent: UILabel!
     @IBOutlet var eventStartDate: UILabel!
     @IBOutlet var eventPrice: UILabel!
-    
+    @IBOutlet weak var eventContent: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
+        eventContent.isEditable = false;
     }
 
     @objc func handleBack() {
@@ -72,7 +73,7 @@ class EventDetailViewController: UIViewController {
         self.eventTypeEvent.text = event.typeEvent
         self.eventContent.text = event.content
         self.eventStartDate.text = "\(dateFormatter.string(from: event.startDate))"
-        if event.price == 0 {
+        if event.price == "0" {
             self.eventPrice.text = "Gratuit"
         } else {
             self.eventPrice.text = "\(event.price) €"

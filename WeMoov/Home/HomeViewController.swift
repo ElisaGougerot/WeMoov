@@ -151,9 +151,12 @@ class HomeViewController: UIViewController {
                     let lon = coordinates?["lon"] ?? 0.0
                     let startDate = dateFormatter.date(from: event["startDate"] as? String  ?? "")!
                     let endDate = dateFormatter.date(from: event["endDate"] as? String  ?? "")!
-                    let price = event["price"] as? Int ?? 0
+                    let price = event["price"] as? String ?? "0"
+                    let address = event["address"] as? String  ?? ""
+                    let period = event["period"] as? String  ?? ""
+
                     
-                    self.AllEvents.append(Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price))
+                    self.AllEvents.append(Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period))
                 }
                 self.AllEvents.sort(by: { $0.startDate < $1.startDate })
             }

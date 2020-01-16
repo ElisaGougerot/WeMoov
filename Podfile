@@ -10,5 +10,6 @@ target 'WeMoov' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
+  pod 'iOSDropDown'
 
 end
