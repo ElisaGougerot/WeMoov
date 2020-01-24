@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,7 +63,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="v85-WT-dub">
-                    <rect key="frame" x="-2" y="526" width="418" height="31"/>
+                    <rect key="frame" x="83" y="526" width="248" height="31"/>
                 </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-Ne-diP">
                     <rect key="frame" x="0.0" y="497" width="414" height="24"/>
@@ -76,18 +76,18 @@
             <constraints>
                 <constraint firstItem="jSv-Ch-hQw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4JP-V3-ndq"/>
                 <constraint firstItem="u8w-NQ-5gr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="5Ff-fN-uXF"/>
-                <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="AiI-Ne-diP" secondAttribute="bottom" constant="5" id="5jt-Rf-Uub"/>
+                <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="AiI-Ne-diP" secondAttribute="bottom" constant="5" id="5iL-jX-SUr"/>
                 <constraint firstItem="kpQ-Vh-NZq" firstAttribute="top" secondItem="dWl-Rl-WxW" secondAttribute="bottom" constant="72" id="8It-td-JmM"/>
                 <constraint firstItem="jSv-Ch-hQw" firstAttribute="top" secondItem="kpQ-Vh-NZq" secondAttribute="bottom" constant="63" id="8Pc-z3-yh3"/>
                 <constraint firstItem="E22-Zz-B2x" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Hdv-dJ-BSW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dWl-Rl-WxW" secondAttribute="trailing" id="I24-SS-u74"/>
                 <constraint firstItem="jSv-Ch-hQw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Jd4-Yf-8Lw"/>
-                <constraint firstItem="v85-WT-dub" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MF6-rc-QEE"/>
-                <constraint firstItem="u8w-NQ-5gr" firstAttribute="top" secondItem="v85-WT-dub" secondAttribute="bottom" constant="190" id="Mj4-LK-h2P"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="v85-WT-dub" secondAttribute="trailing" constant="85" id="Jwd-Lk-fLF"/>
                 <constraint firstItem="AiI-Ne-diP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RSD-r0-wVK"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="v85-WT-dub" secondAttribute="trailing" id="Snc-9T-uTg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="u8w-NQ-5gr" secondAttribute="trailing" constant="50" id="Tah-0l-XKW"/>
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="115" id="VZw-ca-2je"/>
+                <constraint firstItem="u8w-NQ-5gr" firstAttribute="top" secondItem="v85-WT-dub" secondAttribute="bottom" constant="190" id="VzJ-yj-Suk"/>
+                <constraint firstItem="v85-WT-dub" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="85" id="Xl9-CR-CbR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jSv-Ch-hQw" secondAttribute="trailing" id="dlA-Ck-cTe"/>
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eEd-Ou-kKH"/>
                 <constraint firstItem="E22-Zz-B2x" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="hsu-CW-bhH"/>
@@ -98,6 +98,7 @@
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vjx-9k-saO"/>
                 <constraint firstItem="E22-Zz-B2x" firstAttribute="top" secondItem="u8w-NQ-5gr" secondAttribute="bottom" constant="30" id="vzY-uW-bsl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AiI-Ne-diP" secondAttribute="trailing" id="xrX-tk-ju9"/>
+                <constraint firstItem="v85-WT-dub" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yq9-bS-CfE"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="106.47321428571428"/>
