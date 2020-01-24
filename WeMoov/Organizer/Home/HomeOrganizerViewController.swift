@@ -71,7 +71,8 @@ class HomeOrganizerViewController: UIViewController {
     
     
     @IBAction func touchCreateEvent(_ sender: UIButton) {
-        self.navigationController?.pushViewController(CreateEventViewController(), animated: true)
+//        self.navigationController?.pushViewController(CreateEventViewController(), animated: true)
+        self.present(CreateEventViewController(), animated: true, completion: nil)
     }
     
 

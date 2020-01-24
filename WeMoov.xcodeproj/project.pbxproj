@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191DC52823CDC050007EDB7E /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191DC52723CDC050007EDB7E /* iOSDropDown.framework */; };
 		32D1324370523A9F1EAA04A5 /* Pods_WeMoov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */; };
+		3716AB2923DB62A300C9D25A /* WeMoovTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716AB2823DB62A300C9D25A /* WeMoovTests.swift */; };
 		3746E4B023AAFC4F006BFF31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746E4AE23AAFC4F006BFF31 /* LoginViewController.swift */; };
 		37561B9B23AC40920070D586 /* InscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37561B9A23AC40920070D586 /* InscriptionViewController.swift */; };
 		37561B9D23AC41060070D586 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37561B9C23AC41060070D586 /* Extensions.swift */; };
@@ -36,7 +38,21 @@
 		57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FCC2EC23ABC34800DDAF59 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3716AB2B23DB62A300C9D25A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C79E65123A513750041BA81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C79E65823A513750041BA81;
+			remoteInfo = WeMoov;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		191DC52723CDC050007EDB7E /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3716AB2623DB62A300C9D25A /* WeMoovTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeMoovTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3716AB2823DB62A300C9D25A /* WeMoovTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeMoovTests.swift; sourceTree = "<group>"; };
+		3716AB2A23DB62A300C9D25A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3746E4AE23AAFC4F006BFF31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37561B9A23AC40920070D586 /* InscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InscriptionViewController.swift; sourceTree = "<group>"; };
 		37561B9C23AC41060070D586 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -71,10 +87,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3716AB2323DB62A300C9D25A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C79E65623A513750041BA81 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				191DC52823CDC050007EDB7E /* iOSDropDown.framework in Frameworks */,
 				32D1324370523A9F1EAA04A5 /* Pods_WeMoov.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3716AB2723DB62A300C9D25A /* WeMoovTests */ = {
+			isa = PBXGroup;
+			children = (
+				3716AB2823DB62A300C9D25A /* WeMoovTests.swift */,
+				3716AB2A23DB62A300C9D25A /* Info.plist */,
+			);
+			path = WeMoovTests;
+			sourceTree = "<group>";
+		};
 		3746E4B223AAFD29006BFF31 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				4C79E65B23A513750041BA81 /* WeMoov */,
+				3716AB2723DB62A300C9D25A /* WeMoovTests */,
 				4C79E65A23A513750041BA81 /* Products */,
 				50814DA312EF79B5FCEA42CC /* Pods */,
 				FF43AB016B41290554FA58A7 /* Frameworks */,
@@ -121,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				4C79E65923A513750041BA81 /* WeMoov.app */,
+				3716AB2623DB62A300C9D25A /* WeMoovTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -226,6 +261,7 @@
 		FF43AB016B41290554FA58A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				191DC52723CDC050007EDB7E /* iOSDropDown.framework */,
 				B11A9091BBC3DDD5A0E3476A /* Pods_WeMoov.framework */,
 			);
 			name = Frameworks;
@@ -234,6 +270,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3716AB2523DB62A300C9D25A /* WeMoovTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3716AB2D23DB62A300C9D25A /* Build configuration list for PBXNativeTarget "WeMoovTests" */;
+			buildPhases = (
+				3716AB2223DB62A300C9D25A /* Sources */,
+				3716AB2323DB62A300C9D25A /* Frameworks */,
+				3716AB2423DB62A300C9D25A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3716AB2C23DB62A300C9D25A /* PBXTargetDependency */,
+			);
+			name = WeMoovTests;
+			productName = WeMoovTests;
+			productReference = 3716AB2623DB62A300C9D25A /* WeMoovTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4C79E65823A513750041BA81 /* WeMoov */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C79E66B23A513780041BA81 /* Build configuration list for PBXNativeTarget "WeMoov" */;
@@ -259,10 +313,14 @@
 		4C79E65123A513750041BA81 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Elisa Gougerot";
 				TargetAttributes = {
+					3716AB2523DB62A300C9D25A = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 4C79E65823A513750041BA81;
+					};
 					4C79E65823A513750041BA81 = {
 						CreatedOnToolsVersion = 10.3;
 					};
@@ -282,11 +340,19 @@
 			projectRoot = "";
 			targets = (
 				4C79E65823A513750041BA81 /* WeMoov */,
+				3716AB2523DB62A300C9D25A /* WeMoovTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3716AB2423DB62A300C9D25A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C79E65723A513750041BA81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -350,6 +416,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3716AB2223DB62A300C9D25A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3716AB2923DB62A300C9D25A /* WeMoovTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C79E65523A513750041BA81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -374,6 +448,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3716AB2C23DB62A300C9D25A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C79E65823A513750041BA81 /* WeMoov */;
+			targetProxy = 3716AB2B23DB62A300C9D25A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		4C79E66523A513780041BA81 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -386,6 +468,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3716AB2E23DB62A300C9D25A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XFCSLTMJV2;
+				INFOPLIST_FILE = WeMoovTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ESGI.WeMoov.WeMoovTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeMoov.app/WeMoov";
+			};
+			name = Debug;
+		};
+		3716AB2F23DB62A300C9D25A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XFCSLTMJV2;
+				INFOPLIST_FILE = WeMoovTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ESGI.WeMoov.WeMoovTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeMoov.app/WeMoov";
+			};
+			name = Release;
+		};
 		4C79E66923A513780041BA81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -543,6 +667,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3716AB2D23DB62A300C9D25A /* Build configuration list for PBXNativeTarget "WeMoovTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3716AB2E23DB62A300C9D25A /* Debug */,
+				3716AB2F23DB62A300C9D25A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4C79E65423A513750041BA81 /* Build configuration list for PBXProject "WeMoov" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

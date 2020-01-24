@@ -20,5 +20,7 @@ struct Event {
     var typePlace: String
     var startDate: Date
     var endDate: Date
-    var price: Int
+    var price: String
+    var address: String
+    var period: String
 }

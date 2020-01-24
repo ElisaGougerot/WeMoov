@@ -40,7 +40,8 @@ V 1.0.0
 ## Authors
 
 * **Victor Deyanovitch** - *Developer* - [Profil](https://github.com/Victor-Dev77)
-* *Put yours profiles*
+* **Elisa Gougerot** - *Developer* - [Profil](https://github.com/ElisaGougerot)
+* **Taj Singh** - *Developer* - [Profil](https://github.com/Taj1596)
 
 
 ## License

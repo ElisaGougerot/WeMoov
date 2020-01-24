@@ -11,7 +11,8 @@ import UIKit
 class EventTableViewCell: UITableViewCell {
 
    
-    @IBOutlet var eventName: UILabel!
-    @IBOutlet var eventImageView: UIImageView!
+    @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var eventImageView: UIImageView!
+    @IBOutlet weak var price: UILabel!
     
 }
