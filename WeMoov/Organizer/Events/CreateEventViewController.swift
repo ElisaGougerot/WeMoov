@@ -181,11 +181,14 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
             self.present(alert, animated: true, completion: nil)
         } else {
     
+            let uuid = UUID().uuidString
             imageView.image!.upload(with: "image \(name)", completion: {(url: URL?) in
                 print(url)
+                Database.database().reference(withPath: "events").child(uuid).updateChildValues(["image": url?.absoluteString])
             })
             
-            let ref = Database.database().reference(withPath: "events").childByAutoId()
+            let ref = Database.database().reference(withPath: "events").child(uuid)
+            
             let dictEvent: [String: Any] = [
                 "content": description,
                 "endTime": timeEnd,

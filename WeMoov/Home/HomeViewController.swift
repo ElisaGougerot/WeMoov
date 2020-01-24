@@ -97,6 +97,9 @@ class HomeViewController: UIViewController {
         iv.addGestureRecognizer(singleTap)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
+        self.title = "Events"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
         /*self.pseudoLabel.text = "Welcome, \(GlobalVariable.user.username)"
@@ -128,7 +131,7 @@ class HomeViewController: UIViewController {
 
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
        
         Database.database().reference().child("events").observeSingleEvent(of: .value) { (snapshot) in
