@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="WeMoov" customModuleProvider="target">
             <connections>
+                <outlet property="distanceLabel" destination="KtL-pM-iwg" id="oAl-rI-TKR"/>
                 <outlet property="searchBarItem" destination="SpV-NZ-atA" id="fiM-Ax-kTG"/>
                 <outlet property="searchDistanceSlider" destination="v85-WT-dub" id="Xtv-xa-sja"/>
                 <outlet property="searchEventButton" destination="u8w-NQ-5gr" id="G0B-rb-KAO"/>
@@ -62,31 +63,40 @@
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="v85-WT-dub">
-                    <rect key="frame" x="83" y="526" width="248" height="31"/>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="50" maxValue="5000" translatesAutoresizingMaskIntoConstraints="NO" id="v85-WT-dub">
+                    <rect key="frame" x="83" y="541" width="248" height="31"/>
+                    <connections>
+                        <action selector="distanceSliderValueChanged:" destination="-1" eventType="valueChanged" id="efh-hU-OCe"/>
+                    </connections>
                 </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-Ne-diP">
-                    <rect key="frame" x="0.0" y="497" width="414" height="24"/>
+                    <rect key="frame" x="75" y="497" width="77" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500  m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtL-pM-iwg">
+                    <rect key="frame" x="285" y="500" width="54" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="AiI-Ne-diP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="75" id="1x7-ug-xE4"/>
                 <constraint firstItem="jSv-Ch-hQw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4JP-V3-ndq"/>
                 <constraint firstItem="u8w-NQ-5gr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="5Ff-fN-uXF"/>
-                <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="AiI-Ne-diP" secondAttribute="bottom" constant="5" id="5iL-jX-SUr"/>
+                <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="AiI-Ne-diP" secondAttribute="bottom" constant="20" id="5iL-jX-SUr"/>
                 <constraint firstItem="kpQ-Vh-NZq" firstAttribute="top" secondItem="dWl-Rl-WxW" secondAttribute="bottom" constant="72" id="8It-td-JmM"/>
                 <constraint firstItem="jSv-Ch-hQw" firstAttribute="top" secondItem="kpQ-Vh-NZq" secondAttribute="bottom" constant="63" id="8Pc-z3-yh3"/>
                 <constraint firstItem="E22-Zz-B2x" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Hdv-dJ-BSW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dWl-Rl-WxW" secondAttribute="trailing" id="I24-SS-u74"/>
                 <constraint firstItem="jSv-Ch-hQw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Jd4-Yf-8Lw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="v85-WT-dub" secondAttribute="trailing" constant="85" id="Jwd-Lk-fLF"/>
-                <constraint firstItem="AiI-Ne-diP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RSD-r0-wVK"/>
+                <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="KtL-pM-iwg" secondAttribute="bottom" constant="20" id="TIw-tU-1dS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="u8w-NQ-5gr" secondAttribute="trailing" constant="50" id="Tah-0l-XKW"/>
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="115" id="VZw-ca-2je"/>
-                <constraint firstItem="u8w-NQ-5gr" firstAttribute="top" secondItem="v85-WT-dub" secondAttribute="bottom" constant="190" id="VzJ-yj-Suk"/>
                 <constraint firstItem="v85-WT-dub" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="85" id="Xl9-CR-CbR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jSv-Ch-hQw" secondAttribute="trailing" id="dlA-Ck-cTe"/>
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eEd-Ou-kKH"/>
@@ -94,10 +104,10 @@
                 <constraint firstItem="kpQ-Vh-NZq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jBV-CB-6K0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kpQ-Vh-NZq" secondAttribute="trailing" id="nJc-XH-pgk"/>
                 <constraint firstItem="AiI-Ne-diP" firstAttribute="top" secondItem="jSv-Ch-hQw" secondAttribute="bottom" constant="101" id="pvF-f7-D2D"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KtL-pM-iwg" secondAttribute="trailing" constant="75" id="s6U-dH-hMQ"/>
                 <constraint firstAttribute="trailing" secondItem="E22-Zz-B2x" secondAttribute="trailing" id="ufv-tc-Etc"/>
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vjx-9k-saO"/>
                 <constraint firstItem="E22-Zz-B2x" firstAttribute="top" secondItem="u8w-NQ-5gr" secondAttribute="bottom" constant="30" id="vzY-uW-bsl"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AiI-Ne-diP" secondAttribute="trailing" id="xrX-tk-ju9"/>
                 <constraint firstItem="v85-WT-dub" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yq9-bS-CfE"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

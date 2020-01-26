@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
     
     @IBOutlet var searchDistanceSlider: UISlider!
     @IBOutlet var searchPlaceEventTextField: UITextField!
+    @IBOutlet var distanceLabel: UILabel!
     
     let searchDatePicker =  UIDatePicker()
     
@@ -69,6 +70,9 @@ class SearchViewController: UIViewController {
         iv.addGestureRecognizer(singleTap)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
+        self.title = "Search"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
 
         self.navigationItem.setHidesBackButton(true, animated:true);
@@ -88,21 +92,25 @@ class SearchViewController: UIViewController {
         //Formate Date
         searchDatePicker.datePickerMode = .date
         
-          //ToolBar
-          let toolbar = UIToolbar();
-          toolbar.sizeToFit()
-          let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
-          let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
-
-        toolbar.setItems([doneButton,cancelButton], animated: false)
-
+        searchDatePicker.locale = Locale(identifier: "FR-fr")
+        
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+        
+        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        
+        searchTextFieldDate.inputAccessoryView = toolbar
         searchTextFieldDate.inputView = searchDatePicker
     }
 
     @objc func donedatePicker(){
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH'h'mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         searchTextFieldDate.text = dateFormatter.string(from: searchDatePicker.date)
         self.view.endEditing(true)
@@ -112,6 +120,14 @@ class SearchViewController: UIViewController {
     @objc func cancelDatePicker(){
         self.view.endEditing(true)
     }
+    
+    @IBAction func distanceSliderValueChanged(_ sender: UISlider) {
+        let step: Float = 50
+        let roundedValue = round(sender.value / step) * step
+        sender.value = roundedValue
+        distanceLabel.text = "\(Int(roundedValue))  m"
+    }
+    
 }
     
 
