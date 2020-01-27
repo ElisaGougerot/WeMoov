@@ -68,6 +68,8 @@ class FavoritesViewController: UIViewController {
         self.favTabBar.selectedItem = self.favBarItem
         self.favTabBar.tintColor = UIColor.mainBlack()
         
+        //
+        
     }
 
 }
