@@ -40,9 +40,12 @@ class EventDetailViewController: UIViewController {
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "back")
+        
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleBack))
         iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(singleTap)
+        
+       
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
@@ -78,7 +81,12 @@ class EventDetailViewController: UIViewController {
         } else {
             self.eventPrice.text = "\(event.price) €"
         }
+        
     
+    }
+    
+    @objc func touchFavButton() {
+       //Ajouter ici traitement de mise en favoris
     }
 
 }

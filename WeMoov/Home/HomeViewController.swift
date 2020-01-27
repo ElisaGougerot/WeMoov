@@ -92,21 +92,19 @@ class HomeViewController: UIViewController {
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "cancel")
+        
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
         iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(singleTap)
-
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
+        
         self.title = "Events"
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
-        /*self.pseudoLabel.text = "Welcome, \(GlobalVariable.user.username)"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(touchMapButton))
         
-        UIView.animate(withDuration: 0.5, animations: {
-         self.pseudoLabel.alpha = 1
-        })*/
         
         self.homeTabBar.delegate = self
         self.homeTabBar.selectedItem = self.homeBarItem
@@ -118,6 +116,13 @@ class HomeViewController: UIViewController {
         self.AllEventTableView.dataSource = self
         self.AllEventTableView.delegate = self
     }
+    
+    
+    @objc func touchMapButton() {
+        let mapViewController = MapViewController()
+        self.navigationController?.pushViewController(mapViewController, animated: true)
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
            getAllEvents()
