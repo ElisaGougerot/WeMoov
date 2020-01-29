@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import iOSDropDown
 import Firebase
 import FirebaseDatabase
-
+import CoreLocation
 
 
 class SearchViewController: UIViewController {
@@ -20,13 +21,16 @@ class SearchViewController: UIViewController {
     @IBOutlet var searchTextFieldDate: UITextField!
     @IBOutlet var searchEventButton: UIButton!
     
-    @IBOutlet var searchTypeEventTextField: UITextField!
-    
     @IBOutlet var searchDistanceSlider: UISlider!
-    @IBOutlet var searchPlaceEventTextField: UITextField!
     @IBOutlet var distanceLabel: UILabel!
     
+    @IBOutlet var typeEventList: DropDown!
+    @IBOutlet var typePlaceList: DropDown!
+    
     let searchDatePicker =  UIDatePicker()
+    var dataSearch = [String: String]()
+    var eventsSearch: [Event] = []
+    let reference = Database.database().reference().child("events")
     
     override func viewDidLoad() {
           super.viewDidLoad()
@@ -84,13 +88,19 @@ class SearchViewController: UIViewController {
         self.searchEventButton.layer.cornerRadius = 15.0
         self.searchEventButton.layer.cornerRadius = 15.0
         
+        self.distanceLabel.text = ""
         
+        self.typeEventList.optionArray = ["AfterWork", "Bar", "Jeux"]
+        self.typeEventList.selectedRowColor = .lightGray
+        
+        self.typePlaceList.optionArray = ["Bar", "Restaurant", "Musée", "Appartement", "Rooftop"]
+        self.typePlaceList.selectedRowColor = .lightGray
  
     }
     
     func showDatePicker(){
         //Formate Date
-        searchDatePicker.datePickerMode = .date
+        searchDatePicker.datePickerMode = .dateAndTime
         
         searchDatePicker.locale = Locale(identifier: "FR-fr")
         
@@ -110,11 +120,13 @@ class SearchViewController: UIViewController {
     @objc func donedatePicker(){
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy HH'h'mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         searchTextFieldDate.text = dateFormatter.string(from: searchDatePicker.date)
         self.view.endEditing(true)
-        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "FR-fr")
+        dataSearch["startDate"] = dateFormatter.string(from: searchDatePicker.date)
     }
     
     @objc func cancelDatePicker(){
@@ -126,7 +138,164 @@ class SearchViewController: UIViewController {
         let roundedValue = round(sender.value / step) * step
         sender.value = roundedValue
         distanceLabel.text = "\(Int(roundedValue))  m"
+        dataSearch["distance"] = "\(Int(roundedValue))"
     }
+    
+    
+    @IBAction func clickSearchButton(_ sender: UIButton) {
+        // Get Data
+        let eventType = typeEventList.text ?? ""
+        if eventType != "" {
+            dataSearch["typeEvent"] = eventType
+        }
+        let eventPlace = typePlaceList.text ?? ""
+        if eventPlace != "" {
+            dataSearch["typePlace"] = eventPlace
+        }
+        searchEvent()
+    }
+    
+    func searchEvent() {
+        if dataSearch.isEmpty {
+            print("no data")
+            return
+        }
+        print(dataSearch)
+        
+        if dataSearch["startDate"] != nil {
+            print(dataSearch["startDate"])
+            let  date : String = dataSearch["startDate"]!
+            reference.queryOrdered(byChild: "startDate").queryStarting(atValue: date).observeSingleEvent(of: .value) {
+                (snapshot) in
+
+                if snapshot.value is NSNull {
+                    print("not found start date")
+                    self.typeEventQuery()
+                }
+                else {
+                    for child in snapshot.children {
+                        let event = self.extractEvent(child: child)
+                        print(event.startDate)
+                        self.eventsSearch.append(event)
+                    }
+                    print("Nb Start Date: \(self.eventsSearch.count)")
+                    self.typeEventQuery()
+                }
+            }
+        }
+        else {
+            self.typeEventQuery()
+        }
+    }
+    
+    private func typeEventQuery() {
+        if dataSearch["typeEvent"] != nil {
+            // test type event
+            if eventsSearch.count != 0 {
+                // Existe type event => Filtrer
+                print("FILTRE")
+                self.eventsSearch = self.eventsSearch.filter({ $0.typeEvent == dataSearch["typeEvent"] })
+                print("Nb Type Event: \(self.eventsSearch.count)")
+                self.typePlaceQuery()
+            }
+            else {
+                // Query
+                print("QUERY type event")
+                let typeEvent: String = dataSearch["typeEvent"]!
+                reference.queryOrdered(byChild: "typeEvent").queryEqual(toValue: typeEvent).observeSingleEvent(of: .value) {
+                    (snapshot) in
+
+                    if snapshot.value is NSNull {
+                        print("not found type event")
+                    }
+                    else {
+                        for child in snapshot.children {
+                            let event = self.extractEvent(child: child)
+                            print(event.typeEvent)
+                            self.eventsSearch.append(event)
+                        }
+                        print("Nb Type Event: \(self.eventsSearch.count)")
+                        self.typePlaceQuery()
+                    }
+                }
+            }
+        }
+        else {
+            self.typePlaceQuery()
+        }
+    }
+    
+    private func typePlaceQuery() {
+        if dataSearch["typePlace"] != nil {
+            // test type place
+            if eventsSearch.count != 0 {
+                // Existe type place => Filtrer
+                print("FILTRE")
+                self.eventsSearch = self.eventsSearch.filter({ $0.typePlace == dataSearch["typePlace"] })
+                print("Nb Type Place: \(self.eventsSearch.count)")
+              //  typePlaceQuery()
+            }
+            else {
+                // Query
+                print("QUERY type place")
+                let typePlace: String = dataSearch["typePlace"]!
+                reference.queryOrdered(byChild: "typePlace").queryEqual(toValue: typePlace).observeSingleEvent(of: .value) {
+                    (snapshot) in
+
+                    if snapshot.value is NSNull {
+                        print("not found type place")
+                        //self.typePlaceQuery() : distance
+                        print("TOTAL == \(self.eventsSearch.count)")
+                    }
+                    else {
+                        for child in snapshot.children {
+                            let event = self.extractEvent(child: child)
+                            print(event.typePlace)
+                            self.eventsSearch.append(event)
+                        }
+                        print("Nb Type Place: \(self.eventsSearch.count)")
+                        //self.typePlaceQuery()
+                        print("TOTAL == \(self.eventsSearch.count)")
+                    }
+                }
+            }
+        }
+        else {
+            print("TOTAL == \(self.eventsSearch.count)")
+        }
+    }
+    
+    
+    private func extractEvent(child: NSEnumerator.Element) -> Event {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter.locale = Locale(identifier: "FR-fr")
+        
+        let dateFormatterStartDate = DateFormatter()
+        dateFormatterStartDate.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatterStartDate.locale = Locale(identifier: "FR-fr")
+        
+        let data = child as! DataSnapshot
+        let event = data.value as! [String: AnyObject]
+        let id = event["id"] as? String ?? ""
+        let idOrganizer = event["idOrganizer"] as? String ?? ""
+        let name = event["name"] as? String  ?? ""
+        let content = event["content"] as? String  ?? ""
+        let image = event["image"] as? String ?? "" //URL(string: event["image"] as? String ?? "")
+        let typeEvent = event["typeEvent"] as? String  ?? ""
+        let typePlace = event["typePlace"] as? String  ?? ""
+        let coordinates = event["coordinates"] as? [String: CLLocationDegrees]
+        let lat = coordinates?["lat"] ?? 0.0
+        let lon = coordinates?["lon"] ?? 0.0
+        let startDate = dateFormatterStartDate.date(from: event["startDate"] as? String  ?? "")!
+        let endDate = dateFormatter.date(from: event["endDate"] as? String  ?? "")!
+        let price = event["price"] as? String ?? "0"
+        let address = event["address"] as? String  ?? ""
+        let period = event["period"] as? String  ?? ""
+        
+        return Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period)
+    }
+    
     
 }
     

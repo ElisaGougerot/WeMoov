@@ -133,6 +133,10 @@ class HomeViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
+        
+        let dateFormatterStartDate = DateFormatter()
+        dateFormatterStartDate.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatterStartDate.locale = Locale(identifier: "FR-fr")
        
         Database.database().reference().child("events").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -152,7 +156,7 @@ class HomeViewController: UIViewController {
                     let coordinates = event["coordinates"] as? [String: CLLocationDegrees]
                     let lat = coordinates?["lat"] ?? 0.0
                     let lon = coordinates?["lon"] ?? 0.0
-                    let startDate = dateFormatter.date(from: event["startDate"] as? String  ?? "")!
+                    let startDate = dateFormatterStartDate.date(from: event["startDate"] as? String  ?? "")!
                     let endDate = dateFormatter.date(from: event["endDate"] as? String  ?? "")!
                     let price = event["price"] as? String ?? "0"
                     let address = event["address"] as? String  ?? ""
