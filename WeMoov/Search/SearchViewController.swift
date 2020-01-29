@@ -246,6 +246,7 @@ class SearchViewController: UIViewController {
                         print("not found type place")
                         //self.typePlaceQuery() : distance
                         print("TOTAL == \(self.eventsSearch.count)")
+                        self.sendDataToHome()
                     }
                     else {
                         for child in snapshot.children {
@@ -256,12 +257,14 @@ class SearchViewController: UIViewController {
                         print("Nb Type Place: \(self.eventsSearch.count)")
                         //self.typePlaceQuery()
                         print("TOTAL == \(self.eventsSearch.count)")
+                        self.sendDataToHome()
                     }
                 }
             }
         }
         else {
             print("TOTAL == \(self.eventsSearch.count)")
+            self.sendDataToHome()
         }
     }
     
@@ -294,6 +297,12 @@ class SearchViewController: UIViewController {
         let period = event["period"] as? String  ?? ""
         
         return Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period)
+    }
+    
+    private func sendDataToHome() {
+        GlobalVariable.eventsSearch = self.eventsSearch
+        self.eventsSearch = []
+        navigationController?.pushViewController(HomeViewController(), animated: false)
     }
     
     

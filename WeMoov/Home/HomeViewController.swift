@@ -117,6 +117,11 @@ class HomeViewController: UIViewController {
         self.AllEventTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: HomeViewController.MyEventsTableViewCellId)
         self.AllEventTableView.dataSource = self
         self.AllEventTableView.delegate = self
+        
+        if GlobalVariable.eventsSearch.count != 0 {
+            // Event Search
+            AllEvents = GlobalVariable.eventsSearch
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
