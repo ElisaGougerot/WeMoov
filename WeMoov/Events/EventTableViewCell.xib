@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,14 +37,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Llw-2J-ubV">
+                        <rect key="frame" x="268" y="34" width="36" height="32"/>
+                        <state key="normal" image="heart"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="S5Q-7X-a45" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="7AW-pT-yzs"/>
                     <constraint firstItem="2mp-gk-8mm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GtM-hI-hzH"/>
                     <constraint firstItem="S5Q-7X-a45" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="HEd-dg-Lf3"/>
                     <constraint firstItem="0j6-NB-Wd0" firstAttribute="leading" secondItem="S5Q-7X-a45" secondAttribute="trailing" constant="10" id="OIN-8a-hK0"/>
+                    <constraint firstAttribute="trailing" secondItem="Llw-2J-ubV" secondAttribute="trailing" constant="16" id="PK7-dc-A0u"/>
+                    <constraint firstAttribute="bottom" secondItem="Llw-2J-ubV" secondAttribute="bottom" constant="34" id="gSd-In-Kgu"/>
+                    <constraint firstItem="Llw-2J-ubV" firstAttribute="leading" secondItem="2mp-gk-8mm" secondAttribute="trailing" constant="83" id="ipG-9r-CF4"/>
                     <constraint firstItem="S5Q-7X-a45" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kko-LU-Wgy"/>
                     <constraint firstItem="2mp-gk-8mm" firstAttribute="leading" secondItem="S5Q-7X-a45" secondAttribute="trailing" constant="10" id="mlc-jW-5Hz"/>
+                    <constraint firstItem="Llw-2J-ubV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="34" id="rV4-Hh-JbJ"/>
                     <constraint firstItem="2mp-gk-8mm" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="uVy-Bc-nyT"/>
                     <constraint firstItem="0j6-NB-Wd0" firstAttribute="top" secondItem="2mp-gk-8mm" secondAttribute="bottom" constant="8" id="wdF-Pt-00b"/>
                 </constraints>
@@ -53,9 +61,13 @@
             <connections>
                 <outlet property="eventImageView" destination="S5Q-7X-a45" id="iQ7-vK-byP"/>
                 <outlet property="eventName" destination="2mp-gk-8mm" id="1OH-k0-U88"/>
+                <outlet property="favButton" destination="Llw-2J-ubV" id="WDo-ge-7ie"/>
                 <outlet property="price" destination="0j6-NB-Wd0" id="93Y-wZ-QZZ"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="107.14285714285714"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="heart" width="32" height="32"/>
+    </resources>
 </document>

@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 struct Event {
-    var id: String
+    var idEvent: String
     var idOrganizer: String
     var name: String
     var content: String
@@ -23,4 +23,5 @@ struct Event {
     var price: String
     var address: String
     var period: String
+    var favorite: Bool
 }

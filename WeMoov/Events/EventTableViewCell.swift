@@ -15,4 +15,5 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var price: UILabel!
     
+    @IBOutlet weak var favButton: UIButton!
 }

@@ -118,7 +118,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     @objc func donedatePicker(){
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy HH:mm"
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
         dateTF.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
@@ -191,6 +191,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
             
             let dictEvent: [String: Any] = [
                 "content": description,
+                "id":uuid,
                 "endTime": timeEnd,
                 "idOrganizer": Auth.auth().currentUser!.uid,
                 "image":"",

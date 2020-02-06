@@ -131,8 +131,12 @@ class HomeViewController: UIViewController {
 
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
+        
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter2.locale = Locale(identifier: "FR-fr")
        
         Database.database().reference().child("events").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -153,17 +157,25 @@ class HomeViewController: UIViewController {
                     let lat = coordinates?["lat"] ?? 0.0
                     let lon = coordinates?["lon"] ?? 0.0
                     let startDate = dateFormatter.date(from: event["startDate"] as? String  ?? "")!
-                    let endDate = dateFormatter.date(from: event["endDate"] as? String  ?? "")!
+                    let endDate = dateFormatter2.date(from: event["endDate"] as? String  ?? "")!
                     let price = event["price"] as? String ?? "0"
                     let address = event["address"] as? String  ?? ""
                     let period = event["period"] as? String  ?? ""
 
                     
-                    self.AllEvents.append(Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period))
+                    self.AllEvents.append(Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period, favorite: true))
                 }
                 self.AllEvents.sort(by: { $0.startDate < $1.startDate })
             }
         }
+    }
+    
+    public func removePost(withID: String) {
+      
+        let reference = Database.database().reference().child("favorite").child(withID)
+          reference.removeValue { error, _ in
+             print("error")
+          }
     }
 }
 
@@ -198,6 +210,9 @@ extension HomeViewController: UITableViewDataSource {
         let event = self.AllEvents[indexPath.row]
         cell.eventName.text = event.name
         cell.eventImageView.loadImage(urlString: event.image) // restore default image
+        cell.favButton.tag = indexPath.row // Donnez le numéro de la ligne
+        cell.favButton.tintColor = self.AllEvents[indexPath.row].favorite ? .black : .red
+        cell.favButton.addTarget(self, action: #selector(handleFav), for: .touchUpInside)
         return cell
     }
     
@@ -205,6 +220,49 @@ extension HomeViewController: UITableViewDataSource {
         print("\(self.AllEvents[indexPath.row].name)")
         GlobalVariable.eventClicked = self.AllEvents[indexPath.row]
         self.navigationController?.pushViewController(EventDetailViewController(), animated: true)
+    }
+    
+    @objc func handleFav(_ sender: Any){
+        let button = sender as! UIButton
+        let row = button.tag
+        
+        let fav = self.AllEvents[row].favorite
+        //let event = self.AllEvents[row].name
+        
+        self.AllEvents[row].favorite = !fav
+        let uuid = UUID().uuidString
+        GlobalVariable.eventClicked = self.AllEvents[row]
+        let ref = Database.database().reference(withPath: "favorite").child(uuid)
+        
+        if fav {
+            let dictEvent: [String: Any] = [
+            "content": self.AllEvents[row].content,
+            "idOrganizer": GlobalVariable.eventClicked.idOrganizer,
+            "image":GlobalVariable.eventClicked.image,
+            "name": self.AllEvents[row].name,
+            "price":self.AllEvents[row].price,
+            "startDate": ("\(self.AllEvents[row].startDate)"),
+            "endDate": ("\(self.AllEvents[row].endDate)"),
+            "typeEvent":self.AllEvents[row].typeEvent,
+            "typePlace":self.AllEvents[row].typePlace,
+            "address": self.AllEvents[row].address,
+            "idEvent":self.AllEvents[row].idEvent,
+            "period": self.AllEvents[row].period ]
+            
+            print("hi \(self.AllEvents[row].idEvent)")
+            
+            ref.setValue(dictEvent) {
+                (error:Error?, ref:DatabaseReference) in
+                if let error = error {
+                    print("Data could not be saved: \(error).")
+                } else {
+                    print("Data saved successfully!")
+                }
+            }
+        } else {
+            ref.child(uuid).removeValue()
+            print(fav)
+        }
     }
 }
 

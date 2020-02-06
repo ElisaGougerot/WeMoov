@@ -25,6 +25,7 @@ class MyEventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
+        
     }
 
     @objc func handleBack() {
@@ -65,8 +66,12 @@ class MyEventsViewController: UIViewController {
             return
         }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
+        
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter2.locale = Locale(identifier: "FR-fr")
         
         // .queryOrdered(byChild: "idOrganizer").queryEqual(toValue: GlobalVariable.user.id)
         Database.database().reference().child("events").queryOrdered(byChild: "idOrganizer").queryEqual(toValue: GlobalVariable.user.id).observeSingleEvent(of: .value) { (snapshot) in
@@ -87,12 +92,12 @@ class MyEventsViewController: UIViewController {
                 let lat = coordinates?["lat"] ?? 0.0
                 let lon = coordinates?["lon"] ?? 0.0
                 let startDate = dateFormatter.date(from: event["startDate"] as? String  ?? "")!
-                let endDate = dateFormatter.date(from: event["endDate"] as? String  ?? "")!
+                let endDate = dateFormatter2.date(from: event["endDate"] as? String  ?? "")!
                 let price = event["price"] as? String ?? "0"
                 let address = event["address"] as? String  ?? ""
                 let period = event["period"] as? String  ?? ""
                 
-                self.myEvents.append(Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period))
+                self.myEvents.append(Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period, favorite: true))
                 
             }
                 self.myEvents.sort(by: { $0.startDate < $1.startDate })
@@ -124,6 +129,7 @@ extension MyEventsViewController: UITableViewDataSource {
             }
         }*/
         cell.price.text = "\(event.price)€"
+        cell.favButton.isHidden = true
         return cell
     }
     
