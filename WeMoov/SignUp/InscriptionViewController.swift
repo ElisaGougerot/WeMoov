@@ -151,6 +151,7 @@ class InscriptionViewController: UIViewController {
                 })
                 self.dismiss(animated: true, completion: nil)
                 GlobalVariable.user = User(id: user.uid, email: email, username: pseudo, isOrganizer: isOrganizer)
+                GlobalVariable.favorites.setUserID(id: user.uid)
                 let homeViewController = HomeViewController()
                 //homeViewController.pseudoLabel.text = username
                 if isOrganizer {

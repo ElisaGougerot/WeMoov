@@ -81,7 +81,7 @@ class MyEventsViewController: UIViewController {
             for child in snapshot.children {
                 let data = child as! DataSnapshot
                 let event = data.value as! [String: AnyObject]
-                let id = event["id"] as? String ?? ""
+                let id = event["idEvent"] as? String ?? ""
                 let idOrganizer = event["idOrganizer"] as? String ?? ""
                 let name = event["name"] as? String  ?? ""
                 let content = event["content"] as? String  ?? ""
@@ -97,7 +97,7 @@ class MyEventsViewController: UIViewController {
                 let address = event["address"] as? String  ?? ""
                 let period = event["period"] as? String  ?? ""
                 
-                self.myEvents.append(Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period, favorite: true))
+                self.myEvents.append(Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period))
                 
             }
                 self.myEvents.sort(by: { $0.startDate < $1.startDate })
