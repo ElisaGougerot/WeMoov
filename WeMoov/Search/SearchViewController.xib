@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
@@ -11,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="WeMoov" customModuleProvider="target">
             <connections>
+                <outlet property="buttonSearch" destination="u8w-NQ-5gr" id="C1T-4i-PEy"/>
                 <outlet property="distanceLabel" destination="KtL-pM-iwg" id="oAl-rI-TKR"/>
                 <outlet property="searchBarItem" destination="SpV-NZ-atA" id="fiM-Ax-kTG"/>
                 <outlet property="searchDistanceSlider" destination="v85-WT-dub" id="Xtv-xa-sja"/>
@@ -75,18 +75,18 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type d'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cts-is-3dP" customClass="DropDown" customModule="iOSDropDown">
-                    <rect key="frame" x="80" y="268" width="254" height="27"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type de lieu" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GuL-V9-Pw8" userLabel="Type PlaceList" customClass="DropDown" customModule="iOSDropDown">
+                    <rect key="frame" x="10" y="406" width="394" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="254" id="FFm-ca-8mg"/>
+                        <constraint firstAttribute="height" constant="50" id="ceL-tz-WWP"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type de lieu" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GuL-V9-Pw8" userLabel="Type PlaceList" customClass="DropDown" customModule="iOSDropDown">
-                    <rect key="frame" x="80" y="420" width="254" height="27"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type d'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cts-is-3dP" customClass="DropDown" customModule="iOSDropDown">
+                    <rect key="frame" x="10" y="289" width="394" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="254" id="Lsf-5O-Hol"/>
+                        <constraint firstAttribute="height" constant="50" id="wg5-YX-c78"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -97,24 +97,29 @@
                 <constraint firstItem="AiI-Ne-diP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="75" id="1x7-ug-xE4"/>
                 <constraint firstItem="u8w-NQ-5gr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="5Ff-fN-uXF"/>
                 <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="AiI-Ne-diP" secondAttribute="bottom" constant="20" id="5iL-jX-SUr"/>
-                <constraint firstItem="cts-is-3dP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Apq-Nj-pIa"/>
-                <constraint firstItem="GuL-V9-Pw8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Fe6-ex-T1u"/>
+                <constraint firstItem="cts-is-3dP" firstAttribute="top" secondItem="dWl-Rl-WxW" secondAttribute="bottom" constant="96" id="6SX-kg-a26"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GuL-V9-Pw8" secondAttribute="trailing" constant="10" id="9Jg-qD-FZK"/>
                 <constraint firstItem="E22-Zz-B2x" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Hdv-dJ-BSW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dWl-Rl-WxW" secondAttribute="trailing" id="I24-SS-u74"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="v85-WT-dub" secondAttribute="trailing" constant="85" id="Jwd-Lk-fLF"/>
-                <constraint firstItem="AiI-Ne-diP" firstAttribute="top" secondItem="GuL-V9-Pw8" secondAttribute="bottom" constant="125" id="KRs-BG-qnl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cts-is-3dP" secondAttribute="trailing" constant="10" id="Mbu-aP-Fzb"/>
                 <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="KtL-pM-iwg" secondAttribute="bottom" constant="20" id="TIw-tU-1dS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="u8w-NQ-5gr" secondAttribute="trailing" constant="50" id="Tah-0l-XKW"/>
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="115" id="VZw-ca-2je"/>
+                <constraint firstItem="GuL-V9-Pw8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="X2Z-2M-4fF"/>
+                <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="KtL-pM-iwg" secondAttribute="bottom" constant="20" id="XKX-FR-RKJ"/>
                 <constraint firstItem="v85-WT-dub" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="85" id="Xl9-CR-CbR"/>
-                <constraint firstItem="GuL-V9-Pw8" firstAttribute="top" secondItem="cts-is-3dP" secondAttribute="bottom" constant="125" id="clz-Bm-6bn"/>
+                <constraint firstItem="u8w-NQ-5gr" firstAttribute="top" secondItem="v85-WT-dub" secondAttribute="bottom" constant="100" id="aJP-GT-2b7"/>
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eEd-Ou-kKH"/>
+                <constraint firstItem="cts-is-3dP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="ekS-Yf-2Yj"/>
+                <constraint firstItem="GuL-V9-Pw8" firstAttribute="top" secondItem="cts-is-3dP" secondAttribute="bottom" constant="67" id="g6V-nN-hEj"/>
                 <constraint firstItem="E22-Zz-B2x" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="hsu-CW-bhH"/>
-                <constraint firstItem="cts-is-3dP" firstAttribute="top" secondItem="dWl-Rl-WxW" secondAttribute="bottom" constant="75" id="rQE-hq-6YB"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KtL-pM-iwg" secondAttribute="trailing" constant="75" id="s6U-dH-hMQ"/>
                 <constraint firstAttribute="trailing" secondItem="E22-Zz-B2x" secondAttribute="trailing" id="ufv-tc-Etc"/>
+                <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="GuL-V9-Pw8" secondAttribute="bottom" constant="160" id="vFb-kp-i2f"/>
                 <constraint firstItem="dWl-Rl-WxW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vjx-9k-saO"/>
                 <constraint firstItem="E22-Zz-B2x" firstAttribute="top" secondItem="u8w-NQ-5gr" secondAttribute="bottom" constant="30" id="vzY-uW-bsl"/>
+                <constraint firstItem="v85-WT-dub" firstAttribute="top" secondItem="AiI-Ne-diP" secondAttribute="bottom" constant="20" id="ydS-VV-qCp"/>
                 <constraint firstItem="v85-WT-dub" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yq9-bS-CfE"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

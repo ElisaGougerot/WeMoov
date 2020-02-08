@@ -27,6 +27,8 @@ class SearchViewController: UIViewController {
     @IBOutlet var typeEventList: DropDown!
     @IBOutlet var typePlaceList: DropDown!
     
+    @IBOutlet var buttonSearch: UIButton!
+    
     let searchDatePicker =  UIDatePicker()
     var dataSearch = [String: String]()
     var eventsSearch: [Event] = []
@@ -68,7 +70,7 @@ class SearchViewController: UIViewController {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "cancel")
+        iv.image = #imageLiteral(resourceName: "logout-1")
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
         iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(singleTap)
@@ -296,7 +298,7 @@ class SearchViewController: UIViewController {
         let address = event["address"] as? String  ?? ""
         let period = event["period"] as? String  ?? ""
         
-        return Event(id: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period)
+        return Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period)
     }
     
     private func sendDataToHome() {

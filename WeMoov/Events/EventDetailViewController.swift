@@ -87,9 +87,9 @@ class EventDetailViewController: UIViewController {
             self.eventImageView.alpha = 1
         })
         
-        let dateFormatter       = DateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy - HH'h'mm"
-        dateFormatter.locale    = Locale(identifier: "FR-fr")
+        dateFormatter.locale = Locale(identifier: "FR-fr")
         
         // Event Labels
         self.eventName.text = event.name
