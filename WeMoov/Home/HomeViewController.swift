@@ -120,6 +120,11 @@ class HomeViewController: UIViewController {
         self.AllEventTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: HomeViewController.MyEventsTableViewCellId)
         self.AllEventTableView.dataSource = self
         self.AllEventTableView.delegate = self
+        
+        if GlobalVariable.eventsSearch.count != 0 {
+            // Event Search
+            AllEvents = GlobalVariable.eventsSearch
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -140,7 +145,7 @@ class HomeViewController: UIViewController {
         let dateFormatter2 = DateFormatter()
         dateFormatter2.dateFormat = "dd-MM-yyyy HH:mm"
         dateFormatter2.locale = Locale(identifier: "FR-fr")
-       
+
         Database.database().reference().child("events").observeSingleEvent(of: .value) { (snapshot) in
 
              if (snapshot.value is NSNull) {
