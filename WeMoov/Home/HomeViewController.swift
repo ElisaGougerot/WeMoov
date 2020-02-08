@@ -91,20 +91,25 @@ class HomeViewController: UIViewController {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "cancel")
+        iv.image = #imageLiteral(resourceName: "logout-1")
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
         iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(singleTap)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
         
+        
         self.title = "Events"
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(touchMapButton))
-        
+
+        self.navigationController?.navigationBar.layer.masksToBounds = false
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 2
         
         self.homeTabBar.delegate = self
         self.homeTabBar.selectedItem = self.homeBarItem
@@ -116,13 +121,6 @@ class HomeViewController: UIViewController {
         self.AllEventTableView.dataSource = self
         self.AllEventTableView.delegate = self
     }
-    
-    
-    @objc func touchMapButton() {
-        let mapViewController = MapViewController()
-        self.navigationController?.pushViewController(mapViewController, animated: true)
-    }
-
     
     override func viewDidAppear(_ animated: Bool) {
            getAllEvents()

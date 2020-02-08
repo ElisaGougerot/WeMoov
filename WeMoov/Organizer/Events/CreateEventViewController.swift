@@ -16,6 +16,9 @@ import FirebaseDatabase
 class CreateEventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     
+    @IBOutlet weak var closeButton: UIButton!
+    
+    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var nameTF: UITextField!
@@ -68,8 +71,8 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-    @objc func handleBack() {
-        navigationController?.popViewController(animated: true)
+    @IBAction func closePresent(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     //Choisir la photo depuis la gallerie

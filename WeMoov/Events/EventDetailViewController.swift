@@ -30,10 +30,16 @@ class EventDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func touchMapButton() {
+        let mapViewController = MapViewController()
+        self.navigationController?.pushViewController(mapViewController, animated: true)
+    }
+    
     func configureViewComponents() {
         view.backgroundColor = UIColor.mainWhite()
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "\(GlobalVariable.eventClicked.name)"
+        
               
         //Back Button
         let iv = UIImageView()
@@ -41,15 +47,26 @@ class EventDetailViewController: UIViewController {
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "back")
         
+        let iv2 = UIImageView()
+        iv2.contentMode = .scaleAspectFit
+        iv2.clipsToBounds = true
+        iv2.image = #imageLiteral(resourceName: "pin")
+        
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleBack))
         iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(singleTap)
         
-       
+        let singleTap2 = UITapGestureRecognizer(target: self, action: #selector(touchMapButton))
+        iv2.isUserInteractionEnabled = true
+        iv2.addGestureRecognizer(singleTap2)
+        
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
-           
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv2)
+        
+        
         let event = GlobalVariable.eventClicked
         // Event ImageView
         self.eventImageView.loadImage(urlString: event.image)

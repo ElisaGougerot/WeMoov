@@ -49,13 +49,24 @@ class HomeOrganizerViewController: UIViewController {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "cancel")
+        iv.image = #imageLiteral(resourceName: "logout-1")
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSignOut))
         iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(singleTap)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
+        
+        self.title = "Organisateur"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
+        
+        self.navigationController?.navigationBar.layer.masksToBounds = false
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 2
+               
            
         // Welcome Label
         self.welcomeLabel.text = "Bonjour \(GlobalVariable.user.username) !"
