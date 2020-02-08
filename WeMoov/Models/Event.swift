@@ -23,5 +23,4 @@ struct Event {
     var price: String
     var address: String
     var period: String
-    var favorite: Bool
 }

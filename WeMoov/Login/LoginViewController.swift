@@ -126,6 +126,7 @@ class LoginViewController: UIViewController {
             let email = user["email"] as? String  ?? ""
             let isOrganizer = user["isOrganizer"] as? Bool ?? false
             GlobalVariable.user = User(id: uid, email: email, username: username, isOrganizer: isOrganizer)
+            GlobalVariable.favorites.setUserID(id: uid)
             if isOrganizer {
                 self.navigationController?.pushViewController(HomeOrganizerViewController(), animated: true)
             } else {

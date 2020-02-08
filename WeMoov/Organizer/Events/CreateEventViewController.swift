@@ -194,7 +194,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
             
             let dictEvent: [String: Any] = [
                 "content": description,
-                "id":uuid,
+                "idEvent":uuid,
                 "endTime": timeEnd,
                 "idOrganizer": Auth.auth().currentUser!.uid,
                 "image":"",

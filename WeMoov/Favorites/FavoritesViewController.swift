@@ -80,14 +80,26 @@ class FavoritesViewController: UIViewController {
         self.favTabBar.tintColor = UIColor.mainBlack()
         
         
+        //Init TableView
+        self.AllFavoriteTableView.rowHeight = 120
+        self.AllFavoriteTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: FavoritesViewController.MyEventsTableViewCellId)
+        self.AllFavoriteTableView.dataSource = self
+        self.AllFavoriteTableView.delegate = self
+        
     }
     
-    func getAllFavorite() {
+    override func viewDidAppear(_ animated: Bool) {
+           getAllFav()
+    }
+    
+    func getAllFav() {
         
         if self.AllFavorite.count > 0 {
             return
         }
 
+        let favID = GlobalVariable.favorites.getFavEvents()
+        let ref = Database.database().reference().child("events")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -96,16 +108,17 @@ class FavoritesViewController: UIViewController {
         let dateFormatter2 = DateFormatter()
         dateFormatter2.dateFormat = "dd-MM-yyyy HH:mm"
         dateFormatter2.locale = Locale(identifier: "FR-fr")
-       
-        Database.database().reference().child("events").observeSingleEvent(of: .value) { (snapshot) in
+        
+        for eventID in favID {
+            ref.child(eventID).observeSingleEvent(of: .value) {
+                (snapshot) in
 
-             if (snapshot.value is NSNull) {
-                 print("not found")
-             } else {
-                for child in snapshot.children {
-                    let data = child as! DataSnapshot
+                if (snapshot.value is NSNull) {
+                    print("not found")
+                } else {
+                    let data = snapshot
                     let event = data.value as! [String: AnyObject]
-                    let id = event["id"] as? String ?? ""
+                    let id = event["idEvent"] as? String ?? ""
                     let idOrganizer = event["idOrganizer"] as? String ?? ""
                     let name = event["name"] as? String  ?? ""
                     let content = event["content"] as? String  ?? ""
@@ -121,12 +134,12 @@ class FavoritesViewController: UIViewController {
                     let address = event["address"] as? String  ?? ""
                     let period = event["period"] as? String  ?? ""
 
-                    
-                    self.AllFavorite.append(Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period, favorite: true))
+                        
+                    self.AllFavorite.append(Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period))
                 }
-                self.AllFavorite.sort(by: { $0.startDate < $1.startDate })
             }
         }
+        self.AllFavorite.sort(by: { $0.startDate < $1.startDate })
     }
 
 }
@@ -162,6 +175,9 @@ extension FavoritesViewController: UITableViewDataSource {
         let event = self.AllFavorite[indexPath.row]
         cell.eventName.text = event.name
         cell.eventImageView.loadImage(urlString: event.image) // restore default image
+        cell.favButton.tag = indexPath.row // Donnez le numéro de la ligne
+        cell.favButton.tintColor = GlobalVariable.favorites.contains(self.AllFavorite[indexPath.row].idEvent) ? .red : .black
+        cell.favButton.addTarget(self, action: #selector(handleFav), for: .touchUpInside)
         return cell
     }
 
@@ -169,5 +185,20 @@ extension FavoritesViewController: UITableViewDataSource {
         print("\(self.AllFavorite[indexPath.row].name)")
         GlobalVariable.eventClicked = self.AllFavorite[indexPath.row]
         self.navigationController?.pushViewController(EventDetailViewController(), animated: true)
+    }
+    
+    @objc func handleFav(_ sender: Any){
+        let button = sender as! UIButton
+        let row = button.tag
+        let idEvent = self.AllFavorite[row].idEvent
+        print("idevent: \(idEvent) + name: \(self.AllFavorite[row].name)")
+        
+        let ref = Database.database().reference(withPath: "favorite").child(GlobalVariable.user.id)
+        
+        GlobalVariable.favorites.removeFavEvent(id: idEvent)
+        ref.updateChildValues(["favEventsID": GlobalVariable.favorites.getFavEvents()])
+        print("fav update delete")
+        self.AllFavorite.remove(at: row)
+        self.AllFavoriteTableView.reloadData()
     }
 }

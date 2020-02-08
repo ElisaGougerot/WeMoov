@@ -149,7 +149,7 @@ class HomeViewController: UIViewController {
                 for child in snapshot.children {
                     let data = child as! DataSnapshot
                     let event = data.value as! [String: AnyObject]
-                    let id = event["id"] as? String ?? ""
+                    let id = event["idEvent"] as? String ?? ""
                     let idOrganizer = event["idOrganizer"] as? String ?? ""
                     let name = event["name"] as? String  ?? ""
                     let content = event["content"] as? String  ?? ""
@@ -166,9 +166,27 @@ class HomeViewController: UIViewController {
                     let period = event["period"] as? String  ?? ""
 
                     
-                    self.AllEvents.append(Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period, favorite: true))
+                    self.AllEvents.append(Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period))
                 }
                 self.AllEvents.sort(by: { $0.startDate < $1.startDate })
+                self.getAllFavorites()
+            }
+        }
+    }
+    
+    private func getAllFavorites() {
+        Database.database().reference().child("favorite").child(GlobalVariable.user.id).child("favEventsID").observeSingleEvent(of: .value)  {
+            (snapshot) in
+            if (snapshot.value is NSNull) {
+                print("Favorite not found")
+            } else {
+                GlobalVariable.favorites.removeAllFav()
+                for child in snapshot.children {
+                    let data = child as! DataSnapshot
+                    let eventID = data.value as! String
+                    GlobalVariable.favorites.addFavEvent(id: eventID)
+                }
+                self.AllEventTableView.reloadData()
             }
         }
     }
@@ -214,7 +232,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.eventName.text = event.name
         cell.eventImageView.loadImage(urlString: event.image) // restore default image
         cell.favButton.tag = indexPath.row // Donnez le numéro de la ligne
-        cell.favButton.tintColor = self.AllEvents[indexPath.row].favorite ? .black : .red
+        cell.favButton.tintColor = GlobalVariable.favorites.contains(self.AllEvents[indexPath.row].idEvent) ? .red : .black
         cell.favButton.addTarget(self, action: #selector(handleFav), for: .touchUpInside)
         return cell
     }
@@ -228,31 +246,20 @@ extension HomeViewController: UITableViewDataSource {
     @objc func handleFav(_ sender: Any){
         let button = sender as! UIButton
         let row = button.tag
+        let idEvent = self.AllEvents[row].idEvent
+        print("idevent: \(idEvent) + name: \(self.AllEvents[row].name)")
+        let fav = GlobalVariable.favorites.contains(idEvent)
         
-        let fav = self.AllEvents[row].favorite
-        //let event = self.AllEvents[row].name
+        let ref = Database.database().reference(withPath: "favorite").child(GlobalVariable.user.id)
         
-        self.AllEvents[row].favorite = !fav
-        let uuid = UUID().uuidString
-        GlobalVariable.eventClicked = self.AllEvents[row]
-        let ref = Database.database().reference(withPath: "favorite").child(uuid)
-        
-        if fav {
+        if !fav {
+            GlobalVariable.favorites.addFavEvent(id: idEvent)
             let dictEvent: [String: Any] = [
-            "content": self.AllEvents[row].content,
-            "idOrganizer": GlobalVariable.eventClicked.idOrganizer,
-            "image":GlobalVariable.eventClicked.image,
-            "name": self.AllEvents[row].name,
-            "price":self.AllEvents[row].price,
-            "startDate": ("\(self.AllEvents[row].startDate)"),
-            "endDate": ("\(self.AllEvents[row].endDate)"),
-            "typeEvent":self.AllEvents[row].typeEvent,
-            "typePlace":self.AllEvents[row].typePlace,
-            "address": self.AllEvents[row].address,
-            "idEvent":self.AllEvents[row].idEvent,
-            "period": self.AllEvents[row].period ]
+            "userID": GlobalVariable.user.id,
+            "favEventsID": GlobalVariable.favorites.getFavEvents(),
+            ]
             
-            print("hi \(self.AllEvents[row].idEvent)")
+            print("fav add: \(idEvent)")
             
             ref.setValue(dictEvent) {
                 (error:Error?, ref:DatabaseReference) in
@@ -260,11 +267,14 @@ extension HomeViewController: UITableViewDataSource {
                     print("Data could not be saved: \(error).")
                 } else {
                     print("Data saved successfully!")
+                    button.tintColor = GlobalVariable.favorites.contains(idEvent) ? .red : .black
                 }
             }
         } else {
-            ref.child(uuid).removeValue()
-            print(fav)
+            GlobalVariable.favorites.removeFavEvent(id: idEvent)
+            ref.updateChildValues(["favEventsID": GlobalVariable.favorites.getFavEvents()])
+            print("fav update delete")
+            button.tintColor = GlobalVariable.favorites.contains(idEvent) ? .red : .black
         }
     }
 }
