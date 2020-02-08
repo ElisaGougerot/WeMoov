@@ -183,6 +183,7 @@ class HomeViewController: UIViewController {
                     let eventID = data.value as! String
                     GlobalVariable.favorites.addFavEvent(id: eventID)
                 }
+                self.AllEventTableView.reloadData()
             }
         }
     }
@@ -263,14 +264,14 @@ extension HomeViewController: UITableViewDataSource {
                     print("Data could not be saved: \(error).")
                 } else {
                     print("Data saved successfully!")
-                    self.AllEventTableView.reloadData()
+                    button.tintColor = GlobalVariable.favorites.contains(idEvent) ? .red : .black
                 }
             }
         } else {
             GlobalVariable.favorites.removeFavEvent(id: idEvent)
             ref.updateChildValues(["favEventsID": GlobalVariable.favorites.getFavEvents()])
             print("fav update delete")
-            self.AllEventTableView.reloadData()
+            button.tintColor = GlobalVariable.favorites.contains(idEvent) ? .red : .black
         }
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class EventDetailViewController: UIViewController {
 
@@ -19,6 +21,8 @@ class EventDetailViewController: UIViewController {
     @IBOutlet var eventStartDate: UILabel!
     @IBOutlet var eventPrice: UILabel!
     @IBOutlet weak var eventContent: UITextView!
+    
+    @IBOutlet var favButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +82,42 @@ class EventDetailViewController: UIViewController {
         } else {
             self.eventPrice.text = "\(event.price) €"
         }
+        
+        favButton.tintColor = GlobalVariable.favorites.contains(event.idEvent) ? .red : .black
     
     }
+    
+    @IBAction func touchFavButton(_ sender: UIButton) {
+        let idEvent = GlobalVariable.eventClicked.idEvent
+        let fav = GlobalVariable.favorites.contains(idEvent)
+        
+        let ref = Database.database().reference(withPath: "favorite").child(GlobalVariable.user.id)
+        
+        if !fav {
+            GlobalVariable.favorites.addFavEvent(id: idEvent)
+            let dictEvent: [String: Any] = [
+            "userID": GlobalVariable.user.id,
+            "favEventsID": GlobalVariable.favorites.getFavEvents(),
+            ]
+            
+            print("fav add: \(idEvent)")
+            
+            ref.setValue(dictEvent) {
+                (error:Error?, ref:DatabaseReference) in
+                if let error = error {
+                    print("Data could not be saved: \(error).")
+                } else {
+                    print("Data saved successfully!")
+                    sender.tintColor = GlobalVariable.favorites.contains(idEvent) ? .red : .black
+                }
+            }
+        } else {
+            GlobalVariable.favorites.removeFavEvent(id: idEvent)
+            ref.updateChildValues(["favEventsID": GlobalVariable.favorites.getFavEvents()])
+            print("fav update delete")
+            sender.tintColor = GlobalVariable.favorites.contains(idEvent) ? .red : .black
+        }
+    }
+    
 
 }
