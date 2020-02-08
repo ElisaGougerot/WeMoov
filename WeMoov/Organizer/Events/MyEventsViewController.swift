@@ -46,6 +46,7 @@ class MyEventsViewController: UIViewController {
         iv.addGestureRecognizer(singleTap)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: iv)
+        self.title = "Evènement à venir"
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
         // Init TableView
@@ -128,7 +129,7 @@ extension MyEventsViewController: UITableViewDataSource {
                 }
             }
         }*/
-        cell.price.text = "\(event.price)€"
+        //cell.price.text = "\(event.price)€"
         cell.favButton.isHidden = true
         return cell
     }

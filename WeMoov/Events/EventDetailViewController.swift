@@ -104,9 +104,6 @@ class EventDetailViewController: UIViewController {
         }
     
     }
-    @objc func touchFavButton() {
-       //Ajouter ici traitement de mise en favoris
-    }
     
     @IBAction func touchFavButton(_ sender: UIButton) {
         let idEvent = GlobalVariable.eventClicked.idEvent

@@ -17,8 +17,9 @@ class SearchViewController: UIViewController {
 
     @IBOutlet var searchTabBar: UITabBar!
     @IBOutlet var searchBarItem: UITabBarItem!
+    @IBOutlet var searchByDate: UITextField!
     
-    @IBOutlet var searchTextFieldDate: UITextField!
+    //@IBOutlet var searchTextFieldDate: UITextField!
     @IBOutlet var searchEventButton: UIButton!
     
     @IBOutlet var searchDistanceSlider: UISlider!
@@ -76,7 +77,7 @@ class SearchViewController: UIViewController {
         iv.addGestureRecognizer(singleTap)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
-        self.title = "Search"
+        self.title = "Trouver un événement"
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
@@ -115,8 +116,8 @@ class SearchViewController: UIViewController {
         
         toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
         
-        searchTextFieldDate.inputAccessoryView = toolbar
-        searchTextFieldDate.inputView = searchDatePicker
+        searchByDate.inputAccessoryView = toolbar
+        searchByDate.inputView = searchDatePicker
     }
 
     @objc func donedatePicker(){
@@ -124,9 +125,9 @@ class SearchViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
-        searchTextFieldDate.text = dateFormatter.string(from: searchDatePicker.date)
+        searchByDate.text = dateFormatter.string(from: searchDatePicker.date)
         self.view.endEditing(true)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         dataSearch["startDate"] = dateFormatter.string(from: searchDatePicker.date)
     }

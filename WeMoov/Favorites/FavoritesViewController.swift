@@ -70,6 +70,7 @@ class FavoritesViewController: UIViewController {
         iv.addGestureRecognizer(singleTap)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iv)
+        self.title = "Mes favoris"
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
             
         

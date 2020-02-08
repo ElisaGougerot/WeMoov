@@ -51,7 +51,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.imageView.image = UIImage(named: ("upload"))
+        //self.imageView.image = UIImage(named: ("upload"))
         
         self.typeEventList.optionArray = ["AfterWork", "Bar", "Jeux"]
         self.typeEventList.selectedRowColor = .lightGray
@@ -121,7 +121,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     @objc func donedatePicker(){
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        formatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateTF.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
@@ -133,8 +133,9 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     func showTimePicker(){
         //Format Date
         timeEnd.datePickerMode = .dateAndTime
-        
+    
         timeEnd.locale = Locale(identifier: "FR-fr")
+
         
         //ToolBar
         let toolbar = UIToolbar();
