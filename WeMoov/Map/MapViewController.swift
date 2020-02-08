@@ -47,6 +47,7 @@ class MapViewController: UIViewController {
             pin.title = GlobalVariable.eventClicked.name
             pin.coordinate = CLLocationCoordinate2D(latitude: self.coord_lat, longitude: self.coord_long)
             self.EventsMapView.addAnnotation(pin)
+            self.EventsMapView.showAnnotations([pin], animated: true)
            
         }
     }
