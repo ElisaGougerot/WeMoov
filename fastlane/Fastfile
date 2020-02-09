@@ -22,9 +22,6 @@ platform :ios do
   end
   desc "Description of what the lane does"
   lane :release do
-    run_tests(
-      xctestrun: "/path/WeMoovTests.xctestrun"
-    )
     build_app(scheme: "WeMoov",
               workspace: "WeMoov.xcodeproj",
               include_bitcode: true
