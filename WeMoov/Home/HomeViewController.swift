@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
         self.homeTabBar.tintColor = UIColor.mainBlack()
         
         //Init TableView
-        self.AllEventTableView.rowHeight = 120
+        self.AllEventTableView.rowHeight = 100
         self.AllEventTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: HomeViewController.MyEventsTableViewCellId)
         self.AllEventTableView.dataSource = self
         self.AllEventTableView.delegate = self
