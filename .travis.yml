@@ -21,4 +21,6 @@ notifications:
         - "Execution time: *%{duration}*"
         - "Message: %{message}"
 
-script: bundle exec fastlane ios feature
+script: 
+  - bundle exec fastlane ios feature
+  - bundle exec fastlane ios release

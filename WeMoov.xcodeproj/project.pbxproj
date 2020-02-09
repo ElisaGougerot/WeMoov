@@ -657,8 +657,9 @@
 			baseConfigurationReference = F63D59529C4B409822056E28 /* Pods-WeMoov.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = WeMoov/WeMoov.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5THA5B7HY;
 				INFOPLIST_FILE = WeMoov/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -676,9 +677,9 @@
 			baseConfigurationReference = 7774C1A38FF5CF2830201018 /* Pods-WeMoov.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = WeMoov/WeMoov.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7J994877KT;
+				DEVELOPMENT_TEAM = C5THA5B7HY;
 				INFOPLIST_FILE = WeMoov/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
