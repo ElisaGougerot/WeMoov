@@ -16,15 +16,20 @@ class MapViewController: UIViewController {
     var coord_lat = GlobalVariable.eventClicked.coordinates.coordinate.latitude
     var coord_long = GlobalVariable.eventClicked.coordinates.coordinate.longitude
     
-
+    
     @IBOutlet var EventsMapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor = UIColor.black
+        
         self.EventsMapView.delegate = self
         //print(address)
         if #available(iOS 13.0, *) {
             self.EventsMapView.overrideUserInterfaceStyle = .dark
+            
         }
         getCoord(from: self.address) { location in
             self.coord_lat = location!.latitude
@@ -32,6 +37,7 @@ class MapViewController: UIViewController {
             
         }
     }
+    
     
     func getCoord(from address: String, completion: @escaping (_ location: CLLocationCoordinate2D?)-> Void){
         let geoCoder = CLGeocoder()
@@ -54,7 +60,14 @@ class MapViewController: UIViewController {
             self.EventsMapView.showAnnotations([pin], animated: true)
            
         }
+        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.barTintColor = UIColor.white
+    }
+       
+
     
 }
 
@@ -67,7 +80,7 @@ extension MapViewController: MKMapViewDelegate {
            }
            
            let annotationIdentifier = "AnnotationIdentifier"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
+           var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
            
            if annotationView == nil {
                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
