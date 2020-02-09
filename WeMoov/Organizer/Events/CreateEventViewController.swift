@@ -186,38 +186,6 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
             alert.addAction(UIAlertAction(title: "Réessayer", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-    
-            let uuid = UUID().uuidString
-            imageView.image!.upload(with: "image \(name)", completion: {(url: URL?) in
-                print(url)
-                Database.database().reference(withPath: "events").child(uuid).updateChildValues(["image": url?.absoluteString])
-            })
-            
-            let ref = Database.database().reference(withPath: "events").child(uuid)
-            
-            let dictEvent: [String: Any] = [
-                "content": description,
-                "idEvent":uuid,
-                "endTime": timeEnd,
-                "idOrganizer": Auth.auth().currentUser!.uid,
-                "image":"",
-                "name": name,
-                "price":price,
-                "startDate": date,
-                "endDate": timeEnd,
-                "typeEvent":eventTypeChoice,
-                "typePlace":eventPlaceChoice,
-                "address": address,
-                "period": period]
-            
-            ref.setValue(dictEvent) {
-                (error:Error?, ref:DatabaseReference) in
-                if let error = error {
-                    print("Data could not be saved: \(error).")
-                } else {
-                    print("Data saved successfully!")
-                }
-            }
             
             let geofireRef = Database.database().reference(withPath: "geoloc")
             let geoFire = GeoFire(firebaseRef: geofireRef)
@@ -229,13 +197,52 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                 else {
                     // handle no location found
                     print("no location found create event")
+                    let alert = UIAlertController(title: "Addresse Incorrect", message: "Veuillez modifier l'adresse ! ",         preferredStyle: UIAlertController.Style.alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Réessayer", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                     return
                 }
+                let uuid = UUID().uuidString
+                
+                // Create GeoFire Geolocation
                 geoFire.setLocation(CLLocation(latitude: location.latitude, longitude: location.longitude), forKey: uuid)
+                
+                // Create Event
+                let ref = Database.database().reference(withPath: "events").child(uuid)
+                let dictEvent: [String: Any] = [
+                    "content": description,
+                    "idEvent":uuid,
+                    "endTime": timeEnd,
+                    "idOrganizer": Auth.auth().currentUser!.uid,
+                    "image":"",
+                    "name": name,
+                    "price":price,
+                    "startDate": date,
+                    "endDate": timeEnd,
+                    "typeEvent":eventTypeChoice,
+                    "typePlace":eventPlaceChoice,
+                    "address": address,
+                    "period": period]
+                
+                ref.setValue(dictEvent) {
+                    (error:Error?, ref:DatabaseReference) in
+                    if let error = error {
+                        print("Data could not be saved: \(error).")
+                    } else {
+                        print("Data saved successfully!")
+                    }
+                }
+                
+                // Upload & Update Picture
+                self.imageView.image!.upload(with: "image \(name)", completion: {(url: URL?) in
+                    print(url)
+                    Database.database().reference(withPath: "events").child(uuid).updateChildValues(["image": url?.absoluteString])
+                })
+                
+                self.dismiss(animated: true, completion: nil)
+                
             }
-            
-            
-            dismiss(animated: true, completion: nil)
         }
                 
     }
