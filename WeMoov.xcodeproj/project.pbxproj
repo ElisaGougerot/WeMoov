@@ -30,7 +30,6 @@
 		576A7C2123B41C52009A5F1F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A7C2023B41C52009A5F1F /* User.swift */; };
 		5783CF9023B18A1700786D2C /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783CF8F23B18A1700786D2C /* GlobalVariable.swift */; };
 		57A8C9CC23B4C4C600EE46BC /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */; };
-		57A8C9CD23B4C4C600EE46BC /* CreateEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */; };
 		57A8C9D023B4FEF300EE46BC /* MyEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9CE23B4FEF300EE46BC /* MyEventsViewController.swift */; };
 		57A8C9D123B4FEF300EE46BC /* MyEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A8C9CF23B4FEF300EE46BC /* MyEventsViewController.xib */; };
 		57A8C9D523B506A700EE46BC /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A8C9D323B506A700EE46BC /* EventTableViewCell.swift */; };
@@ -78,7 +77,6 @@
 		576A7C2023B41C52009A5F1F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5783CF8F23B18A1700786D2C /* GlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
 		57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
-		57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateEventViewController.xib; sourceTree = "<group>"; };
 		57A8C9CE23B4FEF300EE46BC /* MyEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsViewController.swift; sourceTree = "<group>"; };
 		57A8C9CF23B4FEF300EE46BC /* MyEventsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyEventsViewController.xib; sourceTree = "<group>"; };
 		57A8C9D323B506A700EE46BC /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */,
-				57A8C9CB23B4C4C600EE46BC /* CreateEventViewController.xib */,
 				57A8C9CE23B4FEF300EE46BC /* MyEventsViewController.swift */,
 				57A8C9CF23B4FEF300EE46BC /* MyEventsViewController.xib */,
 			);
@@ -376,7 +373,6 @@
 			files = (
 				4C79E66723A513780041BA81 /* LaunchScreen.storyboard in Resources */,
 				57A8C9D123B4FEF300EE46BC /* MyEventsViewController.xib in Resources */,
-				57A8C9CD23B4C4C600EE46BC /* CreateEventViewController.xib in Resources */,
 				4C79E66423A513780041BA81 /* Assets.xcassets in Resources */,
 				57A8C9D623B506A700EE46BC /* EventTableViewCell.xib in Resources */,
 				571F342323B6225300938717 /* FavoritesViewController.xib in Resources */,
@@ -672,6 +668,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WeMoov/WeMoov.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7J994877KT;
 				INFOPLIST_FILE = WeMoov/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
