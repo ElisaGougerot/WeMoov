@@ -6,8 +6,18 @@ branches:
     - feature/test
 notifications:
     email: false
+
     install: 
       - gem install bundler
       - bundle install 
+
+    slack: wemouv:a2ITH4WqUauqjPjZKQ6UOJCL
+      on_success: always  # change: send a notification when the build status changes.
+      on_failure: always  # always: always send a notification.
+      template:
+        - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+        - "Execution time: *%{duration}*"
+        - "Message: %{message}"
+        
 script: 
   - bundle exec fastlane ios feature
