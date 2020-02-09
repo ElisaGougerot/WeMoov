@@ -12,6 +12,8 @@ import Firebase
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseDatabase
+import CoreLocation
+import GeoFire
 
 class CreateEventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -216,6 +218,22 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                     print("Data saved successfully!")
                 }
             }
+            
+            let geofireRef = Database.database().reference(withPath: "geoloc")
+            let geoFire = GeoFire(firebaseRef: geofireRef)
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(address) { (placemarks, error) in
+                guard
+                    let placemarks = placemarks,
+                    let location = placemarks.first?.location?.coordinate
+                else {
+                    // handle no location found
+                    print("no location found create event")
+                    return
+                }
+                geoFire.setLocation(CLLocation(latitude: location.latitude, longitude: location.longitude), forKey: uuid)
+            }
+            
             
             dismiss(animated: true, completion: nil)
         }
