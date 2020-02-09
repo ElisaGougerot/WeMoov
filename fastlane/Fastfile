@@ -33,8 +33,7 @@ platform :ios do
       workspace: "Example.xcworkspace",
       devices: ["iPhone 6s", "iPhone 7", "iPhone 8","iPhone X", "iPhone 11", "iPhone 11 pro max"]
     )
-    upload_to_app_store
-    slack
+    upload_to_testflight
     notification(subtitle: "Finished Building", message: "Ready to upload...")
   end
 end
