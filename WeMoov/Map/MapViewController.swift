@@ -157,7 +157,15 @@ extension MapViewController: MKMapViewDelegate {
            
            let pinImage = UIImage(named: "pushpin")
            annotationView!.image = pinImage
-    
+        
+           if annotation.title == GlobalVariable.eventClicked.name {
+                let pinImageUser = UIImage(named: "pushpin")
+                annotationView!.image = pinImageUser
+           } else {
+                let pinImage = UIImage(named: "pinUser")
+                annotationView!.image = pinImage
+           }
+        
           return annotationView
        }
     
