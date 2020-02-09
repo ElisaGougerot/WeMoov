@@ -22,8 +22,12 @@ platform :ios do
   end
   desc "Description of what the lane does"
   lane :release do
-    build_app(scheme: "WeMoov")
-    upload_to_testflight
-    notification(subtitle: "Finished Building", message: "Ready to upload...")
+    # build_app(scheme: "WeMoov")
+    # upload_to_testflight
+    # notification(subtitle: "Finished Building", message: "Ready to upload...")
+    cert
+    sigh
+    gym
+    pilot(distribute_external:false)
   end
 end
