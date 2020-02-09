@@ -67,9 +67,11 @@ class MapViewController: UIViewController {
             self.EventsMapView.addAnnotation(pin)
             self.EventsMapView.showAnnotations([pin], animated: true)
          */
-            if GlobalVariable.userCoord.0 != 0 && GlobalVariable.userCoord.1 != 0 {
-                self.displayRoutes()
+            if GlobalVariable.userCoord.0 == 0 && GlobalVariable.userCoord.1 == 0 {
+                // default location: ESGI
+                GlobalVariable.userCoord = (48.8490674, 2.389729)
             }
+            self.displayRoutes()
            
         }
         

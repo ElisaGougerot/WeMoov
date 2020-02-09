@@ -210,16 +210,18 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func getAllDistance() {
-        if GlobalVariable.userCoord.0 != 0 && GlobalVariable.userCoord.1 != 0 {
-            let geofireRef = Database.database().reference().child("geoloc")
-            let geoFire = GeoFire(firebaseRef: geofireRef)
-            let center = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
-            // Query locations at [37.7832889, -122.4056973] with a radius of 600 meters
-            var circleQuery = geoFire.query(at: center, withRadius: 1.0)
-            var queryHandle = circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-              print("Key '\(key)' entered the search area and is at location '\(location)'") 
-            })
+        if GlobalVariable.userCoord.0 == 0 && GlobalVariable.userCoord.1 == 0 {
+            // Default Location: ESGI
+            GlobalVariable.userCoord = (48.8490674, 2.389729)
         }
+        let geofireRef = Database.database().reference().child("geoloc")
+        let geoFire = GeoFire(firebaseRef: geofireRef)
+        let center = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
+        // Query locations at [37.7832889, -122.4056973] with a radius of 600 meters
+        var circleQuery = geoFire.query(at: center, withRadius: 1.0)
+        var queryHandle = circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+          print("Key '\(key)' entered the search area and is at location '\(location)'")
+        })
         
     }
     
