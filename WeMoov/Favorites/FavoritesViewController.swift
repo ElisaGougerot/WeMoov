@@ -82,7 +82,7 @@ class FavoritesViewController: UIViewController {
         
         
         //Init TableView
-        self.AllFavoriteTableView.rowHeight = 120
+        self.AllFavoriteTableView.rowHeight = 100
         self.AllFavoriteTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: FavoritesViewController.MyEventsTableViewCellId)
         self.AllFavoriteTableView.dataSource = self
         self.AllFavoriteTableView.delegate = self

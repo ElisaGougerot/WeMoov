@@ -50,7 +50,7 @@ class MyEventsViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.mainWhite()
         
         // Init TableView
-        self.myEventTableView.rowHeight = 120
+        self.myEventTableView.rowHeight = 100
         self.myEventTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: MyEventsViewController.MyEventsTableViewCellId)
         self.myEventTableView.dataSource = self
         self.myEventTableView.delegate = self
