@@ -307,7 +307,7 @@ class SearchViewController: UIViewController {
                             print(event.typeEvent)
                             self.eventsSearch.append(event)
                             print("TOTAL == \(self.eventsSearch.count)")
-                            self.sendDataToHome()
+                            self.sendDataToHome() 
                         }
                     }
                   })
