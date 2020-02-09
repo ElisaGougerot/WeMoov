@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     let address = GlobalVariable.eventClicked.address
     var coord_lat = GlobalVariable.eventClicked.coordinates.coordinate.latitude
     var coord_long = GlobalVariable.eventClicked.coordinates.coordinate.longitude
+    
 
     @IBOutlet var EventsMapView: MKMapView!
     
@@ -22,6 +23,9 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.EventsMapView.delegate = self
         //print(address)
+        if #available(iOS 13.0, *) {
+            self.EventsMapView.overrideUserInterfaceStyle = .dark
+        }
         getCoord(from: self.address) { location in
             self.coord_lat = location!.latitude
             self.coord_long = location!.longitude
