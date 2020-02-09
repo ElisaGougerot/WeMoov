@@ -217,7 +217,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             // Query locations at [37.7832889, -122.4056973] with a radius of 600 meters
             var circleQuery = geoFire.query(at: center, withRadius: 1.0)
             var queryHandle = circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-              print("Key '\(key)' entered the search area and is at location '\(location)'")
+              print("Key '\(key)' entered the search area and is at location '\(location)'") 
             })
         }
         
