@@ -67,7 +67,7 @@ class MyEventsViewController: UIViewController {
             return
         }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         
         let dateFormatter2 = DateFormatter()

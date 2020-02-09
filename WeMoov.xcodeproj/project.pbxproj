@@ -20,6 +20,7 @@
 		4C79E66723A513780041BA81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C79E66523A513780041BA81 /* LaunchScreen.storyboard */; };
 		4C97EF6423DC795D008C3215 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97EF6223DC795D008C3215 /* MapViewController.swift */; };
 		4C97EF6523DC795D008C3215 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C97EF6323DC795D008C3215 /* MapViewController.xib */; };
+		4CB069B423F0133E00D8E8DF /* CreateEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB069B323F0133D00D8E8DF /* CreateEventViewController.xib */; };
 		571F341D23B6222F00938717 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F341B23B6222F00938717 /* SearchViewController.swift */; };
 		571F341E23B6222F00938717 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 571F341C23B6222F00938717 /* SearchViewController.xib */; };
 		571F342223B6225300938717 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F342023B6225300938717 /* FavoritesViewController.swift */; };
@@ -67,6 +68,7 @@
 		4C79E66823A513780041BA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C97EF6223DC795D008C3215 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4C97EF6323DC795D008C3215 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		4CB069B323F0133D00D8E8DF /* CreateEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateEventViewController.xib; sourceTree = "<group>"; };
 		571F341B23B6222F00938717 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		571F341C23B6222F00938717 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		571F342023B6225300938717 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				57A8C9CA23B4C4C600EE46BC /* CreateEventViewController.swift */,
+				4CB069B323F0133D00D8E8DF /* CreateEventViewController.xib */,
 				57A8C9CE23B4FEF300EE46BC /* MyEventsViewController.swift */,
 				57A8C9CF23B4FEF300EE46BC /* MyEventsViewController.xib */,
 			);
@@ -378,6 +381,7 @@
 				571F342323B6225300938717 /* FavoritesViewController.xib in Resources */,
 				57A8C9DC23B56AE300EE46BC /* EventDetailViewController.xib in Resources */,
 				4C97EF6523DC795D008C3215 /* MapViewController.xib in Resources */,
+				4CB069B423F0133E00D8E8DF /* CreateEventViewController.xib in Resources */,
 				57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */,
 				3786DBEB23AC6C8000B1EC0D /* HomeViewController.xib in Resources */,
 				571F341E23B6222F00938717 /* SearchViewController.xib in Resources */,
