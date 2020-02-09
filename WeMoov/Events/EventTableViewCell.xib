@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="EventTableViewCell" customModule="WeMoov" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="146" id="KGk-i7-Jjw" customClass="EventTableViewCell" customModule="WeMoov" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S5Q-7X-a45">
-                        <rect key="frame" x="5" y="5" width="120" height="90"/>
+                        <rect key="frame" x="5" y="13" width="125" height="120"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="90" id="Ct7-yo-nuQ"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="l3C-T9-3rh"/>
-                            <constraint firstAttribute="width" constant="120" id="lU4-Au-KNS"/>
+                            <constraint firstAttribute="width" constant="125" id="ikk-GM-8dh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mp-gk-8mm">
-                        <rect key="frame" x="135" y="41" width="50" height="18"/>
+                        <rect key="frame" x="140" y="64" width="40" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Llw-2J-ubV">
-                        <rect key="frame" x="265" y="39" width="24" height="22"/>
+                        <rect key="frame" x="260" y="39" width="29" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="l1p-FS-rJz"/>
                         </constraints>
@@ -41,11 +39,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="Llw-2J-ubV" secondAttribute="trailing" constant="15" id="2pI-lT-fK6"/>
-                    <constraint firstItem="S5Q-7X-a45" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="7AW-pT-yzs"/>
                     <constraint firstItem="Llw-2J-ubV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="39" id="Epg-At-qry"/>
                     <constraint firstItem="2mp-gk-8mm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GtM-hI-hzH"/>
                     <constraint firstItem="S5Q-7X-a45" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="HEd-dg-Lf3"/>
-                    <constraint firstItem="S5Q-7X-a45" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kko-LU-Wgy"/>
+                    <constraint firstItem="S5Q-7X-a45" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Lif-Bh-9ZG"/>
+                    <constraint firstItem="S5Q-7X-a45" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="M5n-Dq-HGz"/>
                     <constraint firstItem="2mp-gk-8mm" firstAttribute="leading" secondItem="S5Q-7X-a45" secondAttribute="trailing" constant="10" id="mlc-jW-5Hz"/>
                     <constraint firstItem="Llw-2J-ubV" firstAttribute="leading" secondItem="2mp-gk-8mm" secondAttribute="trailing" constant="80" id="sk7-Ce-ZBj"/>
                     <constraint firstItem="2mp-gk-8mm" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="uVy-Bc-nyT"/>
@@ -57,7 +55,7 @@
                 <outlet property="eventName" destination="2mp-gk-8mm" id="1OH-k0-U88"/>
                 <outlet property="favButton" destination="Llw-2J-ubV" id="WDo-ge-7ie"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="107.14285714285714"/>
+            <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
         </tableViewCell>
     </objects>
     <resources>
