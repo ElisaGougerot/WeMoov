@@ -11,6 +11,7 @@ import iOSDropDown
 import Firebase
 import FirebaseDatabase
 import CoreLocation
+import GeoFire
 
 
 class SearchViewController: UIViewController {
@@ -33,7 +34,9 @@ class SearchViewController: UIViewController {
     let searchDatePicker =  UIDatePicker()
     var dataSearch = [String: String]()
     var eventsSearch: [Event] = []
+    var eventSearchDistance: [Event] = []
     let reference = Database.database().reference().child("events")
+    let geofireRef = Database.database().reference().child("geoloc")
     
     override func viewDidLoad() {
           super.viewDidLoad()
@@ -141,7 +144,7 @@ class SearchViewController: UIViewController {
         let roundedValue = round(sender.value / step) * step
         sender.value = roundedValue
         distanceLabel.text = "\(Int(roundedValue))  m"
-        dataSearch["distance"] = "\(Int(roundedValue))"
+        dataSearch["distance"] = "\(Float(roundedValue / 1000))"
     }
     
     
@@ -210,6 +213,7 @@ class SearchViewController: UIViewController {
 
                     if snapshot.value is NSNull {
                         print("not found type event")
+                        self.typePlaceQuery()
                     }
                     else {
                         for child in snapshot.children {
@@ -247,9 +251,7 @@ class SearchViewController: UIViewController {
 
                     if snapshot.value is NSNull {
                         print("not found type place")
-                        //self.typePlaceQuery() : distance
-                        print("TOTAL == \(self.eventsSearch.count)")
-                        self.sendDataToHome()
+                        self.distanceQuery()
                     }
                     else {
                         for child in snapshot.children {
@@ -258,17 +260,110 @@ class SearchViewController: UIViewController {
                             self.eventsSearch.append(event)
                         }
                         print("Nb Type Place: \(self.eventsSearch.count)")
-                        //self.typePlaceQuery()
-                        print("TOTAL == \(self.eventsSearch.count)")
-                        self.sendDataToHome()
+                        self.distanceQuery()
                     }
                 }
+            }
+        }
+        else {
+            distanceQuery()
+        }
+    }
+    
+    private func distanceQuery() {
+        if dataSearch["distance"] != nil {
+            let distanceSearch = Double(self.dataSearch["distance"]!)!
+            // test distance event
+            if eventsSearch.count != 0 {
+                // Existe type event => Filtrer
+                print("FILTRE DISTANCE")
+                extractAddressToCoordAndFiltrer(distanceSearch: distanceSearch) {
+                    self.eventsSearch = eventSearchDistance
+                    print("TOTAL == \(self.eventsSearch.count)")
+                    self.sendDataToHome()
+                }
+            }
+            else {
+                // Query
+                print("QUERY distance event")
+                if GlobalVariable.userCoord.0 == 0 && GlobalVariable.userCoord.1 == 0 {
+                      // Default Location: ESGI
+                      GlobalVariable.userCoord = (48.8490674, 2.389729)
+                  }
+                  let geoFire = GeoFire(firebaseRef: geofireRef)
+                  let center = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
+                  let circleQuery = geoFire.query(at: center, withRadius: distanceSearch)
+                  circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+                    self.reference.child(key).observeSingleEvent(of: .value) {
+                        (snapshot) in
+
+                        if snapshot.value is NSNull {
+                            print("not found distance event")
+                            print("TOTAL == \(self.eventsSearch.count)")
+                            self.sendDataToHome()
+                        }
+                        else {
+                            let event = self.extractEvent(child: snapshot)
+                            print(event.typeEvent)
+                            self.eventsSearch.append(event)
+                            print("TOTAL == \(self.eventsSearch.count)")
+                            self.sendDataToHome()
+                        }
+                    }
+                  })
             }
         }
         else {
             print("TOTAL == \(self.eventsSearch.count)")
             self.sendDataToHome()
         }
+    }
+    
+    private func extractAddressToCoordAndFiltrer(distanceSearch: Double, completionHandler:()->()) {
+        let coordinateUser = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
+        
+        let geoCoder = CLGeocoder()
+        let geoFire = GeoFire(firebaseRef: geofireRef)
+        
+        self.eventsSearch.forEach { (event) in
+            print("id: \(event.idEvent) = \(event.name)")
+            
+            geoFire.getLocationForKey(event.idEvent) { (location, error) in
+              if (error != nil) {
+                print("An error occurred getting the location for \"firebase-hq\": \(error!.localizedDescription)")
+              } else if (location != nil) {
+                let coordinateEvent = CLLocation(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+                let distanceInMeters = coordinateEvent.distance(from: coordinateUser)
+                print("distance in meter: \(distanceInMeters)")
+                if distanceInMeters <= distanceSearch {
+                    self.eventSearchDistance.append(event)
+                }
+              } else {
+                print("GeoFire does not contain a location for \"firebase-hq\"")
+              }
+            }
+            
+            
+            
+           /* geoCoder.geocodeAddressString(event.address) { (placemarks, error) in
+                guard
+                    let placemarks = placemarks,
+                    let location = placemarks.first?.location?.coordinate
+                else {
+                    // handle no location found
+                    print("no location found search distance")
+                    return
+                }
+                let coordinateEvent = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                let distanceInMeters = coordinateEvent.distance(from: coordinateUser)
+                print("distance in meter: \(distanceInMeters)")
+                if distanceInMeters <= distanceSearch {
+                    self.eventSearchDistance.append(event)
+                }
+            }*/
+            sleep(1)
+        }
+        completionHandler()
     }
     
     
@@ -283,7 +378,7 @@ class SearchViewController: UIViewController {
         
         let data = child as! DataSnapshot
         let event = data.value as! [String: AnyObject]
-        let id = event["id"] as? String ?? ""
+        let idEvent = event["idEvent"] as? String ?? ""
         let idOrganizer = event["idOrganizer"] as? String ?? ""
         let name = event["name"] as? String  ?? ""
         let content = event["content"] as? String  ?? ""
@@ -299,12 +394,13 @@ class SearchViewController: UIViewController {
         let address = event["address"] as? String  ?? ""
         let period = event["period"] as? String  ?? ""
         
-        return Event(idEvent: id, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period)
+        return Event(idEvent: idEvent, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period)
     }
     
     private func sendDataToHome() {
         GlobalVariable.eventsSearch = self.eventsSearch
         self.eventsSearch = []
+        self.eventSearchDistance = []
         navigationController?.pushViewController(HomeViewController(), animated: false)
     }
     
