@@ -53,7 +53,7 @@
                                     </connections>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Nom de l'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NNp-k8-d1R">
-                                    <rect key="frame" x="10" y="329" width="394" height="40"/>
+                                    <rect key="frame" x="10" y="314" width="394" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="yiq-cQ-h9s"/>
                                     </constraints>
@@ -61,7 +61,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type d'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NvM-IT-RQz" customClass="DropDown" customModule="iOSDropDown">
-                                    <rect key="frame" x="10" y="394" width="394" height="40"/>
+                                    <rect key="frame" x="10" y="379" width="394" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="3eg-o8-pUf"/>
                                     </constraints>
@@ -69,7 +69,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Adresse de l'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-DE-Ix0">
-                                    <rect key="frame" x="10" y="459" width="394" height="40"/>
+                                    <rect key="frame" x="10" y="444" width="394" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="5oF-MO-JMp"/>
                                     </constraints>
@@ -77,7 +77,7 @@
                                     <textInputTraits key="textInputTraits" textContentType="street-address"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Date de l'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iyi-6q-hJ1">
-                                    <rect key="frame" x="10" y="524" width="200" height="40"/>
+                                    <rect key="frame" x="10" y="509" width="200" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="Ptt-Va-taG"/>
                                         <constraint firstAttribute="width" constant="200" id="lTg-rt-MDT"/>
@@ -86,7 +86,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Période de journée" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxW-hz-pAr" userLabel="PeriodList" customClass="DropDown" customModule="iOSDropDown">
-                                    <rect key="frame" x="10" y="654" width="250" height="40"/>
+                                    <rect key="frame" x="10" y="639" width="250" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="4VI-Dc-DDE"/>
                                         <constraint firstAttribute="width" constant="250" id="rjW-5K-Q3E"/>
@@ -95,7 +95,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type de lieu" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RmD-si-W2K" userLabel="Type PlaceList" customClass="DropDown" customModule="iOSDropDown">
-                                    <rect key="frame" x="10" y="589" width="394" height="40"/>
+                                    <rect key="frame" x="10" y="574" width="394" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="XIH-o6-4Tf"/>
                                     </constraints>
@@ -103,7 +103,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Fin" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WCo-vn-ed9">
-                                    <rect key="frame" x="204" y="524" width="200" height="40"/>
+                                    <rect key="frame" x="204" y="509" width="200" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="Uh1-uZ-DOE"/>
                                         <constraint firstAttribute="width" constant="200" id="uuo-eU-XRx"/>
@@ -122,7 +122,7 @@
                                     </connections>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Prix" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0RE-QX-okG">
-                                    <rect key="frame" x="254" y="654" width="150" height="40"/>
+                                    <rect key="frame" x="254" y="639" width="150" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="150" id="22I-z0-qtZ"/>
                                         <constraint firstAttribute="height" constant="40" id="n72-Su-Uj0"/>
@@ -144,10 +144,10 @@
                                     </connections>
                                 </button>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wj-10-gf0">
-                                    <rect key="frame" x="10" y="719" width="394" height="23"/>
+                                    <rect key="frame" x="10" y="704" width="394" height="64"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="23" id="YXd-Hg-faF"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="aeQ-KL-NbQ"/>
                                     </constraints>
                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -169,7 +169,7 @@
                                 <constraint firstAttribute="width" constant="414" id="Df3-qT-5KN"/>
                                 <constraint firstItem="zt1-OB-z3O" firstAttribute="top" secondItem="8QH-Vo-GcK" secondAttribute="bottom" constant="25" id="GCt-KI-VwU"/>
                                 <constraint firstItem="WCo-vn-ed9" firstAttribute="top" secondItem="RdC-DE-Ix0" secondAttribute="bottom" constant="25" id="HPW-Ma-9xS"/>
-                                <constraint firstItem="NNp-k8-d1R" firstAttribute="top" secondItem="zt1-OB-z3O" secondAttribute="bottom" constant="25" id="HjT-NR-ApD"/>
+                                <constraint firstItem="NNp-k8-d1R" firstAttribute="top" secondItem="zt1-OB-z3O" secondAttribute="bottom" constant="10" id="HjT-NR-ApD"/>
                                 <constraint firstAttribute="trailing" secondItem="1Wj-10-gf0" secondAttribute="trailing" constant="10" id="JUv-iu-SWj"/>
                                 <constraint firstAttribute="trailing" secondItem="bs1-np-BLo" secondAttribute="trailing" constant="23" id="Jfb-KU-3EO"/>
                                 <constraint firstItem="Iyi-6q-hJ1" firstAttribute="top" secondItem="RdC-DE-Ix0" secondAttribute="bottom" constant="25" id="Jkg-RL-aaA"/>
@@ -214,7 +214,7 @@
                 <constraint firstItem="Z82-WP-kpN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="AV9-oh-L5A"/>
                 <constraint firstItem="Jvd-LA-AbH" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="MfX-Vd-zCn"/>
                 <constraint firstItem="bs1-np-BLo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="Mjx-cQ-7NL"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1Wj-10-gf0" secondAttribute="bottom" constant="76" id="amC-yz-Q8Y"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1Wj-10-gf0" secondAttribute="bottom" constant="50" id="amC-yz-Q8Y"/>
                 <constraint firstItem="Jvd-LA-AbH" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dd1-qP-v0W"/>
                 <constraint firstItem="Jvd-LA-AbH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="o2E-KI-mz7"/>
             </constraints>
