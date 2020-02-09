@@ -27,6 +27,6 @@ notifications:
         - "Message: %{message}"
 
 script: 
+  - bundle exec fastlane ios email
   - bundle exec fastlane ios feature
   - bundle exec fastlane ios release
-  - bundle exec fastlane ios email
