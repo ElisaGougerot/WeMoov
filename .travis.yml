@@ -6,6 +6,8 @@ before_install:
 
 branches: 
   only: 
+    - master
+    - develop
     - feature/test
 notifications:
     email: false
@@ -27,3 +29,4 @@ notifications:
 script: 
   - bundle exec fastlane ios feature
   - bundle exec fastlane ios release
+  - bundle exec fastlane ios email
