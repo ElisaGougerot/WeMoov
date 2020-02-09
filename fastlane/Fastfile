@@ -25,7 +25,9 @@ platform :ios do
     # build_app(scheme: "WeMoov")
     # upload_to_testflight
     # notification(subtitle: "Finished Building", message: "Ready to upload...")
-    cert
+    get_certificates(
+      username: "esgi.dev.moc@gmail.com"
+    ) 
     sigh
     gym
     pilot(distribute_external:false)
