@@ -103,11 +103,11 @@ class FavoritesViewController: UIViewController {
         let ref = Database.database().reference().child("events")
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         
         let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter2.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter2.locale = Locale(identifier: "FR-fr")
         
         for eventID in favID {

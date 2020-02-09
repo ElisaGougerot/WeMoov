@@ -88,7 +88,7 @@ class EventDetailViewController: UIViewController {
         })
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy - HH'h'mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         
         // Event Labels

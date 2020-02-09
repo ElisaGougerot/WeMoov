@@ -274,11 +274,11 @@ class SearchViewController: UIViewController {
     
     private func extractEvent(child: NSEnumerator.Element) -> Event {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         
         let dateFormatterStartDate = DateFormatter()
-        dateFormatterStartDate.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatterStartDate.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatterStartDate.locale = Locale(identifier: "FR-fr")
         
         let data = child as! DataSnapshot

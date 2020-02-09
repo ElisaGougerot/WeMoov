@@ -139,11 +139,11 @@ class HomeViewController: UIViewController {
 
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         
         let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter2.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter2.locale = Locale(identifier: "FR-fr")
 
         Database.database().reference().child("events").observeSingleEvent(of: .value) { (snapshot) in
