@@ -10,8 +10,9 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import CoreLocation
+import MapKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     public static let MyEventsTableViewCellId = "metvc"
            
@@ -24,6 +25,8 @@ class HomeViewController: UIViewController {
             self.AllEventTableView.reloadData()
         }
     }
+    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,6 +128,15 @@ class HomeViewController: UIViewController {
             // Event Search
             AllEvents = GlobalVariable.eventsSearch
         }
+        
+        // Geoloc
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -202,6 +214,11 @@ class HomeViewController: UIViewController {
           reference.removeValue { error, _ in
              print("error")
           }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
 }
 
@@ -283,5 +300,4 @@ extension HomeViewController: UITableViewDataSource {
         }
     }
 }
-
 
