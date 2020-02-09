@@ -38,9 +38,6 @@ platform :ios do
       from: "wemouv@gmail.com",
       to: "singh_taj@hotmail.fr",
       success: true,
-      message: "Bonjour/Bonsoir, nous vous informons qu'une nouvelle version 
-        sera bientot disponible sur l'AppStore, resté connecté ! 
-        
-        L'équipe WeMoov."
+      message: "Bonjour/Bonsoir, nous vous informons qu'une nouvelle version sera bientot disponible sur l'AppStore, resté connecté ! L'équipe WeMoov."
     )
 end
