@@ -18,4 +18,6 @@ struct GlobalVariable {
     static var eventsSearch: [Event] = []
 
     static var imageCache = NSCache<AnyObject, AnyObject>()
+    
+    static var userCoord : (CLLocationDegrees, CLLocationDegrees) = (0, 0)
 }
