@@ -102,6 +102,8 @@ class EventDetailViewController: UIViewController {
         } else {
             self.eventPrice.text = "\(event.price) €"
         }
+        
+        self.favButton.tintColor = GlobalVariable.favorites.contains(event.idEvent) ? .red : .black
     
     }
     
