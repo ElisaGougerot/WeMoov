@@ -10,4 +10,4 @@ notifications:
       - gem install bundler
       - bundle install 
 script: 
-  - bundle exec fastlane feature
+  - bundle exec fastlane ios feature
