@@ -137,10 +137,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
+        getAllEvents()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-           getAllEvents()
+           //getAllEvents()
     }
     
     func getAllEvents() {

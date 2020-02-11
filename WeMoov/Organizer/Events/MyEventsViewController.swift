@@ -55,11 +55,13 @@ class MyEventsViewController: UIViewController {
         self.myEventTableView.dataSource = self
         self.myEventTableView.delegate = self
 
+        getAllEvents()
+        
     }
 
 
     override func viewDidAppear(_ animated: Bool) {
-        getAllEvents()
+        //getAllEvents()
     }
     
     func getAllEvents() {

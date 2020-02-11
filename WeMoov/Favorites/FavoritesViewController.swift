@@ -87,10 +87,12 @@ class FavoritesViewController: UIViewController {
         self.AllFavoriteTableView.dataSource = self
         self.AllFavoriteTableView.delegate = self
         
+        getAllFav()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-           getAllFav()
+           //getAllFav()
     }
     
     func getAllFav() {
