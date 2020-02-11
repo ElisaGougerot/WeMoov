@@ -57,12 +57,18 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         
         self.typeEventList.optionArray = ["AfterWork", "Bar", "Jeux"]
         self.typeEventList.selectedRowColor = .lightGray
+        self.typeEventList.delegate = self
         
         self.periodList.optionArray = ["Matin", "Après-Midi", "Soir"]
         self.periodList.selectedRowColor = .lightGray
+        self.periodList.delegate = self
         
         self.typePlaceList.optionArray = ["Bar", "Restaurant", "Musée", "Appartement", "Rooftop"]
         self.typePlaceList.selectedRowColor = .lightGray
+        self.typePlaceList.delegate = self
+        
+        self.dateTF.delegate = self
+        self.timeEndTF.delegate = self
         
         showDatePicker()
         showTimePicker()
@@ -71,6 +77,10 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         
         self.descriptionTV.placeholder = "Description"
         
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
     
     @IBAction func closePresent(_ sender: Any) {

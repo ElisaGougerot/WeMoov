@@ -98,10 +98,13 @@ class SearchViewController: UIViewController {
         
         self.typeEventList.optionArray = ["AfterWork", "Bar", "Jeux"]
         self.typeEventList.selectedRowColor = .lightGray
+        self.typeEventList.delegate = self
         
         self.typePlaceList.optionArray = ["Bar", "Restaurant", "Musée", "Appartement", "Rooftop"]
         self.typePlaceList.selectedRowColor = .lightGray
+        self.typePlaceList.delegate = self
  
+        self.searchByDate.delegate = self
     }
     
     func showDatePicker(){
@@ -164,6 +167,7 @@ class SearchViewController: UIViewController {
     func searchEvent() {
         if dataSearch.isEmpty {
             print("no data")
+            displayError(message: "Remplis des champs pour feire une recherche")
             return
         }
         print(dataSearch)
@@ -240,7 +244,7 @@ class SearchViewController: UIViewController {
                 print("FILTRE")
                 self.eventsSearch = self.eventsSearch.filter({ $0.typePlace == dataSearch["typePlace"] })
                 print("Nb Type Place: \(self.eventsSearch.count)")
-              //  typePlaceQuery()
+                self.distanceQuery()
             }
             else {
                 // Query
@@ -397,13 +401,30 @@ class SearchViewController: UIViewController {
         return Event(idEvent: idEvent, idOrganizer: idOrganizer, name: name, content: content, coordinates: CLLocation(latitude: lat, longitude: lon), image: image, typeEvent: typeEvent, typePlace: typePlace, startDate: startDate, endDate: endDate, price: price, address: address, period: period)
     }
     
-    private func sendDataToHome() {
-        GlobalVariable.eventsSearch = self.eventsSearch
-        self.eventsSearch = []
-        self.eventSearchDistance = []
-        navigationController?.pushViewController(HomeViewController(), animated: false)
+    private func checkResultSearch() -> Bool {
+        if self.eventsSearch.count == 0 {
+            displayError(message: "Aucun résultat pour cette recherche ! Réessayer")
+            return false
+        }
+        return true
     }
     
+    private func sendDataToHome() {
+        if checkResultSearch() {
+            GlobalVariable.eventsSearch = self.eventsSearch
+            self.eventsSearch = []
+            self.eventSearchDistance = []
+            navigationController?.pushViewController(HomeViewController(), animated: false)
+        }
+    }
+    
+    func displayError(message: String) {
+        let alert = UIAlertController(title: "Erreur", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        if presentedViewController == nil {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
 }
     
@@ -423,5 +444,11 @@ extension SearchViewController: UITabBarDelegate {
             print("favorite")
             navigationController?.pushViewController(FavoritesViewController(), animated: false)
         }
+    }
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }
