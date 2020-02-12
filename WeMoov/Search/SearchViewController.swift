@@ -19,6 +19,7 @@ class SearchViewController: UIViewController {
     @IBOutlet var searchTabBar: UITabBar!
     @IBOutlet var searchBarItem: UITabBarItem!
     @IBOutlet var searchByDate: UITextField!
+    var startDate = ""
     
     //@IBOutlet var searchTextFieldDate: UITextField!
     @IBOutlet var searchEventButton: UIButton!
@@ -134,6 +135,8 @@ class SearchViewController: UIViewController {
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         searchByDate.text = dateFormatter.string(from: searchDatePicker.date)
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        startDate = dateFormatter.string(from: searchDatePicker.date)
         self.view.endEditing(true)
     }
     
@@ -156,7 +159,7 @@ class SearchViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         if searchByDate.text != "" {
-            dataSearch["startDate"] = dateFormatter.string(from: dateFormatter.date(from: searchByDate.text!)!)
+            dataSearch["startDate"] = startDate
         }
         
         let eventType = typeEventList.text ?? ""
