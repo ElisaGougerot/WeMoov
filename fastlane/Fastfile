@@ -40,4 +40,5 @@ platform :ios do
       success: true,
       message: "Bonjour/Bonsoir, nous vous informons qu'une nouvelle version sera bientot disponible sur l'AppStore, resté connecté ! L'équipe WeMoov."
     )
+  end
 end
