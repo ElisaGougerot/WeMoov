@@ -25,6 +25,8 @@
 		571F341E23B6222F00938717 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 571F341C23B6222F00938717 /* SearchViewController.xib */; };
 		571F342223B6225300938717 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F342023B6225300938717 /* FavoritesViewController.swift */; };
 		571F342323B6225300938717 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 571F342123B6225300938717 /* FavoritesViewController.xib */; };
+		5722B86623F47FF200859D16 /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5722B86423F47FF200859D16 /* ResultSearchViewController.swift */; };
+		5722B86723F47FF200859D16 /* ResultSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5722B86523F47FF200859D16 /* ResultSearchViewController.xib */; };
 		57254D7123EE0744008DAA8F /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57254D7023EE0744008DAA8F /* Favorites.swift */; };
 		576A7C1C23B37C32009A5F1F /* HomeOrganizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A7C1A23B37C32009A5F1F /* HomeOrganizerViewController.swift */; };
 		576A7C1D23B37C32009A5F1F /* HomeOrganizerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 576A7C1B23B37C32009A5F1F /* HomeOrganizerViewController.xib */; };
@@ -73,6 +75,8 @@
 		571F341C23B6222F00938717 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		571F342023B6225300938717 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		571F342123B6225300938717 /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
+		5722B86423F47FF200859D16 /* ResultSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewController.swift; sourceTree = "<group>"; };
+		5722B86523F47FF200859D16 /* ResultSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultSearchViewController.xib; sourceTree = "<group>"; };
 		57254D7023EE0744008DAA8F /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		576A7C1A23B37C32009A5F1F /* HomeOrganizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOrganizerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		576A7C1B23B37C32009A5F1F /* HomeOrganizerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeOrganizerViewController.xib; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 			children = (
 				571F341B23B6222F00938717 /* SearchViewController.swift */,
 				571F341C23B6222F00938717 /* SearchViewController.xib */,
+				5722B86423F47FF200859D16 /* ResultSearchViewController.swift */,
+				5722B86523F47FF200859D16 /* ResultSearchViewController.xib */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				571F342323B6225300938717 /* FavoritesViewController.xib in Resources */,
 				57A8C9DC23B56AE300EE46BC /* EventDetailViewController.xib in Resources */,
 				4C97EF6523DC795D008C3215 /* MapViewController.xib in Resources */,
+				5722B86723F47FF200859D16 /* ResultSearchViewController.xib in Resources */,
 				4CB069B423F0133E00D8E8DF /* CreateEventViewController.xib in Resources */,
 				57FCC2ED23ABC34800DDAF59 /* GoogleService-Info.plist in Resources */,
 				3786DBEB23AC6C8000B1EC0D /* HomeViewController.xib in Resources */,
@@ -460,6 +467,7 @@
 				37561B9B23AC40920070D586 /* InscriptionViewController.swift in Sources */,
 				576A7C1C23B37C32009A5F1F /* HomeOrganizerViewController.swift in Sources */,
 				57254D7123EE0744008DAA8F /* Favorites.swift in Sources */,
+				5722B86623F47FF200859D16 /* ResultSearchViewController.swift in Sources */,
 				571F342223B6225300938717 /* FavoritesViewController.swift in Sources */,
 				57A8C9CC23B4C4C600EE46BC /* CreateEventViewController.swift in Sources */,
 				4C97EF6423DC795D008C3215 /* MapViewController.swift in Sources */,

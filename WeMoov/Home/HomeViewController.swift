@@ -124,11 +124,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         self.AllEventTableView.dataSource = self
         self.AllEventTableView.delegate = self
         
-        if GlobalVariable.eventsSearch.count != 0 {
-            // Event Search
-            AllEvents = GlobalVariable.eventsSearch
-        }
-        
         // Geoloc
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {

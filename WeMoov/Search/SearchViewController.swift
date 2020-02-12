@@ -417,7 +417,7 @@ class SearchViewController: UIViewController {
             self.eventsSearch = []
             self.eventSearchDistance = []
            
-            navigationController?.pushViewController(HomeViewController(), animated: false)
+            navigationController?.pushViewController(ResultSearchViewController(), animated: false)
         }
     }
     
