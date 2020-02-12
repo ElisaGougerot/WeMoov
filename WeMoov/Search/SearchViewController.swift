@@ -39,9 +39,11 @@ class SearchViewController: UIViewController {
     let geofireRef = Database.database().reference().child("geoloc")
     
     override func viewDidLoad() {
-          super.viewDidLoad()
-          configureViewComponents()
-          showDatePicker()
+        super.viewDidLoad()
+        configureViewComponents()
+        showDatePicker()
+        self.hideKeyboardWhenTappedAround()
+
       }
     
     @objc func handleSignOut(){
@@ -96,11 +98,11 @@ class SearchViewController: UIViewController {
         
         self.distanceLabel.text = ""
         
-        self.typeEventList.optionArray = ["AfterWork", "Bar", "Jeux"]
+        self.typeEventList.optionArray = ["","AfterWork", "Bar", "Jeux"]
         self.typeEventList.selectedRowColor = .lightGray
         self.typeEventList.delegate = self
         
-        self.typePlaceList.optionArray = ["Bar", "Restaurant", "Musée", "Appartement", "Rooftop"]
+        self.typePlaceList.optionArray = ["","Bar", "Restaurant", "Musée", "Appartement", "Rooftop"]
         self.typePlaceList.selectedRowColor = .lightGray
         self.typePlaceList.delegate = self
  
@@ -167,7 +169,7 @@ class SearchViewController: UIViewController {
     func searchEvent() {
         if dataSearch.isEmpty {
             print("no data")
-            displayError(message: "Remplis des champs pour feire une recherche")
+            displayError(message: "Remplis des champs pour faire une recherche")
             return
         }
         print(dataSearch)

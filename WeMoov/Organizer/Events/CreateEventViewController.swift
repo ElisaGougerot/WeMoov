@@ -17,6 +17,9 @@ import GeoFire
 
 class CreateEventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    /**
+                Définition des variables
+     */
     
     @IBOutlet weak var closeButton: UIButton!
     
@@ -51,20 +54,20 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     
     let timeEnd = UIDatePicker()
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         //self.imageView.image = UIImage(named: ("upload"))
-        
-        self.typeEventList.optionArray = ["AfterWork", "Bar", "Jeux"]
+        self.typeEventList.optionArray = ["","AfterWork", "Bar", "Jeux"]
         self.typeEventList.selectedRowColor = .lightGray
         self.typeEventList.delegate = self
         
-        self.periodList.optionArray = ["Matin", "Après-Midi", "Soir"]
+        self.periodList.optionArray = ["","Matin", "Après-Midi", "Soir"]
         self.periodList.selectedRowColor = .lightGray
         self.periodList.delegate = self
         
-        self.typePlaceList.optionArray = ["Bar", "Restaurant", "Musée", "Appartement", "Rooftop"]
+        self.typePlaceList.optionArray = ["","Bar", "Restaurant", "Musée", "Appartement", "Rooftop"]
         self.typePlaceList.selectedRowColor = .lightGray
         self.typePlaceList.delegate = self
         
@@ -78,11 +81,19 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         
         self.descriptionTV.placeholder = "Description"
         
+        //Cacher le clavier quand on touche la view
+        self.hideKeyboardWhenTappedAround()
+
+        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return false
     }
+    
+    /**
+                Fermer le present quand on clique sur le bouton close.
+     */
     
     @IBAction func closePresent(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -92,9 +103,8 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func chooseImage(_ sender: Any) {
         
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary //On specifie gallery (autre: camera)
         self.present(imagePicker, animated: true, completion: nil)
-        print("choose")
     }
     
     //Remplacer l'image par celle choisie
@@ -111,13 +121,13 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         picker.dismiss(animated: true, completion:nil)
     }
     
+    
     func showDatePicker(){
-        //Formate Date
+        //Format de la Date
         datePicker.datePickerMode = .dateAndTime
-        
         datePicker.locale = Locale(identifier: "FR-fr")
         
-        //ToolBar
+        //Bouton done et cancel.
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
@@ -128,9 +138,11 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         
         dateTF.inputAccessoryView = toolbar
         dateTF.inputView = datePicker
-        
     }
     
+    /**
+                DatePicker de la date de début.
+     */
     @objc func donedatePicker(){
         
         let formatter = DateFormatter()
@@ -178,6 +190,12 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         self.view.endEditing(true)
     }
     
+    
+    /**
+                Upload des données sur Firebase.
+                    - Pour l'image, on save l'image sur FirebaseStorage qui génère un lien. On upload ensuite ce lien sur Firebase dans notre bdd.
+                    - Si tout les champs sont vides ont envoie une erreur sous forme d'Alert.
+     */
     
     @IBAction func uploadEvent(_ sender: Any) {
         
@@ -249,7 +267,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                 
                 // Upload & Update Picture
                 self.imageView.image!.upload(with: "image \(name)", completion: {(url: URL?) in
-                    print(url)
+                    //print(url)
                     Database.database().reference(withPath: "events").child(uuid).updateChildValues(["image": url?.absoluteString])
                 })
                 
@@ -270,7 +288,7 @@ extension UITextView :UITextViewDelegate {
         }
     }
     
-    /// The UITextView placeholder text
+    /// ajoute un placeholder à la description (de type UITextViewl)
     public var placeholder: String? {
         get {
             var placeholderText: String?
@@ -331,6 +349,9 @@ extension UITextView :UITextViewDelegate {
     }
 }
 
+/**
+        Extension permettant d'upload l'image sur FirebaseStorage et de télécharger l'url de l'image.
+ */
 extension UIImage {
     func upload(with name: String, completion: @escaping (URL?) -> Void) {
         let metadata = StorageMetadata()

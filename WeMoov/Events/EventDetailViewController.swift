@@ -34,11 +34,13 @@ class EventDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    //Ouvre la map.
     @objc func touchMapButton() {
         let mapViewController = MapViewController()
         self.navigationController?.pushViewController(mapViewController, animated: true)
     }
     
+    //Affichage de la view EventDetails
     func configureViewComponents() {
         view.backgroundColor = UIColor.mainWhite()
         navigationController?.navigationBar.isHidden = false
@@ -72,6 +74,7 @@ class EventDetailViewController: UIViewController {
         
         
         let event = GlobalVariable.eventClicked
+       
         // Event ImageView
         self.eventImageView.loadImage(urlString: event.image)
         /*if let pictureURL = event.image {
@@ -103,16 +106,22 @@ class EventDetailViewController: UIViewController {
             self.eventPrice.text = "\(event.price) €"
         }
         
-        self.favButton.tintColor = GlobalVariable.favorites.contains(event.idEvent) ? .red : .black
+        if(GlobalVariable.user.isOrganizer){
+            self.favButton.isHidden = true
+        } else {
+            self.favButton.tintColor = GlobalVariable.favorites.contains(event.idEvent) ? .red : .black
+        }
     
     }
     
+    //Ajout d'un event aux favoris
     @IBAction func touchFavButton(_ sender: UIButton) {
         let idEvent = GlobalVariable.eventClicked.idEvent
         let fav = GlobalVariable.favorites.contains(idEvent)
         
         let ref = Database.database().reference(withPath: "favorite").child(GlobalVariable.user.id)
         
+        //Si !fav alors on ajoute l'event aux favoris
         if !fav {
             GlobalVariable.favorites.addFavEvent(id: idEvent)
             let dictEvent: [String: Any] = [
@@ -131,7 +140,9 @@ class EventDetailViewController: UIViewController {
                     sender.tintColor = GlobalVariable.favorites.contains(idEvent) ? .red : .black
                 }
             }
-        } else {
+        }
+        //Sinon on supprime l'event du noeud favoris et on update la bdd.
+        else {
             GlobalVariable.favorites.removeFavEvent(id: idEvent)
             ref.updateChildValues(["favEventsID": GlobalVariable.favorites.getFavEvents()])
             print("fav update delete")

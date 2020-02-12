@@ -107,7 +107,6 @@ class InscriptionViewController: UIViewController {
      }
     
     //Func gerant le clic sur bouton Connexion
-    
     @objc func handleLogin(){
        guard let email = emailTextField.text,
         let password = passwordTextField.text,

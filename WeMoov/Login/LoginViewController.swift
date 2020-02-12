@@ -14,6 +14,15 @@ class LoginViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
     
+    /**
+                Définition des éléments qui vont être présent dans la View:
+                - Logo
+                - EmailTF
+                - PasswordTF
+                - loginButton
+                - DonthaveAccount
+     */
+    
     let logoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleToFill
@@ -69,6 +78,9 @@ class LoginViewController: UIViewController {
         viewComponentConfigure()
     }
     
+    /**
+                Function Firebase qui gère l'auto connexion
+     */
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             guard user != nil else { return }
@@ -86,14 +98,10 @@ class LoginViewController: UIViewController {
             password.count > 0,
             email.count > 0 else { return }
         logUserIn(withEmail: email, password: password)
-        
-        //navigationController?.pushViewController(SignUpViewController(), animated: false)
-        
     }
     
     @objc func handleShowSignUp(){
         print("signup")
-            //self.show(InscriptionViewController(), sender: self)
         navigationController?.pushViewController(InscriptionViewController(), animated: true)
     }
     
@@ -104,19 +112,18 @@ class LoginViewController: UIViewController {
                 print("Erreur, impossible de se connecter :", err.localizedDescription)
                 self.displayError(message: "\(err.localizedDescription)")
                 return
-            } /*else {
-             self.navigationController?.pushViewController(HomeViewController(), animated: true)
-             self.dismiss(animated: true, completion: nil)
-             }*/
+            }
             
         }
         print("login")
         loadUserData()
-        // let homeViewController = HomeViewController()
-        // self.navigationController?.pushViewController(homeViewController, animated: true)
-        //self.dismiss(animated: true, completion: nil)
     }
     
+    /**
+                Sauvegarde des données de l'user dans la database et push de la nouvelle View
+                    - Si isOrganizer = true, alors push de la view Organizer
+                    - Si false, alors push de la view Home.
+     */
     func loadUserData() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("user").child(uid).observeSingleEvent(of: .value) { (snapshot) in
@@ -149,6 +156,10 @@ class LoginViewController: UIViewController {
          }*/
     }
     
+    
+    /**
+                Initialisation de la view : Ajout des composants en fonction des contraintes.
+     */
     func viewComponentConfigure(){
         self.hideKeyboardWhenTappedAround()
         view.backgroundColor = UIColor.mainBlack() // Set la valeur de l'arrière plan avec .mainOrange défini dans Extensions.swift

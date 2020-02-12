@@ -38,15 +38,18 @@ class MapViewController: UIViewController {
         //print(address)
         if #available(iOS 13.0, *) {
             self.EventsMapView.overrideUserInterfaceStyle = .dark
-            
         }
+        
+        //Stocker les coordonnées dans les variables coord_lat et coord_long
         getCoord(from: self.address) { location in
             self.coord_lat = location!.latitude
             self.coord_long = location!.longitude
         }
     }
     
-    
+    /**
+                    Transformer l'adresse de l'event en coordonnées (lat, long)
+     */
     func getCoord(from address: String, completion: @escaping (_ location: CLLocationCoordinate2D?)-> Void){
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(address) { (placemarks, error) in
@@ -60,13 +63,7 @@ class MapViewController: UIViewController {
             self.coord_lat = location.latitude
             self.coord_long = location.longitude
             
-            print("EZ \(self.coord_lat) && \(self.coord_long)")
-          /*  let pin = MKPointAnnotation()
-            pin.title = GlobalVariable.eventClicked.name
-            pin.coordinate = CLLocationCoordinate2D(latitude: self.coord_lat, longitude: self.coord_long)
-            self.EventsMapView.addAnnotation(pin)
-            self.EventsMapView.showAnnotations([pin], animated: true)
-         */
+            print("logCoord \(self.coord_lat) && \(self.coord_long)")
             if GlobalVariable.userCoord.0 == 0 && GlobalVariable.userCoord.1 == 0 {
                 // default location: ESGI
                 GlobalVariable.userCoord = (48.8490674, 2.389729)
@@ -140,6 +137,8 @@ class MapViewController: UIViewController {
 
 
 extension MapViewController: MKMapViewDelegate {
+    
+    //Ajout de l'annotation sous forme de pin avec une image custom. 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
        {
            if !(annotation is MKPointAnnotation) {

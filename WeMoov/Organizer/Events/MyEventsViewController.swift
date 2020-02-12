@@ -13,8 +13,10 @@ import CoreLocation
 
 class MyEventsViewController: UIViewController {
     
+    ///Id de la cellule personnalisée.
     public static let MyEventsTableViewCellId = "metvc"
     
+   ///myEvents : array contenant les events.
     @IBOutlet var myEventTableView: UITableView!
     var myEvents: [Event] = [] {
         didSet {
@@ -25,9 +27,9 @@ class MyEventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
-        
     }
 
+    ///Revenir sur l'écran précédent
     @objc func handleBack() {
         navigationController?.popViewController(animated: true)
     }
