@@ -35,10 +35,11 @@ platform :ios do
   desc "Send email"
   lane :email do 
     mailgun(
+      apikey: "7f67565216168b32d06d43db830b47dd-52b6835e-3152b92b",
+      to: "taj.singh0715@gmail.com",
       from: "wemouv@gmail.com",
-      to: "singh_taj@hotmail.fr",
       success: true,
-      message: "Bonjour/Bonsoir, nous vous informons qu'une nouvelle version sera bientot disponible sur l'AppStore, resté connecté ! L'équipe WeMoov."
+      message: "Bonjour, une nouvelle version de WeMoov sera bientot disponible. Merci de nous faire confiance, l'équipe WeMoov.",
     )
   end
 end
