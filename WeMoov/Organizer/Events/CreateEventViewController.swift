@@ -83,12 +83,47 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         
         //Cacher le clavier quand on touche la view
         self.hideKeyboardWhenTappedAround()
+        
+        // Listener état clavier
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateEventViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateEventViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return false
+    }
+    
+    // Passer au textfield suivant
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
+    }
+    
+    // Remonte la vue si clavier ouvert
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y == 0{
+            self.view.frame.origin.y -= keyboardFrame.height - 50
+        }
+    }
+    
+    // Remet la vue par défaut si clavier fermé
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
     /**

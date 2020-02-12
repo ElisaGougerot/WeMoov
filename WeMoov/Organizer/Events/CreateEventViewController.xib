@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,49 +52,49 @@
                                         <action selector="chooseImage:" destination="-1" eventType="touchUpInside" id="wsl-un-psF"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Nom de l'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NNp-k8-d1R">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Nom de l'évènement" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="NNp-k8-d1R">
                                     <rect key="frame" x="10" y="314" width="394" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="yiq-cQ-h9s"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type d'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NvM-IT-RQz" customClass="DropDown" customModule="iOSDropDown">
+                                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type d'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NvM-IT-RQz" customClass="DropDown" customModule="iOSDropDown">
                                     <rect key="frame" x="10" y="379" width="394" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="3eg-o8-pUf"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Adresse de l'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-DE-Ix0">
+                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Adresse de l'évènement" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-DE-Ix0">
                                     <rect key="frame" x="10" y="444" width="394" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="5oF-MO-JMp"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" textContentType="street-address"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="street-address"/>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Date de l'évènement" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iyi-6q-hJ1">
-                                    <rect key="frame" x="10" y="509" width="200" height="40"/>
+                                <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Date de l'évènement" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Iyi-6q-hJ1">
+                                    <rect key="frame" x="10" y="509" width="195" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="Ptt-Va-taG"/>
-                                        <constraint firstAttribute="width" constant="200" id="lTg-rt-MDT"/>
+                                        <constraint firstAttribute="width" constant="195" id="lTg-rt-MDT"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Période de journée" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxW-hz-pAr" userLabel="PeriodList" customClass="DropDown" customModule="iOSDropDown">
-                                    <rect key="frame" x="10" y="639" width="250" height="40"/>
+                                <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Période de journée" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxW-hz-pAr" userLabel="PeriodList" customClass="DropDown" customModule="iOSDropDown">
+                                    <rect key="frame" x="10" y="639" width="240" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="4VI-Dc-DDE"/>
-                                        <constraint firstAttribute="width" constant="250" id="rjW-5K-Q3E"/>
+                                        <constraint firstAttribute="width" constant="240" id="rjW-5K-Q3E"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type de lieu" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RmD-si-W2K" userLabel="Type PlaceList" customClass="DropDown" customModule="iOSDropDown">
+                                <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Type de lieu" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RmD-si-W2K" userLabel="Type PlaceList" customClass="DropDown" customModule="iOSDropDown">
                                     <rect key="frame" x="10" y="574" width="394" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="XIH-o6-4Tf"/>
@@ -102,11 +102,11 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Fin" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WCo-vn-ed9">
-                                    <rect key="frame" x="204" y="509" width="200" height="40"/>
+                                <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Fin" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="WCo-vn-ed9">
+                                    <rect key="frame" x="209" y="509" width="195" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="Uh1-uZ-DOE"/>
-                                        <constraint firstAttribute="width" constant="200" id="uuo-eU-XRx"/>
+                                        <constraint firstAttribute="width" constant="195" id="uuo-eU-XRx"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -121,14 +121,14 @@
                                         <action selector="uploadEvent:" destination="-1" eventType="touchUpInside" id="deh-1C-c4j"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Prix" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0RE-QX-okG">
+                                <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Prix" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="0RE-QX-okG">
                                     <rect key="frame" x="254" y="639" width="150" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="150" id="22I-z0-qtZ"/>
                                         <constraint firstAttribute="height" constant="40" id="n72-Su-Uj0"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="next"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bs1-np-BLo">
                                     <rect key="frame" x="361" y="24" width="30" height="30"/>
@@ -143,7 +143,7 @@
                                         <action selector="closePresent:" destination="-1" eventType="touchUpInside" id="jtp-0A-VgY"/>
                                     </connections>
                                 </button>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wj-10-gf0">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wj-10-gf0">
                                     <rect key="frame" x="10" y="704" width="394" height="64"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
@@ -152,6 +152,7 @@
                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
