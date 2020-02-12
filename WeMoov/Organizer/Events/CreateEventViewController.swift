@@ -30,6 +30,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var addressList: UITextField!
     
     @IBOutlet weak var dateTF: UITextField!
+    var startDateBDD = ""
     
     @IBOutlet weak var timeEndTF: UITextField!
     
@@ -135,6 +136,8 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateTF.text = formatter.string(from: datePicker.date)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        startDateBDD = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
     
@@ -228,7 +231,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                     "image":"",
                     "name": name,
                     "price":price,
-                    "startDate": date,
+                    "startDate": self.startDateBDD,
                     "endDate": timeEnd,
                     "typeEvent":eventTypeChoice,
                     "typePlace":eventPlaceChoice,

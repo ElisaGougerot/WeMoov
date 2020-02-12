@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
     var dataSearch = [String: String]()
     var eventsSearch: [Event] = []
     var eventSearchDistance: [Event] = []
-    let reference = Database.database().reference().child("events")
+    let reference = Database.database().reference(withPath: "events")
     let geofireRef = Database.database().reference().child("geoloc")
     
     override func viewDidLoad() {
@@ -133,7 +133,7 @@ class SearchViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "FR-fr")
         searchByDate.text = dateFormatter.string(from: searchDatePicker.date)
         self.view.endEditing(true)
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.locale = Locale(identifier: "FR-fr")
         dataSearch["startDate"] = dateFormatter.string(from: searchDatePicker.date)
     }
@@ -377,7 +377,7 @@ class SearchViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "FR-fr")
         
         let dateFormatterStartDate = DateFormatter()
-        dateFormatterStartDate.dateFormat = "dd/MM/yyyy HH:mm"
+        dateFormatterStartDate.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatterStartDate.locale = Locale(identifier: "FR-fr")
         
         let data = child as! DataSnapshot
@@ -414,6 +414,7 @@ class SearchViewController: UIViewController {
             GlobalVariable.eventsSearch = self.eventsSearch
             self.eventsSearch = []
             self.eventSearchDistance = []
+           
             navigationController?.pushViewController(HomeViewController(), animated: false)
         }
     }
