@@ -283,6 +283,7 @@ class SearchViewController: UIViewController {
     private func distanceQuery() {
         if dataSearch["distance"] != nil {
             let distanceSearch = Double(self.dataSearch["distance"]!)!
+            print("distance Search: \(distanceSearch)")
             // test distance event
             if eventsSearch.count != 0 {
                 // Existe type event => Filtrer
@@ -303,30 +304,59 @@ class SearchViewController: UIViewController {
                   let geoFire = GeoFire(firebaseRef: geofireRef)
                   let center = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
                   let circleQuery = geoFire.query(at: center, withRadius: distanceSearch)
-                  circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-                    self.reference.child(key).observeSingleEvent(of: .value) {
-                        (snapshot) in
+                
+        
+                var eventDistance: [String] = []
 
-                        if snapshot.value is NSNull {
-                            print("not found distance event")
-                            print("TOTAL == \(self.eventsSearch.count)")
-                            self.sendDataToHome()
-                        }
-                        else {
-                            let event = self.extractEvent(child: snapshot)
-                            print(event.typeEvent)
-                            self.eventsSearch.append(event)
-                            print("TOTAL == \(self.eventsSearch.count)")
-                            self.sendDataToHome() 
-                        }
+                    circleQuery.observeReady {
+                        print("readyyy")
+                        self.getAllEventDistanceByKey(array: eventDistance)
                     }
-                  })
+                    circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+                      print("key: \(key)")
+                        eventDistance.append(key!)
+                    })
+                
+                
             }
         }
         else {
             print("TOTAL == \(self.eventsSearch.count)")
             self.sendDataToHome()
         }
+    }
+    
+    private func getAllEventDistanceByKey(array: [String]) {
+        if array.count == 0 {
+            sendDataToHome()
+        }
+        else {
+            var cmpt = 0
+            array.forEach { key in
+                cmpt += 1
+                self.reference.child(key).observeSingleEvent(of: .value) {
+                    (snapshot) in
+                 
+                    if snapshot.value is NSNull {
+                        print("not found distance event")
+                        print("TOTAL == \(self.eventsSearch.count)")
+                        if cmpt == array.count {
+                            self.sendDataToHome()
+                        }
+                    }
+                    else {
+                        let event = self.extractEvent(child: snapshot)
+                        print(event.typeEvent)
+                        self.eventsSearch.append(event)
+                        print("TOTAL == \(self.eventsSearch.count)")
+                        if self.eventsSearch.count == array.count {
+                            self.sendDataToHome()
+                        }
+                    }
+                }
+            }
+        }
+        
     }
     
     private func extractAddressToCoordAndFiltrer(distanceSearch: Double, completionHandler:()->()) {
