@@ -135,9 +135,6 @@ class SearchViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "FR-fr")
         searchByDate.text = dateFormatter.string(from: searchDatePicker.date)
         self.view.endEditing(true)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        dateFormatter.locale = Locale(identifier: "FR-fr")
-        dataSearch["startDate"] = dateFormatter.string(from: searchDatePicker.date)
     }
     
     @objc func cancelDatePicker(){
@@ -155,6 +152,13 @@ class SearchViewController: UIViewController {
     
     @IBAction func clickSearchButton(_ sender: UIButton) {
         // Get Data
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "FR-fr")
+        if searchByDate.text != "" {
+            dataSearch["startDate"] = dateFormatter.string(from: dateFormatter.date(from: searchByDate.text!)!)
+        }
+        
         let eventType = typeEventList.text ?? ""
         if eventType != "" {
             dataSearch["typeEvent"] = eventType
