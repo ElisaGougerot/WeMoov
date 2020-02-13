@@ -181,6 +181,15 @@ class SearchViewController: UIViewController {
         }
         print(dataSearch)
         
+        if dataSearch["distance"] != nil {
+            self.distanceQuery()
+        }
+        else {
+            self.startDateQuery()
+        }
+    }
+    
+    private func startDateQuery() {
         if dataSearch["startDate"] != nil {
             print(dataSearch["startDate"])
             let  date : String = dataSearch["startDate"]!
@@ -253,7 +262,8 @@ class SearchViewController: UIViewController {
                 print("FILTRE")
                 self.eventsSearch = self.eventsSearch.filter({ $0.typePlace == dataSearch["typePlace"] })
                 print("Nb Type Place: \(self.eventsSearch.count)")
-                self.distanceQuery()
+                print("TOTAL == \(self.eventsSearch.count)")
+                self.sendDataToHome()
             }
             else {
                 // Query
@@ -264,7 +274,7 @@ class SearchViewController: UIViewController {
 
                     if snapshot.value is NSNull {
                         print("not found type place")
-                        self.distanceQuery()
+                        self.sendDataToHome()
                     }
                     else {
                         for child in snapshot.children {
@@ -273,13 +283,13 @@ class SearchViewController: UIViewController {
                             self.eventsSearch.append(event)
                         }
                         print("Nb Type Place: \(self.eventsSearch.count)")
-                        self.distanceQuery()
+                        self.sendDataToHome()
                     }
                 }
             }
         }
         else {
-            distanceQuery()
+            self.sendDataToHome()
         }
     }
     
@@ -294,7 +304,7 @@ class SearchViewController: UIViewController {
                 extractAddressToCoordAndFiltrer(distanceSearch: distanceSearch) {
                     self.eventsSearch = eventSearchDistance
                     print("TOTAL == \(self.eventsSearch.count)")
-                    self.sendDataToHome()
+                    self.startDateQuery()
                 }
             }
             else {
@@ -325,13 +335,13 @@ class SearchViewController: UIViewController {
         }
         else {
             print("TOTAL == \(self.eventsSearch.count)")
-            self.sendDataToHome()
+            self.startDateQuery()
         }
     }
     
     private func getAllEventDistanceByKey(array: [String]) {
         if array.count == 0 {
-            sendDataToHome()
+            self.startDateQuery()
         }
         else {
             var cmpt = 0
@@ -344,7 +354,7 @@ class SearchViewController: UIViewController {
                         print("not found distance event")
                         print("TOTAL == \(self.eventsSearch.count)")
                         if cmpt == array.count {
-                            self.sendDataToHome()
+                            self.startDateQuery()
                         }
                     }
                     else {
@@ -353,7 +363,7 @@ class SearchViewController: UIViewController {
                         self.eventsSearch.append(event)
                         print("TOTAL == \(self.eventsSearch.count)")
                         if self.eventsSearch.count == array.count {
-                            self.sendDataToHome()
+                            self.startDateQuery()
                         }
                     }
                 }
