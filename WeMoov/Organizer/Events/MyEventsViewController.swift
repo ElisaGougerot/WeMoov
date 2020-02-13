@@ -123,6 +123,7 @@ extension MyEventsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyEventsViewController.MyEventsTableViewCellId, for: indexPath) as! EventTableViewCell
         let event = self.myEvents[indexPath.row]
         cell.eventName.text = event.name
+        cell.eventName.adjustsFontSizeToFitWidth = true
         cell.eventImageView.loadImage(urlString: event.image) // restore default image
         /*if let pictureURL = event.image {
             DispatchQueue.global().async {

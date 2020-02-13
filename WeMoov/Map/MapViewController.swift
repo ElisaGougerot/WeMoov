@@ -181,11 +181,19 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        GlobalVariable.userCoord = (locValue.latitude, locValue.longitude)
+       let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         
-        removeSpecificAnnotation("User")
-        self.displayRoutes()
+        let newCoord = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        let sourceCoord = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
+
+        let distanceInMeters = newCoord.distance(from: sourceCoord)
+        print("test \(distanceInMeters)")
+        if distanceInMeters >= 50 {
+            GlobalVariable.userCoord = (locValue.latitude, locValue.longitude)
+            
+            removeSpecificAnnotation("User")
+            self.displayRoutes()
+        }
     }
     
     func removeSpecificAnnotation(_ titleAnnotation: String) {

@@ -176,7 +176,7 @@ class SearchViewController: UIViewController {
     func searchEvent() {
         if dataSearch.isEmpty {
             print("no data")
-            displayError(message: "Remplis des champs pour faire une recherche")
+            displayError(message: "Remplis des champs pour faire une recherche", title: "Erreur")
             return
         }
         print(dataSearch)
@@ -442,7 +442,7 @@ class SearchViewController: UIViewController {
     
     private func checkResultSearch() -> Bool {
         if self.eventsSearch.count == 0 {
-            displayError(message: "Aucun résultat pour cette recherche ! Réessayer")
+            displayError(message: "Aucun résultat pour cette recherche ! Réessayer", title:"Aucun résultat" )
             return false
         }
         return true
@@ -458,8 +458,8 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func displayError(message: String) {
-        let alert = UIAlertController(title: "Erreur", message: message, preferredStyle: .alert)
+    func displayError(message: String, title:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         if presentedViewController == nil {
             self.present(alert, animated: true, completion: nil)
