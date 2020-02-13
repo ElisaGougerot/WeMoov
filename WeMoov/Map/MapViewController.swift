@@ -127,9 +127,6 @@ class MapViewController: UIViewController {
              
              let route = response.routes[0]
             self.EventsMapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
-             
-             let rect = route.polyline.boundingMapRect
-             self.EventsMapView.setRegion(MKCoordinateRegion (rect), animated: true)
          }
     }
     
