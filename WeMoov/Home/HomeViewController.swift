@@ -42,7 +42,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }))
         alert.addAction(UIAlertAction(title: "Non", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-        print("deco")
     }
     
     
@@ -211,14 +210,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             // Default Location: ESGI
             GlobalVariable.userCoord = (48.8490674, 2.389729)
         }
-        let geofireRef = Database.database().reference().child("geoloc")
-        let geoFire = GeoFire(firebaseRef: geofireRef)
-        let center = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
+//        let geofireRef = Database.database().reference().child("geoloc")
+//       let geoFire = GeoFire(firebaseRef: geofireRef)
+//        let center = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
         // Query locations at [37.7832889, -122.4056973] with a radius of 600 meters
-        var circleQuery = geoFire.query(at: center, withRadius: 1.0)
-        var queryHandle = circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-          print("Key '\(key)' entered the search area and is at location '\(location)'")
-        })
+//        var circleQuery = geoFire.query(at: center, withRadius: 1.0)
+//        var queryHandle = circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+//          print("Key '\(key)' entered the search area and is at location '\(location)'")
+//        })
         
     }
     
@@ -232,7 +231,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
         GlobalVariable.userCoord = (locValue.latitude, locValue.longitude)
     }
 }
@@ -241,14 +239,11 @@ extension HomeViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if(item.tag == 1) {
             // Search Button test
-            print("search")
             navigationController?.pushViewController(SearchViewController(), animated: false)
         } else if(item.tag == 2) {
             // Home Button
-            print("home")
         } else if(item.tag == 3) {
             // Favorite Button
-            print("favorite")
             navigationController?.pushViewController(FavoritesViewController(), animated: false)
         }
     }
@@ -275,7 +270,6 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(self.AllEvents[indexPath.row].name)")
         GlobalVariable.eventClicked = self.AllEvents[indexPath.row]
         self.navigationController?.pushViewController(EventDetailViewController(), animated: true)
     }
@@ -284,7 +278,6 @@ extension HomeViewController: UITableViewDataSource {
         let button = sender as! UIButton
         let row = button.tag
         let idEvent = self.AllEvents[row].idEvent
-        print("idevent: \(idEvent) + name: \(self.AllEvents[row].name)")
         let fav = GlobalVariable.favorites.contains(idEvent)
         
         let ref = Database.database().reference(withPath: "favorite").child(GlobalVariable.user.id)
@@ -296,7 +289,6 @@ extension HomeViewController: UITableViewDataSource {
             "favEventsID": GlobalVariable.favorites.getFavEvents(),
             ]
             
-            print("fav add: \(idEvent)")
             
             ref.setValue(dictEvent) {
                 (error:Error?, ref:DatabaseReference) in
@@ -310,7 +302,6 @@ extension HomeViewController: UITableViewDataSource {
         } else {
             GlobalVariable.favorites.removeFavEvent(id: idEvent)
             ref.updateChildValues(["favEventsID": GlobalVariable.favorites.getFavEvents()])
-            print("fav update delete")
             button.tintColor = GlobalVariable.favorites.contains(idEvent) ? .red : .black
         }
     }

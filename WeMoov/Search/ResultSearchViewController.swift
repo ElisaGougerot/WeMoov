@@ -88,7 +88,6 @@ class ResultSearchViewController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "Non", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-        print("deco")
     }
     
     
@@ -125,7 +124,6 @@ extension ResultSearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(self.resultEvents[indexPath.row].name)")
         GlobalVariable.eventClicked = self.resultEvents[indexPath.row]
         self.navigationController?.pushViewController(EventDetailViewController(), animated: true)
     }
@@ -134,7 +132,6 @@ extension ResultSearchViewController: UITableViewDataSource {
         let button = sender as! UIButton
         let row = button.tag
         let idEvent = self.resultEvents[row].idEvent
-        print("idevent: \(idEvent) + name: \(self.resultEvents[row].name)")
         let fav = GlobalVariable.favorites.contains(idEvent)
         
         let ref = Database.database().reference(withPath: "favorite").child(GlobalVariable.user.id)
@@ -146,7 +143,6 @@ extension ResultSearchViewController: UITableViewDataSource {
             "favEventsID": GlobalVariable.favorites.getFavEvents(),
             ]
             
-            print("fav add: \(idEvent)")
             
             ref.setValue(dictEvent) {
                 (error:Error?, ref:DatabaseReference) in

@@ -262,7 +262,6 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                     let location = placemarks.first?.location?.coordinate
                 else {
                     // handle no location found
-                    print("no location found create event")
                     let alert = UIAlertController(title: "Addresse Incorrect", message: "Veuillez modifier l'adresse ! ",         preferredStyle: UIAlertController.Style.alert)
                     
                     alert.addAction(UIAlertAction(title: "Réessayer", style: UIAlertAction.Style.default, handler: nil))
@@ -302,7 +301,6 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                 
                 // Upload & Update Picture
                 self.imageView.image!.upload(with: "image \(name)", completion: {(url: URL?) in
-                    //print(url)
                     Database.database().reference(withPath: "events").child(uuid).updateChildValues(["image": url?.absoluteString])
                 })
                 

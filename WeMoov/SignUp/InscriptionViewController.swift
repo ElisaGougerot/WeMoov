@@ -121,7 +121,6 @@ class InscriptionViewController: UIViewController {
     
     //Func emmenant vers la page connexion si le bouton se connecter est pressé.
     @objc func handleShowSignUp(){
-        print("signup")
         //Retourner au précedent écran.
        navigationController?.popViewController(animated: true)
 
@@ -239,10 +238,8 @@ extension UIImageView {
 
     @objc fileprivate func imageTapped(_ sender: UITapGestureRecognizer) {
         if self.image == #imageLiteral(resourceName: "cancel-1") {
-            print("click ok")
             handleOrganizer(image: #imageLiteral(resourceName: "check"))
         } else if self.image == #imageLiteral(resourceName: "check") {
-            print("click off")
             handleOrganizer(image: #imageLiteral(resourceName: "cancel-1"))
         }
     }

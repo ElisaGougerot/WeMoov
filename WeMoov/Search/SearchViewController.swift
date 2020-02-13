@@ -179,7 +179,6 @@ class SearchViewController: UIViewController {
             displayError(message: "Remplis des champs pour faire une recherche", title: "Erreur")
             return
         }
-        print(dataSearch)
         
         if dataSearch["distance"] != nil {
             self.distanceQuery()
@@ -191,7 +190,6 @@ class SearchViewController: UIViewController {
     
     private func startDateQuery() {
         if dataSearch["startDate"] != nil {
-            print(dataSearch["startDate"])
             let  date : String = dataSearch["startDate"]!
             reference.queryOrdered(byChild: "startDate").queryStarting(atValue: date).observeSingleEvent(of: .value) {
                 (snapshot) in
@@ -203,10 +201,8 @@ class SearchViewController: UIViewController {
                 else {
                     for child in snapshot.children {
                         let event = self.extractEvent(child: child)
-                        print(event.startDate)
                         self.eventsSearch.append(event)
                     }
-                    print("Nb Start Date: \(self.eventsSearch.count)")
                     self.typeEventQuery()
                 }
             }
@@ -221,14 +217,11 @@ class SearchViewController: UIViewController {
             // test type event
             if eventsSearch.count != 0 {
                 // Existe type event => Filtrer
-                print("FILTRE")
                 self.eventsSearch = self.eventsSearch.filter({ $0.typeEvent == dataSearch["typeEvent"] })
-                print("Nb Type Event: \(self.eventsSearch.count)")
                 self.typePlaceQuery()
             }
             else {
                 // Query
-                print("QUERY type event")
                 let typeEvent: String = dataSearch["typeEvent"]!
                 reference.queryOrdered(byChild: "typeEvent").queryEqual(toValue: typeEvent).observeSingleEvent(of: .value) {
                     (snapshot) in
@@ -240,10 +233,8 @@ class SearchViewController: UIViewController {
                     else {
                         for child in snapshot.children {
                             let event = self.extractEvent(child: child)
-                            print(event.typeEvent)
                             self.eventsSearch.append(event)
                         }
-                        print("Nb Type Event: \(self.eventsSearch.count)")
                         self.typePlaceQuery()
                     }
                 }
@@ -259,15 +250,11 @@ class SearchViewController: UIViewController {
             // test type place
             if eventsSearch.count != 0 {
                 // Existe type place => Filtrer
-                print("FILTRE")
                 self.eventsSearch = self.eventsSearch.filter({ $0.typePlace == dataSearch["typePlace"] })
-                print("Nb Type Place: \(self.eventsSearch.count)")
-                print("TOTAL == \(self.eventsSearch.count)")
                 self.sendDataToHome()
             }
             else {
                 // Query
-                print("QUERY type place")
                 let typePlace: String = dataSearch["typePlace"]!
                 reference.queryOrdered(byChild: "typePlace").queryEqual(toValue: typePlace).observeSingleEvent(of: .value) {
                     (snapshot) in
@@ -279,10 +266,8 @@ class SearchViewController: UIViewController {
                     else {
                         for child in snapshot.children {
                             let event = self.extractEvent(child: child)
-                            print(event.typePlace)
                             self.eventsSearch.append(event)
                         }
-                        print("Nb Type Place: \(self.eventsSearch.count)")
                         self.sendDataToHome()
                     }
                 }
@@ -296,20 +281,16 @@ class SearchViewController: UIViewController {
     private func distanceQuery() {
         if dataSearch["distance"] != nil {
             let distanceSearch = Double(self.dataSearch["distance"]!)!
-            print("distance Search: \(distanceSearch)")
             // test distance event
             if eventsSearch.count != 0 {
                 // Existe type event => Filtrer
-                print("FILTRE DISTANCE")
                 extractAddressToCoordAndFiltrer(distanceSearch: distanceSearch) {
                     self.eventsSearch = eventSearchDistance
-                    print("TOTAL == \(self.eventsSearch.count)")
                     self.startDateQuery()
                 }
             }
             else {
                 // Query
-                print("QUERY distance event")
                 if GlobalVariable.userCoord.0 == 0 && GlobalVariable.userCoord.1 == 0 {
                       // Default Location: ESGI
                       GlobalVariable.userCoord = (48.8490674, 2.389729)
@@ -322,11 +303,9 @@ class SearchViewController: UIViewController {
                 var eventDistance: [String] = []
 
                     circleQuery.observeReady {
-                        print("readyyy")
                         self.getAllEventDistanceByKey(array: eventDistance)
                     }
                     circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-                      print("key: \(key)")
                         eventDistance.append(key!)
                     })
                 
@@ -334,7 +313,6 @@ class SearchViewController: UIViewController {
             }
         }
         else {
-            print("TOTAL == \(self.eventsSearch.count)")
             self.startDateQuery()
         }
     }
@@ -352,16 +330,13 @@ class SearchViewController: UIViewController {
                  
                     if snapshot.value is NSNull {
                         print("not found distance event")
-                        print("TOTAL == \(self.eventsSearch.count)")
                         if cmpt == array.count {
                             self.startDateQuery()
                         }
                     }
                     else {
                         let event = self.extractEvent(child: snapshot)
-                        print(event.typeEvent)
                         self.eventsSearch.append(event)
-                        print("TOTAL == \(self.eventsSearch.count)")
                         if self.eventsSearch.count == array.count {
                             self.startDateQuery()
                         }
@@ -379,7 +354,6 @@ class SearchViewController: UIViewController {
         let geoFire = GeoFire(firebaseRef: geofireRef)
         
         self.eventsSearch.forEach { (event) in
-            print("id: \(event.idEvent) = \(event.name)")
             
             geoFire.getLocationForKey(event.idEvent) { (location, error) in
               if (error != nil) {
@@ -387,7 +361,6 @@ class SearchViewController: UIViewController {
               } else if (location != nil) {
                 let coordinateEvent = CLLocation(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
                 let distanceInMeters = coordinateEvent.distance(from: coordinateUser)
-                print("distance in meter: \(distanceInMeters)")
                 if distanceInMeters <= distanceSearch {
                     self.eventSearchDistance.append(event)
                 }
@@ -395,25 +368,6 @@ class SearchViewController: UIViewController {
                 print("GeoFire does not contain a location for \"firebase-hq\"")
               }
             }
-            
-            
-            
-           /* geoCoder.geocodeAddressString(event.address) { (placemarks, error) in
-                guard
-                    let placemarks = placemarks,
-                    let location = placemarks.first?.location?.coordinate
-                else {
-                    // handle no location found
-                    print("no location found search distance")
-                    return
-                }
-                let coordinateEvent = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                let distanceInMeters = coordinateEvent.distance(from: coordinateUser)
-                print("distance in meter: \(distanceInMeters)")
-                if distanceInMeters <= distanceSearch {
-                    self.eventSearchDistance.append(event)
-                }
-            }*/
             sleep(1)
         }
         completionHandler()
@@ -435,7 +389,7 @@ class SearchViewController: UIViewController {
         let idOrganizer = event["idOrganizer"] as? String ?? ""
         let name = event["name"] as? String  ?? ""
         let content = event["content"] as? String  ?? ""
-        let image = event["image"] as? String ?? "" //URL(string: event["image"] as? String ?? "")
+        let image = event["image"] as? String ?? ""
         let typeEvent = event["typeEvent"] as? String  ?? ""
         let typePlace = event["typePlace"] as? String  ?? ""
         let coordinates = event["coordinates"] as? [String: CLLocationDegrees]
@@ -484,14 +438,11 @@ extension SearchViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if(item.tag == 1) {
             // Search Button
-            print("search")
         } else if(item.tag == 2) {
             // Home Button test
-            print("home")
             navigationController?.pushViewController(HomeViewController(), animated: false)
         } else if(item.tag == 3) {
             // Favorite Button
-            print("favorite")
             navigationController?.pushViewController(FavoritesViewController(), animated: false)
         }
     }

@@ -101,7 +101,6 @@ class LoginViewController: UIViewController {
     }
     
     @objc func handleShowSignUp(){
-        print("signup")
         navigationController?.pushViewController(InscriptionViewController(), animated: true)
     }
     
@@ -115,7 +114,6 @@ class LoginViewController: UIViewController {
             }
             
         }
-        print("login")
         loadUserData()
     }
     

@@ -140,7 +140,6 @@ extension MyEventsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(self.myEvents[indexPath.row].name)")
         GlobalVariable.eventClicked = self.myEvents[indexPath.row]
         self.navigationController?.pushViewController(EventDetailViewController(), animated: true)
     }

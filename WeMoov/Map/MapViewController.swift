@@ -35,7 +35,6 @@ class MapViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
         
-        //print(address)
         if #available(iOS 13.0, *) {
             self.EventsMapView.overrideUserInterfaceStyle = .dark
         }
@@ -63,7 +62,6 @@ class MapViewController: UIViewController {
             self.coord_lat = location.latitude
             self.coord_long = location.longitude
             
-            print("logCoord \(self.coord_lat) && \(self.coord_long)")
             if GlobalVariable.userCoord.0 == 0 && GlobalVariable.userCoord.1 == 0 {
                 // default location: ESGI
                 GlobalVariable.userCoord = (48.8490674, 2.389729)
@@ -184,7 +182,6 @@ extension MapViewController: CLLocationManagerDelegate {
         let sourceCoord = CLLocation(latitude: GlobalVariable.userCoord.0, longitude: GlobalVariable.userCoord.1)
 
         let distanceInMeters = newCoord.distance(from: sourceCoord)
-        print("test \(distanceInMeters)")
         if distanceInMeters >= 50 {
             GlobalVariable.userCoord = (locValue.latitude, locValue.longitude)
             

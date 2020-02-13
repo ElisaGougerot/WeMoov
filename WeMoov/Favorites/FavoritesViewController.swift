@@ -38,7 +38,6 @@ class FavoritesViewController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "Non", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-        print("deco")
     }
     
     
@@ -151,15 +150,12 @@ extension FavoritesViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if(item.tag == 1) {
             // Search Button test
-            print("search")
             navigationController?.pushViewController(SearchViewController(), animated: false)
         } else if(item.tag == 2) {
             // Home Button
-            print("home")
             navigationController?.pushViewController(HomeViewController(), animated: false)
         } else if(item.tag == 3) {
             // Favorite Button
-            print("favorite")
         }
     }
 }
@@ -185,7 +181,6 @@ extension FavoritesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(self.AllFavorite[indexPath.row].name)")
         GlobalVariable.eventClicked = self.AllFavorite[indexPath.row]
         self.navigationController?.pushViewController(EventDetailViewController(), animated: true)
     }
@@ -194,13 +189,11 @@ extension FavoritesViewController: UITableViewDataSource {
         let button = sender as! UIButton
         let row = button.tag
         let idEvent = self.AllFavorite[row].idEvent
-        print("idevent: \(idEvent) + name: \(self.AllFavorite[row].name)")
         
         let ref = Database.database().reference(withPath: "favorite").child(GlobalVariable.user.id)
         
         GlobalVariable.favorites.removeFavEvent(id: idEvent)
         ref.updateChildValues(["favEventsID": GlobalVariable.favorites.getFavEvents()])
-        print("fav update delete")
         self.AllFavorite.remove(at: row)
         self.AllFavoriteTableView.reloadData()
     }

@@ -129,7 +129,6 @@ class EventDetailViewController: UIViewController {
             "favEventsID": GlobalVariable.favorites.getFavEvents(),
             ]
             
-            print("fav add: \(idEvent)")
             
             ref.setValue(dictEvent) {
                 (error:Error?, ref:DatabaseReference) in
